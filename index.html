@@ -8,7 +8,7 @@
   <meta name="author" content="">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <link rel="stylesheet" href="style.css">
-  <script src="js/libs/modernizr-2.0.6.min.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.5.3/modernizr.min.js"></script>
 </head>
 <body>
 
@@ -17,59 +17,145 @@
 <ul id="Accessibility">
     <li><a href="#Content">Hoppa till innehåll</a></li>
     <li><a href="#Navigation">Hoppa till navigering</a></li>
+    <li><a href="#Search">Hoppa till sökruta</a></li>
 </ul>
 
-<div class="container">
+<div class="container clearfix">
+
+<!--
+<nav id="Navigation" role="navigation" class="clearfix">
+<ul id="menu-huvudnavigering" class="menu">
+<li id="menu-item-7" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-7"><a href="#">Hem</a></li>
+<li id="menu-item-16" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-16"><a href="#">Om</a></li>
+<li id="menu-item-12" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item menu-item-12"><a href="#">Arkiv</a></li>
+</ul>
+</nav>
+-->
+
+<!--
+<form method="get" id="Searchform" action="#">
+<label class="visuallyhidden" for="s">Sök hela webbplatsen</label>
+<input type="text" name="s" id="Searchbar" placeholder="Sök webbplatsen"/>
+<input class="submit" type="submit" id="Searchbtn" value="" />
+</form>
+-->
+
+
+<hgroup>
 <h1>Evidensbaserad praktik</h1>
-
-
+<h3 class="byline"><a class="kfsk" href="http://kfsk.se">Kommunförbundet Skåne</a> i samarbete med <a class=  "regionskane" href="http://www.skane.se/">Region Skåne</a></h3>
+</hgroup>
 
 </div><!-- /container -->
 </header>
 
-<section id="Content" role="content" class="clearfix">
-<section role="main" class="container">
+<section id="Content" class="clearfix">
+<section id="Main" role="main">
 
 <article>
-    <h2 class="dropcap">I en evidensbaserad praktik används <em>tre</em> kunskapskällor för att skapa en så effektiv vård som möjligt: <strong>vetenskaplig kunskap</strong> om insatsers effekt, <strong>brukarens erfarenheter</strong> och förväntningar och den <strong>professionelles expertis.</strong></h2>
-    <p><img src="img/last.fm%20wallpaper.jpg" alt="last.fm%20wallpaper" width="1690" height="1300" />Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Integer posuere&mdash;erat a ante venenatis dapibus&mdash;posuere velit aliquet. <a href="#">Vestibulum id ligula</a> porta felis euismod semper. Sed posuere consectetur est at lobortis. Donec ullamcorper nulla non metus auctor fringilla. Lorem ipsum dolor sit amet, consectetur.</p>
-    <p>Maecenas faucibus mollis interdum. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. <a href="#" rel="external">Cras mattis</a> consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget. Praesent&#8217;s commodo cursus magna, vel scelerisque nisl consectetur et. Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget.</p>
-    
-      <ol>
-        <li>Cras justo odio, dapibus ac facilisis in, egestas eget quam.</li>
-        <li>Nullam quis risus eget urna mollis ornare vel eu leo.</li>
-        <li>Fusce dapibus tellus ac cursus commodo.</li>
-      </ol>
-    <h3>Eget urna mollis</h3>
-    <p>Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Integer posuere&mdash;erat a ante venenatis dapibus&mdash;posuere <em>velit aliquet</em>. Vestibulum id ligula porta felis euismod semper. Sed posuere consectetur est at lobortis. Donec ullamcorper nulla non metus auctor fringilla. Lorem ipsum dolor sit amet, consectetur.</p>
-    <blockquote>
-      <p>Sed posuere consectetur est at lobortis. Aenean lacinia bibendum nulla sed consectetur. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent commodo cursus magna vel scelerisque. <sup>[<a href="#cite1">1</a>]</sup></p>
-    </blockquote>
-    <pre><code>body {
-  font: 75%/1.5em "PTSerifCustom", Georgia, serif;
-  max-width: 40.49984em;
-  color: rgb(0,0,0);
-  margin: 0 auto;
-  padding: 1em;
-}</code></pre>
-    <h3>Scale.css template</h3>
-    <ul>
-      <li>Read the original post from <a href="http://viljamis.com/blog/2012/typography/" class="highlight" rel="external">viljamis.com</a>.</li>
-      <li>Get the template from <a href="https://github.com/viljamis/Scale" class="highlight" rel="external">GitHub</a>.</li>
-      <li>If you have questions <a href="http://twitter.com/viljamis" class="highlight" rel="external">send me a tweet</a>.</li>
-    </ul>
+
+<h2 class="dropcap">I en <em>evidensbaserad praktik</em> används <strong>tre kunskapskällor</strong> för att skapa en så effektiv vård som möjligt: <strong>vetenskaplig kunskap</strong> om insatsers effekt, <strong>brukarens erfarenheter</strong> och förväntningar och den <strong>professionelles expertis.</strong></h2>
+
+<p><a href="/KFSK//img/vintagenurses.jpg"><img class="alignright" src="img/vintagenurses.jpg" alt="last.fm%20wallpaper" width="255" /></a><strong>Alignright</strong> dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Integer posuere&mdash;erat a ante venenatis dapibus&mdash;posuere velit aliquet. <a href="#">Vestibulum id ligula</a> porta felis euismod semper. Sed posuere consectetur est at lobortis. Donec ullamcorper nulla non metus auctor fringilla. Lorem ipsum dolor sit amet, consectetur.</p>
+<p>Maecenas faucibus mollis interdum. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. <a href="#" rel="external">Cras mattis</a> consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget. Praesent&#8217;s commodo cursus magna, vel scelerisque nisl consectetur et. Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget.</p>
+
+<ol>
+    <li>Numrerad list dapibus ac facilisis in, egestas eget quam.</li>
+    <li>Nullam quis risus eget urna mollis ornare vel eu leo.</li>
+    <li>Fusce dapibus tellus ac cursus commodo.</li>
+</ol>
+
+<h3>Rubrik h2</h3>
+
+<ul>
+    <li>Osorterad lista</li>
+    <li>Osorterad lista Osorterad lista Osorterad lista Osorterad lista Os</li>
+    <li>Osorterad lista</li>
+</ul>
+
+<h3>Rubrik h3</h3>
+
+<p><a href="/KFSK//img/vintagenurses.jpg"><img class="alignleft" src="img/vintagenurses.jpg" alt="last.fm%20wallpaper" width="255" /></a>Alignleft dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Integer posuere&mdash;erat a ante venenatis dapibus&mdash;posuere <em>velit aliquet</em>. Vestibulum id ligula porta felis euismod semper. Sed posuere consectetur est at lobortis. Donec ullamcorper nulla non metus auctor fringilla. Lorem ipsum dolor sit amet, consectetur.</p>
+
+
+<blockquote>
+<p><strong>Blockquote citat</strong> consectetur est at lobortis. Aenean lacinia bibendum nulla sed consectetur. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent commodo cursus magna vel scelerisque. <sup>[<a href="#cite1">1</a>]</sup></p>
+</blockquote>
+
+<p>
+<a href="/KFSK//img/vintagenurses.jpg"><img class="alignleft" src="img/vintagenurses.jpg" alt="last.fm%20wallpaper" /></a>
+</p>
+
+<h4>Rubrik h4</h4>
+
+<p><a href="/KFSK//img/vintagenurses.jpg"><img class="alignnone" src="img/vintagenurses.jpg" alt="last.fm%20wallpaper" width="255" /></a>Alignnone dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Integer posuere&mdash;erat a ante venenatis dapibus&mdash;posuere <em>velit aliquet</em>. Vestibulum id ligula porta felis euismod semper. Sed posuere consectetur est at lobortis. Donec ullamcorper nulla non metus auctor fringilla. Lorem ipsum dolor sit amet, consectetur.</p>
+
+<h5>Rubrik h5</h5>
+
+<p>dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Integer posuere&mdash;erat a ante venenatis dapibus&mdash;posuere <em>velit aliquet</em>. Vestibulum id ligula porta felis euismod semper. Sed posuere consectetur est at lobortis. Donec ullamcorper nulla non metus auctor fringilla. Lorem ipsum dolor sit amet, consectetur.</p>
+
+
+<h6>Rubrik h6</h6>
+
+<p>dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Integer posuere&mdash;erat a ante venenatis dapibus&mdash;posuere <em>velit aliquet</em>. Vestibulum id ligula porta felis euismod semper. Sed posuere consectetur est at lobortis. Donec ullamcorper nulla non metus auctor fringilla. Lorem ipsum dolor sit amet, consectetur.</p>
+
 
 </article>
 
 </section><!-- end section main -->
 
-<aside role="complementary">
-<p>Vestibulum mollis mauris enim. Morbi euismod magna ac lorem rutrum elementum. Donec viverra auctor lobortis. Pellentesque eu est a nulla placerat dignissim. Morbi a enim in magna semper bibendum. Etiam scelerisque, nunc ac egestas consequat, odio nibh euismod nulla, eget auctor orci nibh vel nisi. Aliquam erat volutpat. Mauris vel neque sit amet nunc gravida congue sed sit amet purus. Quisque lacus quam, egestas ac tincidunt a.</p>
+<aside id="Sidebar" role="complementary">
+<ul class="wrapper"><!-- start widget ul-wrapper -->
+
+
+<li id="text-2" class="widget-container widget_text"><h3 class="widget-title">Rubrik</h3>			<div class="textwidget">Morbi malesuada nulla nec purus convallis consequat. Vivamus id mollis quam. Morbi ac commodo nulla. In condimentum orci id nisl volutpat bibendum. Quisque commodo hendrerit lorem quis egestas. Maecenas quis tortor arcu. Vivamus rutrum nunc non neque consectetur quis placerat neque lobortis. Nam vestibulum, arcu sodales feugiat consectetur, nisl orci bibendum elit, eu euismod magna sapien ut nibh. Donec semper quam scelerisque tortor dictum gravida. In hac.</div>
+		</li><li id="pages-2" class="widget-container widget_pages"><h3 class="widget-title">Sidor</h3>		<ul>
+			<li class="page_item page-item-35 current_page_parent"><a href="http://localhost/Trust/aktuellt/">Aktuellt</a></li>
+<li class="page_item page-item-17"><a href="http://localhost/Trust/assessment/">Assessment</a></li>
+<li class="page_item page-item-2"><a href="http://localhost/Trust/exempelsida/">Exempelsida</a></li>
+<li class="page_item page-item-32"><a href="http://localhost/Trust/">Framsida</a></li>
+<li class="page_item page-item-40"><a href="http://localhost/Trust/karriar/">Karriär</a></li>
+<li class="page_item page-item-26"><a href="http://localhost/Trust/kontakt/">Kontakt</a></li>
+<li class="page_item page-item-20"><a href="http://localhost/Trust/ledarutveckling/">Ledarutveckling</a></li>
+<li class="page_item page-item-23"><a href="http://localhost/Trust/om-oss/">Om Oss</a></li>
+<li class="page_item page-item-14"><a href="http://localhost/Trust/rekrytering/">Rekrytering</a></li>
+		</ul>
+		</li><li id="meta-3" class="widget-container widget_meta"><h3 class="widget-title">Meta</h3>			<ul>
+			<li><a href="http://localhost/Trust/wp-admin/">Administration</a></li>			<li><a href="http://localhost/Trust/wp-login.php?action=logout&#038;_wpnonce=6e5f2aa36f">Logga ut</a></li>
+			<li><a href="http://localhost/Trust/feed/" title="Prenumerera på den här webbplatsen via RSS 2.0">Inlägg via <abbr title="Really Simple Syndication">RSS</abbr></a></li>
+			<li><a href="http://localhost/Trust/comments/feed/" title="De senaste kommentarerna till alla inlägg via RSS">Kommentarer via <abbr title="Really Simple Syndication">RSS</abbr></a></li>
+			<li><a href="http://wordpress.org/" title="Drivs med WordPress, en toppmodern, semantisk publiceringsplattform.">WordPress.org</a></li>
+						</ul>
+</li><li id="linkcat-2" class="widget-container widget_links"><h3 class="widget-title">Länklista</h3>
+	<ul class='xoxo blogroll'>
+<li><a href="http://codex.wordpress.org/">Documentation</a></li>
+<li><a href="http://wordpress.org/extend/plugins/">Plugins</a></li>
+<li><a href="http://wordpress.org/extend/ideas/">Suggest Ideas</a></li>
+<li><a href="http://wordpress.org/support/">Support Forum</a></li>
+<li><a href="http://wordpress.org/extend/themes/">Themes</a></li>
+<li><a href="http://wordpress.org/news/">WordPress Blog</a></li>
+<li><a href="http://planet.wordpress.org/">WordPress Planet</a></li>
+
+	</ul>
+</li>
+<li id="recent-comments-4" class="widget-container widget_recent_comments"><h3 class="widget-title">Senaste kommentarer</h3><ul id="recentcomments"><li class="recentcomments"><a href='http://wordpress.org/' rel='external nofollow' class='url'>Herr WordPress</a> om <a href="http://localhost/Trust/hej-varlden/#comment-1">Hej världen!</a></li></ul></li><li id="categories-3" class="widget-container widget_categories"><h3 class="widget-title">Kategorier</h3>		<ul>
+	<li class="cat-item cat-item-5"><a href="http://localhost/Trust/kategori/aktuellt/" title="Se alla inlägg sparade under aktuellt">aktuellt</a>
+</li>
+	<li class="cat-item cat-item-4"><a href="http://localhost/Trust/kategori/html/" title="Se alla inlägg sparade under html">html</a>
+</li>
+	<li class="cat-item cat-item-1"><a href="http://localhost/Trust/kategori/okategoriserade/" title="Se alla inlägg sparade under Okategoriserade">Okategoriserade</a>
+</li>
+		</ul>
+</li><li id="archives-3" class="widget-container widget_archive"><h3 class="widget-title">Arkiv</h3>		<ul>
+			<li><a href='http://localhost/Trust/2012/02/' title='februari 2012'>februari 2012</a></li>
+	<li><a href='http://localhost/Trust/2011/12/' title='december 2011'>december 2011</a></li>
+		</ul>
+</li>
+</ul><!-- end widget ul-wrapper -->
 </aside><!-- end complementary -->
 <!-- <?php get_sidebar(); ?> -->
 
 </section><!-- end section Content -->
-
 
 <script src="js/scripts.js"></script>
 </body>

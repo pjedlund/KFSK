@@ -1,7 +1,7 @@
 /*
-Theme Name:         kfsk
+Theme Name:         Evidensbaserad praktik
 Description:        Tema byggt med scale - http://scalecss.com
-Version:            20120412
+Version:            20120417
 Author:             Johan Edlund
 Author URI:         http://edlunddesign.com
 */
@@ -25,6 +25,9 @@ Author URI:         http://edlunddesign.com
 }
 .calibri {
   font-family: Calibri, "Helvetica Neue", sans-serif;
+}
+.times {
+  font-family: TimesNewRoman, "Times New Roman", Times, Georgia, serif;
 }
 .ir {
   display: block;
@@ -91,7 +94,7 @@ Author URI:         http://edlunddesign.com
 #Accessibility {
   position: absolute;
   left: 0;
-  width: 97%;
+  width: 100%;
   margin-left: 0;
   text-align: center;
   list-style: none;
@@ -102,7 +105,7 @@ Author URI:         http://edlunddesign.com
 #Accessibility a {
   position: absolute;
   left: -999em;
-  top: 1em;
+  top: 2em;
 }
 #Accessibility a:focus,
 #Accessibility a:active {
@@ -115,10 +118,11 @@ Author URI:         http://edlunddesign.com
   text-align: center;
   text-decoration: none;
   font-size: 1.7em;
-  color: #2B79AB;
+  color: #167872;
   background: rgba(255, 255, 255, 0.8);
   border: 1px dotted #eee;
 }
+/* modified version of.. */
 /*
    ######   ######     ###    ##       ########
   ##    ## ##    ##   ## ##   ##       ##
@@ -129,8 +133,7 @@ Author URI:         http://edlunddesign.com
    ######   ######  ##     ## ######## ########
 
   Short URL: http://scalecss.com
---------------------------------------------- */
-html,
+--------------------------------------------- */html,
 body,
 div,
 span,
@@ -262,20 +265,20 @@ video {
   _width: 100%;
 }
 /*
-  SELECTIONS
+  !SELECTIONS
 --------------------------------------------- */
 ::-moz-selection {
-  background: #8c9193;
+  background: #d08c0f;
   color: #ffffff;
   text-shadow: none;
 }
 ::selection {
-  background: #8c9193;
+  background: #d08c0f;
   color: #ffffff;
   text-shadow: none;
 }
 ::selection:window-inactive {
-  background: #8c9193;
+  background: #dcdcdc;
   color: #323232;
 }
 img::selection {
@@ -304,7 +307,6 @@ body {
   _width: 32.90612em;
   font-size: 100%;
 }
-/*   header{background: #f5f4f3;} */
 h1,
 h2,
 h3,
@@ -324,9 +326,12 @@ dl,
 blockquote,
 .content img {
   margin-bottom: 1.5em;
+  /*
   -webkit-hyphens: auto;
   -moz-hyphens: auto;
   hyphens: auto;
+*/
+
 }
 abbr {
   text-transform: lowercase;
@@ -375,8 +380,17 @@ ol {
 }
 h1 {
   margin: .97em 0 .5em;
+  /* margin-bottom: 20px */
+
   line-height: 1.125em;
   font-size: 2em;
+}
+/* remove margin-bottom for h1 - margin added to #Content instead */
+h1 {
+  margin-bottom: 0;
+}
+#Content {
+  margin-top: 0;
 }
 .ie h1 {
   font-size: 4em;
@@ -390,6 +404,44 @@ h3 {
   margin: 1.7em 0 .85em;
   line-height: 1.5em;
   font-size: 1.3em;
+}
+/* Byline */
+h3.byline {
+  color: #666b6d;
+  margin: .666666667em  0 1em;
+  /* TODO!! manually change to fit the vertical rhythm 12? */
+
+  font-family: TimesNewRoman, "Times New Roman", Times, Georgia, serif;
+  font-style: italic;
+  font-size: 1.125em;
+  /* 18px */
+
+  /* letter-spacing: .055555556em; /* 1px */
+
+  line-height: 1.333333333;
+  /* 24px */
+
+}
+h3.byline a:link {
+  padding: .153846154em 0;
+  /* 2px */
+
+  color: #de4952;
+  font-style: normal;
+  font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+  font-size: .722222222em;
+  /* 13/18 */
+
+  text-transform: uppercase;
+  letter-spacing: .153846154em;
+  /* 2px */
+
+  border-bottom: none;
+}
+h3.byline a:hover {
+  color: #a31e26;
+  /* border-bottom: 2px solid #ccc; */
+
 }
 h4 {
   line-height: 1.12382em;
@@ -421,33 +473,128 @@ pre {
   white-space: pre-wrap;
   word-wrap: break-word;
 }
+/*
+  IMAGES
+--------------------------------------------- */
 img {
   margin: .5em auto 1.5em auto;
   display: block;
-  background: #f2f2f2;
-  border: 1px solid #ddd;
-  padding: 5px;
+  background: #f9f9f9;
+  /* border:.0625em solid lighten(@logogrey, 37%); /* 1px */
+
+  /* padding:.0625em; */
+  /* 1px */
+
+}
+img.alignleft {
+  float: none;
+  margin-left: 0;
+  margin-right: 0;
+}
+img.alignright {
+  float: none;
+  margin-left: 0;
+  margin-right: 0;
+}
+img.alignnone {
+  float: none;
+  margin-left: 0;
+  margin-right: 0;
 }
 /*
   LINKS
 --------------------------------------------- */
 a {
-  border-bottom: 1px solid #c8c8c8;
+  color: #ce2630;
   text-decoration: none;
-  color: #505050;
-  outline: none;
+  border-bottom: 2px solid #dbdcdd;
+  font-weight: bold;
+}
+a:visited {
+  color: #da343e;
+}
+a:hover {
+  color: #78161c;
+  /* .transition(.1s, ease); */
+
+  border-bottom: 2px solid #8c9193;
+}
+a:focus {
+  outline: thin dotted;
+  color: #78161c;
 }
 a:hover,
-a:focus {
-  border-bottom: 1px solid #000000;
-  background: rgba(0, 0, 0, 0.05);
-  color: #000000;
-}
 a:active {
-  outline: none;
+  outline: 0;
 }
-sup a {
+/*
+  NAVIGATION
+--------------------------------------------- */
+nav[role=navigation] {
+  width: 45%;
+  float: left;
+}
+nav[role=navigation] ul {
+  list-style: none;
+  background: transparent;
+  margin: 0;
+  padding: 1em 0;
+}
+nav[role=navigation] ul li {
+  display: inline;
+}
+nav[role=navigation] ul li:after {
+  content: " | ";
+  color: #808080;
+}
+nav[role=navigation] ul li:last-child:after {
+  content: " ";
+}
+nav[role=navigation] ul li a {
   text-decoration: none;
+  color: #444;
+  text-transform: uppercase;
+}
+nav[role=navigation] ul li a:hover,
+nav[role=navigation] ul li.current-menu-item a,
+nav[role=navigation] ul li.current_page_parent a {
+  background: #ffffff;
+  color: #f1b13a;
+}
+/* nav[role=navigation] ul li:last-child a: {background: red;} */
+/*
+  SEARCHFORM
+--------------------------------------------- */
+#Searchform {
+  float: right;
+  margin-top: .5em;
+  width: auto;
+  background: #efefef;
+  padding: .2em;
+  text-align: right;
+}
+#Searchform .forminner {
+  background: #f6f6f6;
+  padding: .4em;
+}
+#Searchform #Searchbar {
+  width: 55%;
+  font-size: 0.75em;
+  font-family: Helvetica, Arial, sans-serif;
+  margin: 0;
+  padding: .5em .5em .416667em 1em;
+  border: 1px solid #8c9193;
+}
+#Searchform input:focus {
+  background: #ffffff;
+  color: #444;
+  outline: aqua;
+}
+/*
+  SIDEBAR
+--------------------------------------------- */
+#Sidebar {
+  color: #5a5e5f;
 }
 /*
   PRINT STYLES
@@ -508,9 +655,11 @@ sup a {
 --------------------------------------------- */
 @media screen and (min-width: 29.9375em) {
   html {
-    background: #f9f9f9 url(img/subtle-pattern-11.jpg) repeat;
+    background: #f9f9f9 url(img/pattern11.jpg) repeat;
   }
   body {
+    /* background:@white url(img/grid.gif) top center repeat; */
+  
     padding: 1.5em 3em;
     max-width: 34.3em;
   }
@@ -521,65 +670,136 @@ sup a {
   sup.indent {
     margin-left: -1.5em;
   }
+  img.alignleft {
+    float: left;
+    margin-right: 1.5em;
+    /* 24px 48/2 */
+  
+  }
+  img.alignright {
+    float: right;
+    margin-left: 1.5em;
+  }
 }
 /*
-  MIN-WIDTH: 38em
+  MIN-WIDTH: 38em == 608px one column centered
 --------------------------------------------- */
 @media screen and (min-width: 38em) {
   body {
+    /* background:@white url(img/grid_255_48_255.png) top center repeat-y; */
+  
     /* padding: 4.5em 3em 7.59372em; */
+  
+    border-left: 1px solid #f3f3f3;
+    border-right: 1px solid #f3f3f3;
+    /* .drop-shadow(0, 0, 1em, 0.04); */
   
   }
   h1 {
     margin: .97em 0 .8em;
+    /*  margin-bottom: = 51.2px ? */
+  
     font-size: 4em;
+    text-align: center;
+  }
+  /* remove margin-bottom for h1 - margin-top added to #Content instead */
+  h1 {
+    margin-bottom: 0;
+  }
+  #Content {
+    margin-top: 1.4375em;
+    /* Org. 51.2px, now 47px 23*/
+  
+  }
+  h3.byline {
     text-align: center;
   }
 }
 /* 
-  MIN-WIDTH: 65em
+  MIN-WIDTH: 60em == 960px
 --------------------------------------------- */
 @media screen and (min-width: 60em) {
   body {
-    /* padding:4.5em 2.8125em; /* 45px */
-  
-    padding: 4.5em 3em 7.59372em;
     margin: 0 auto;
     max-width: 53.75em;
-    /* background: url(img/grid.gif) repeat; */
+    /* background:@white url(img/grid_860_255_48.png) top center repeat-y; */
   
   }
   header .container {
     max-width: 53.75em;
   }
-  [role="content"] {
+  #Content {
     max-width: 53.75em;
   }
-  [role="main"] {
-    max-width: 34.43736em;
+  #Main {
+    max-width: 34.8125em;
+    /* 557px */
+  
     float: left;
   }
-  [role="complementary"] {
-    max-width: 15.90625em;
-    /* 254.5px */
+  #Sidebar {
+    max-width: 15.9375em;
+    /* 255px */
   
     float: right;
   }
   h1 {
-    /* margin: .97em 0 .8em; */
-  
     font-size: 4em;
+    margin-top: 1.71875em;
+    /* 110px */
+  
+  }
+  /* byline */
+  h3.byline a.kfsk {
+    padding-left: 2.923076923em;
+    /* 38px */
+  
+    background: url(img/graphics.png) 0 -100px no-repeat;
+  }
+  h3.byline a.regionskane {
+    margin-left: .307692308em;
+    padding-left: 1.923076923em;
+    background: url(img/graphics.png) 0 0 no-repeat;
+  }
+  .svg h3.byline a.kfsk {
+    background-image: url(img/graphics.svg);
+  }
+  .svg h3.byline a.regionskane {
+    background-image: url(img/graphics.svg);
   }
 }
 /*
-  MIN-WIDTH: 99.9375em
+  MIN-WIDTH: 99.9375em = 1599px
 --------------------------------------------- */
 @media screen and (min-width: 99.9375em) {
   body {
-    line-height: 1.75em;
+    /* background:@white url(img/grid32.gif) top center repeat; */
+  
+    line-height: 1.777777778em;
+    /* bug? should be 1,777777778 otherwise 31.5 instead of 32 */
+  
     font-size: 112.5%;
+    /* 18px */
+  
   }
   .container {
     max-width: 34.43736em;
+  }
+  h3.byline a.kfsk {
+    padding-left: 2.777777778em;
+    /* 50px */
+  
+    background: url(img/graphics.png) 1px -98px no-repeat;
+  }
+  h3.byline a.regionskane {
+    margin-left: .307692308em;
+    padding-left: 1.923076923em;
+    background: url(img/graphics.png) 2px 2px no-repeat;
+  }
+  .svg h3.byline a.kfsk {
+    background-image: url(img/graphics.svg);
+  }
+  .svg h3.byline a.regionskane {
+    background-image: url(img/graphics.svg);
   }
 }

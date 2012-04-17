@@ -1,25 +1,26 @@
 /*
-Theme Name:         kfsk
+Theme Name:         Evidensbaserad praktik
 Description:        Tema byggt med scale - http://scalecss.com
-Version:            20120412
+Version:            20120417
 Author:             Johan Edlund
 Author URI:         http://edlunddesign.com
 */
 
-@import "elements.less"; 
+@import "elements.less";
 
 // Variables
-@basecol : #f1b13a;                 // Base colour - orange kfsk logo
+@basecol : #f1b13a;               // Base colour - orange kfsk logo
 @compcol : spin(@basecol, 180);  	// Complementary colour
 
 @logogrey: #8c9193;
 @logored: #ce2630;
+@logoredcomp: spin(@logored, 180);
 
 @backgroundColor: #f9f9f9;
 
 // Links
 
-@linkcol : rgb(1,53,104);
+@linkcol : @logored;
 @linkcolhover : darken(@linkcol, 20);
 @linkcolvisited : @linkcolhover;
 @linkcolfocus : @linkcolhover;
@@ -61,12 +62,15 @@ Author URI:         http://edlunddesign.com
 font-size: @font-size * 1px;
 font-size: ~"@{rem}rem"; }
 
+
 .sans-serif {
 font-family : "Helvetica Neue", Arial, Helvetica, sans-serif; }
 .monospace {
 font-family : Monaco, Courier New, monospace; }
 .calibri {
 font-family : Calibri, "Helvetica Neue", sans-serif; }
+.times {
+font-family: TimesNewRoman, "Times New Roman", Times, Georgia, serif;}
 
 // Blandat
 .ir { display: block; border: 0; text-indent: -999em; overflow: hidden; background-color: transparent; background-repeat: no-repeat; text-align: left; direction: ltr; *line-height: 0; }
@@ -86,12 +90,12 @@ font-family : Calibri, "Helvetica Neue", sans-serif; }
 
 // Accessibility
 /* Based on  http://nemesisdesign.net/blog/accessibility/nice-css-skip-links-appearing-focus/ */
-#Accessibility {position: absolute;left: 0;width: 97%;margin-left: 0;text-align: center;list-style:none;}
+#Accessibility {position: absolute;left: 0;width: 100%;margin-left: 0;text-align: center;list-style:none;}
 #Accessibility li{ list-style-type: none;}
-#Accessibility a{position: absolute;left: -999em;top:1em;}
-#Accessibility a:focus, #Accessibility a:active{position: relative;left: 0;z-index:9999;height: auto;margin: 0 auto;padding: .5em 1.5em;text-align: center;text-decoration: none;font-size:1.7em;color: #2B79AB;background: rgba(255,255,255,.8);border: 1px dotted #eee;}
+#Accessibility a{position: absolute;left: -999em;top:2em;}
+#Accessibility a:focus, #Accessibility a:active{position: relative;left: 0;z-index:9999;height: auto;margin: 0 auto;padding: .5em 1.5em;text-align: center;text-decoration: none;font-size:1.7em;color: darken(@logoredcomp, 20%);background: rgba(255,255,255,.8);border: 1px dotted #eee;}
 
-
+/* modified version of.. */
 /*
    ######   ######     ###    ##       ########
   ##    ## ##    ##   ## ##   ##       ##
@@ -102,7 +106,7 @@ font-family : Calibri, "Helvetica Neue", sans-serif; }
    ######   ######  ##     ## ######## ########
 
   Short URL: http://scalecss.com
---------------------------------------------- */
+--------------------------------------------- */	
 
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -162,23 +166,23 @@ img, embed, object, video {
   }
 
 /*
-  SELECTIONS
+  !SELECTIONS
 --------------------------------------------- */
 
 ::-moz-selection {
-  background: @logogrey;
+  background: @col_d3;
   color: rgb(255,255,255);
   text-shadow: none;
   }
 
 ::selection {
-  background: @logogrey;
+  background: @col_d3;
   color: rgb(255,255,255);
   text-shadow: none;
   }
 
 ::selection:window-inactive {
-  background: @logogrey;
+  background: rgb(220,220,220);
   color: rgb(50,50,50);
   }
 
@@ -212,8 +216,6 @@ body {
   _width: 32.90612em;
   font-size: 100%;
   }
-  
-/*   header{background: #f5f4f3;} */
 
 h1, h2, h3, h4, h5, h6 {
   -moz-font-feature-settings: "liga=1, kern=1";
@@ -225,9 +227,11 @@ h1, h2, h3, h4, h5, h6 {
 
 p, ul, ol, dl, blockquote, .content img {
   margin-bottom: 1.5em;
+/*
   -webkit-hyphens: auto;
   -moz-hyphens: auto;
   hyphens: auto;
+*/
   }
 
 abbr {
@@ -282,10 +286,20 @@ ol {
   list-style-type: lower-roman;
   }
 
+
+hgroup {}
+
 h1 {
-  margin: .97em 0 .5em;
+  margin: .97em 0 .5em; /* margin-bottom: 20px */
   line-height: 1.125em;
   font-size: 2em;
+  }
+/* remove margin-bottom for h1 - margin added to #Content instead */
+h1 {
+  margin-bottom: 0;
+  }
+#Content {
+  margin-top:0;
   }
 
 .ie h1 {
@@ -303,6 +317,35 @@ h3 {
   line-height: 1.5em;
   font-size: 1.3em;
   }
+
+/* Byline */
+  
+h3.byline {
+    color: darken(@logogrey, 15%);
+    margin:.666666667em  0 1em; /* TODO!! manually change to fit the vertical rhythm 12? */
+    .times;
+    font-style: italic;
+    font-size: 1.125em; /* 18px */
+    /* letter-spacing: .055555556em; /* 1px */
+    line-height:1.333333333; /* 24px */
+}
+
+h3.byline a:link {
+    padding:.153846154em 0; /* 2px */
+    color: lighten(@logored, 10%);
+    font-style: normal;
+    .sans-serif;
+    font-size: .722222222em; /* 13/18 */
+    text-transform: uppercase;
+    letter-spacing: .153846154em; /* 2px */
+    border-bottom: none;
+}
+
+h3.byline a:hover {
+  color:darken(@logored, 10%);
+  /* border-bottom: 2px solid #ccc; */
+}
+
 
 h4 {
   line-height: 1.12382em;
@@ -337,40 +380,110 @@ pre {
   white-space: pre-wrap;
   word-wrap: break-word;
   }
+  
+/*
+  IMAGES
+--------------------------------------------- */
 
 img {
   margin: .5em auto 1.5em auto;
   display: block;
-  background: #f2f2f2;
-  border:1px solid #ddd;
-  padding:5px;
-  }
+  background: #f9f9f9;
+  /* border:.0625em solid lighten(@logogrey, 37%); /* 1px */
+  /* padding:.0625em; */ /* 1px */
+}
+
+img.alignleft {
+    float:none;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+img.alignright{
+    float:none;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+img.alignnone{
+    float:none;
+    margin-left: 0;
+    margin-right: 0;
+}
 
 
 /*
   LINKS
 --------------------------------------------- */
 
-a {
-  border-bottom: 1px solid rgb(200,200,200);
-  text-decoration: none;
-  color: rgb(80,80,80);
-  outline: none;
-  }
+a { 
+color : @linkcol;
+text-decoration: none;
+border-bottom: 2px solid lighten(@logogrey, 30%);
+font-weight: bold;
+}
 
-a:hover, a:focus {
-  border-bottom: 1px solid rgb(0,0,0);
-  background: rgba(0,0,0,.05);
-  color: rgb(0,0,0);
-  }
+a:visited { 
+color : lighten(@linkcol,5%);}
 
-a:active {
-  outline: none;
-  }
+a:hover { 
+color : darken(@linkcol,20%);
+/* .transition(.1s, ease); */
+border-bottom: 2px solid @logogrey;
+}
 
-sup a {
-  text-decoration: none;
-  }
+a:focus { 
+outline : thin dotted; 
+color : @linkcolfocus;}
+
+a:hover, 
+a:active { 
+outline : 0; }
+
+
+/*
+  NAVIGATION
+--------------------------------------------- */
+nav[role=navigation] {width:45%;float:left;}	
+	nav[role=navigation] ul {list-style:none; background:transparent;margin: 0;padding:1em 0;}
+		nav[role=navigation] ul li {display: inline;}
+		nav[role=navigation] ul li:after {content: " | ";color:@grey;}
+		nav[role=navigation] ul li:last-child:after {content: " ";}
+		
+			nav[role=navigation] ul li a {text-decoration: none; color: #444; text-transform: uppercase;}
+				nav[role=navigation] ul li a:hover, nav[role=navigation] ul li.current-menu-item a, nav[role=navigation] ul li.current_page_parent a {background: @white; color: @basecol;}
+				/* nav[role=navigation] ul li:last-child a: {background: red;} */
+				
+		nav[role=navigation] ul li.current-menu-item a, 
+		nav[role=navigation] ul li.current_page_item a,
+		nav[role=navigation] ul li.current-page-ancestor a {}
+		
+		nav[role=navigation] ul li ul.sub-menu, nav[role=navigation] .menu ul li ul.children {}
+			nav[role=navigation] ul li ul li a {}
+				nav[role=navigation] ul li ul li a:hover {}
+			nav[role=navigation] ul li ul li:last-child a {}
+			nav[role=navigation] ul li:hover ul { }
+				nav[role=navigation] ul li ul li ul.sub-menu { }
+					nav[role=navigation] ul li ul li:hover ul.sub-menu { }
+
+
+/*
+  SEARCHFORM
+--------------------------------------------- */
+#Searchform {float:right;margin-top:.5em;width:auto;background: #efefef;padding:.2em;text-align: right;}
+
+#Searchform .forminner{background:#f6f6f6; padding: .4em;}
+
+#Searchform #Searchbar{width:55%;font-size:0.75em;font-family:Helvetica, Arial, sans-serif;margin:0;padding:.5em .5em .416667em 1em; border: 1px solid @logogrey;}
+
+#Searchform input:focus {background: @white;color: #444;outline: aqua;}
+
+
+/*
+  SIDEBAR
+--------------------------------------------- */
+
+#Sidebar {color:darken(@logogrey, 20%);}
 
 /*
   PRINT STYLES
@@ -452,9 +565,10 @@ sup a {
 
 @media screen and (min-width: 29.9375em) {
 
-html{background: @backgroundColor url(img/subtle-pattern-11.jpg) repeat;}
+html{background: @backgroundColor url(img/pattern11.jpg) repeat;}
 
   body {
+    /* background:@white url(img/grid.gif) top center repeat; */
     padding: 1.5em 3em;
     max-width: 34.3em;
     }
@@ -466,82 +580,152 @@ html{background: @backgroundColor url(img/subtle-pattern-11.jpg) repeat;}
   sup.indent {
     margin-left: -1.5em;
     }
+    
+    img.alignleft {
+        float:left;
+        margin-right: 1.5em; /* 24px 48/2 */
+    }
+    
+    img.alignright {
+        float:right;
+        margin-left: 1.5em;
+    }
 
   }
 
 /*
-  MIN-WIDTH: 38em
+  MIN-WIDTH: 38em == 608px one column centered
 --------------------------------------------- */
 
 @media screen and (min-width: 38em) {
 
 body {
-    /* padding: 4.5em 3em 7.59372em; */
+  /* background:@white url(img/grid_255_48_255.png) top center repeat-y; */
+  /* padding: 4.5em 3em 7.59372em; */
+    border-left:1px solid lighten(@logogrey, 39%);
+    border-right:1px solid lighten(@logogrey, 39%);
+    /* .drop-shadow(0, 0, 1em, 0.04); */
     }
 
   h1 {
-    margin: .97em 0 .8em;
+    margin: .97em 0 .8em;/*  margin-bottom: = 51.2px ? */
     font-size: 4em;
-    text-align: center;
+    text-align: center; 
     }
-
+    
+    /* remove margin-bottom for h1 - margin-top added to #Content instead */
+  h1 {
+    margin-bottom: 0;
   }
+  #Content {
+    margin-top:1.4375em; /* Org. 51.2px, now 47px 23*/
+  }
+
+  h3.byline{
+      text-align:center;
+  }
+    
+}
+  
   
  /* 
-  MIN-WIDTH: 65em
+  MIN-WIDTH: 60em == 960px
 --------------------------------------------- */
 
 @media screen and (min-width: 60em) {
-
     body {
-        /* padding:4.5em 2.8125em; /* 45px */
-        padding: 4.5em 3em 7.59372em;
         margin:0 auto;
         max-width: 53.75em;
-        /* background: url(img/grid.gif) repeat; */
+        /* background:@white url(img/grid_860_255_48.png) top center repeat-y; */
     }
 
     header .container {
         max-width: 53.75em;
     }
     
-    [role="content"]{
+    #Content {
         max-width: 53.75em;
     }
     
-    [role="main"]{
-        max-width: 34.43736em;
+    #Main{
+        max-width:34.8125em; /* 557px */
         float:left;
     }
     
-    [role="complementary"]{
-        max-width: 15.90625em; /* 254.5px */
+    #Sidebar{
+        max-width: 15.9375em; /* 255px */
         float:right;
     }
-    
 
   h1 {
-    /* margin: .97em 0 .8em; */
     font-size: 4em;
+    margin-top:1.71875em; /* 110px */
     }
-
+    
+   /* byline */
+   
+  h3.byline a.kfsk {
+    padding-left:2.923076923em; /* 38px */
+    background: url(img/graphics.png) 0 -100px no-repeat;
   }
+
+  h3.byline a.regionskane {
+    margin-left: .307692308em;
+    padding-left:1.923076923em;
+    background: url(img/graphics.png) 0 0 no-repeat;
+  }
+
+  .svg h3.byline a.kfsk {
+    background-image: url(img/graphics.svg);
+  }
+
+  .svg h3.byline a.regionskane {
+    background-image: url(img/graphics.svg);
+  }
+
+
+}
   
 
 /*
-  MIN-WIDTH: 99.9375em
+  MIN-WIDTH: 99.9375em = 1599px
 --------------------------------------------- */
 
 @media screen and (min-width: 99.9375em) {
 
   body {
-   
-    line-height: 1.75em;
-    font-size: 112.5%;
+    /* background:@white url(img/grid32.gif) top center repeat; */
+    line-height: 1.777777778em; /* bug? should be 1,777777778 otherwise 31.5 instead of 32 */
+    font-size: 112.5%; /* 18px */
     }
     
     .container {
     max-width: 34.43736em;
-    }  
-        
+    }
+    
+    
+  h3.byline a.kfsk {
+    padding-left:2.777777778em; /* 50px */
+    background: url(img/graphics.png) 1px -98px no-repeat;
   }
+
+  h3.byline a.regionskane {
+    margin-left: .307692308em;
+    padding-left:1.923076923em;
+    background: url(img/graphics.png) 2px 2px no-repeat;
+  }
+
+  .svg h3.byline a.kfsk {
+    background-image: url(img/graphics.svg);
+  }
+
+  .svg h3.byline a.regionskane {
+    background-image: url(img/graphics.svg);
+  }
+    
+    
+    
+    
+    
+        
+}
