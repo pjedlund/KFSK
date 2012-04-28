@@ -1,0 +1,699 @@
+/*
+Theme Name:         Trustpartner
+Description:        Responsivt tema baserad för Trustpartner.
+Version:            20120321
+Author:             Johan Edlund
+Author URI:         http://edlunddesign.com
+*/
+
+@import "elements.less"; 
+
+// Variables
+@basecol : #4c535f;                 // Base colour
+@compcol : spin(@basecol, 180);  	// Complementary colour
+
+// Links
+
+@linkcol : rgb(1,53,104);
+@linkcolhover : darken(@linkcol, 20);
+@linkcolvisited : @linkcolhover;
+@linkcolfocus : @linkcolhover;
+
+// greyscale
+
+@black : rgb(0,0,0);
+@darkgrey : lighten(@black, 25%);
+@grey : lighten(@black, 50%);
+@lightgrey : lighten(@black, 75%);
+@lightergrey : lighten(@black, 90%);
+@white : rgb(255,255,255);
+
+// colour palettes
+
+@col_l1 : lighten(@basecol, 5%);
+@col_l2 : lighten(@basecol, 10%);
+@col_l3 : lighten(@basecol, 15%);
+@col_l4 : lighten(@basecol, 20%);
+
+@col_d1 : darken(@basecol, 5%);
+@col_d2 : darken(@basecol, 10%);
+@col_d3 : darken(@basecol, 15%);
+@col_d4 : darken(@basecol, 20%);
+
+@comp_l1 : lighten(@compcol, 5%);
+@comp_l2 : lighten(@compcol, 10%);
+@comp_l3 : lighten(@compcol, 15%);
+@comp_l4 : lighten(@compcol, 20%);
+
+@comp_d1 : darken(@compcol, 5%);
+@comp_d2 : darken(@compcol, 10%);
+@comp_d3 : darken(@compcol, 15%);
+@comp_d4 : darken(@compcol, 20%);
+
+
+@TextColor: @darkgrey;
+@FooterBackgroundColor: @basecol; /* body and footer same color */
+@HeaderBackgroundColor: transparent;
+@ContentBackgroundColor: #efefef;
+
+@SelectTextColor: @white;
+@SelectTextBackground: @basecol;
+
+@LinecColor: #a1a1a1;
+
+// type
+.font-size(@font-size: 16){
+@rem: (@font-size / 10);
+font-size: @font-size * 1px;
+font-size: ~"@{rem}rem"; }
+.sans-serif {
+font-family : "Helvetica Neue", Arial, Helvetica, sans-serif; }
+.serif {
+font-family : Georgia, Times, "Times New Roman"; }
+.monospace {
+font-family : Monaco, Courier New, monospace; }
+.calibri {
+font-family : Calibri, "Helvetica Neue", sans-serif; }
+
+// header sizes
+@h1Size: 32;
+@h2Size: 28;
+@h3Size: 24;
+@h4Size: 20;
+@h5Size: 18;
+@h6Size: 16;
+
+//verical rhythm
+@BreadTextsize: 16;
+@SidebarTextsize: 15;
+@LineHeight: 25;
+@MainLineHeight: @LineHeight/@BreadTextsize;
+@SidebarLineHeight: @LineHeight/@SidebarTextsize;
+
+// layout
+@baseline: 1.5625em; /* 25px */
+@baselineREM: 1.5625rem;
+@baselinePX: 25;
+@MaxWidth: 72.5em; /* 1160px */
+@MaxWidthPX: 1160;
+@SidePadding: 2em;
+@SidePaddingPX: 32;
+@FooterHeight: 16.25em; /* 260px */
+@FooterHeightPX: 260;
+
+
+// webfonts
+/* @font-face {font-family: 'GillSansRegular';src: url('fonts/gillsans-webfont.eot');src: url('fonts/gillsans-webfont.eot?#iefix') format('embedded-opentype'),url('fonts/gillsans-webfont.woff') format('woff'),url('fonts/gillsans-webfont.ttf') format('truetype'),url('fonts/gillsans-webfont.svg#GillSansRegular') format('svg');font-weight: normal;font-style: normal;} */
+
+/* _________________________________________________
+
+MODIFIED VERSION OF...
+320 and Up boilerplate extension
+Andy Clarke http://about.me/malarkey
+Version: 2
+URL: http://stuffandnonsense.co.uk/projects/320andup/
+License: http://creativecommons.org/licenses/MIT/
+_____________________________________________________
+
+1 ROOT
+2 HEADINGS
+3 TYPOGRAPHY
+4 LINKS
+5 FIGURES & IMAGES
+6 TABLES
+7 FORMS
+8 BANNER
+9 NAVIGATION
+10 CONTENT
+11 MAIN
+12 COMPLEMENTARY
+13 CONTENTINFO
+14 GLOBAL OBJECTS
+15 VENDOR-SPECIFIC 
+16 MODERNIZR
+17 TEMPLATE SPECIFICS
+18 MEDIA QUERIES
+
+*/
+
+/* reset */
+html, body { margin : 0; padding : 0; }
+h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, cite, code, del, dfn, em, img, q, s, samp, small, strike, strong, sub, sup, tt, var, dd, dl, dt, li, ol, ul, fieldset, form, label, legend, button, table, caption, tbody, tfoot, thead, tr, th, td { margin : 0; padding : 0; border : 0; font-weight : normal; font-style : normal; font-size : 100%; line-height: @baseline; font-family : inherit; }
+article, aside, details, figcaption, figure, footer, header, hgroup, nav, section { display : block; margin:0; padding:0; }
+audio[controls], canvas, video { display : inline-block; *display : inline; *zoom : 1; }
+
+// 1. ROOT =============================================================================
+
+html, body {
+font-size : 62.5%;
+height: 100%;
+}
+body {
+.font-size();
+.sans-serif();
+color : rgb(40,40,40); 
+background : @ContentBackgroundColor url(i/grid1160_60_40.png) repeat-y 50% 0;
+}
+
+button, input, select, textarea { font-family : "Helvetica Neue", Helvetica, Arial, sans-serif; }
+
+
+// 2. HEADINGS   =======================================================================
+
+h1, h2, h3, h4, h5, h6 {.serif;margin:0 0 @baseline 0;/* background: rgba(0,0,0,.1); */}
+
+h1 {
+.font-size(@h1Size);
+line-height: @baseline;
+margin-bottom: @baseline/2;
+}
+
+h2 {
+.font-size(@h2Size);
+line-height: @baselinePX*2/@h2Size;
+margin-bottom: (@baselinePX/@h2Size)*1em;
+}
+
+h3 { 
+.font-size(@h3Size);
+line-height: @baselinePX/@h3Size;
+margin-bottom: (@baselinePX/@h3Size)*1em;
+}
+
+h4 { 
+.font-size(@h4Size);
+line-height: @baselinePX/@h4Size;
+margin-bottom: (@baselinePX/@h4Size)*1em;
+}
+
+h5 { 
+.font-size(@h5Size);
+line-height: @baselinePX/@h5Size;
+margin-bottom: (@baselinePX/@h5Size)*1em;
+}
+
+h6 { 
+.font-size(@h6Size);
+line-height: @baselinePX/@h6Size;
+margin-bottom: (@baselinePX/@h6Size)*1em;
+}
+
+
+// 3. TYPOGRAPHY  ==========================================================================
+
+p, ol, ul, dl, address {margin-bottom : @baseline;line-height: @MainLineHeight;.font-size(@BreadTextsize);}
+p {hyphens : auto;}
+ul, ol {margin:0 0 @baseline @baseline;}
+li ul, li ol {.font-size(16);}
+dl, dd { margin-bottom : @baseline;}
+dt { font-weight : normal;}
+
+blockquote  {margin : 0 0 @baseline 0; padding-left : 1.5em; /* 24px -- 1px border */ padding-right :  @baseline;border-left : 1px solid @lightgrey;font-style : italic; }
+blockquote:before, blockquote:after, q:before, q:after {content : '';content : none; }
+
+
+abbr[title] {border-bottom : 1px dashed @lightergrey; cursor : help;}
+b, strong { font-weight : bold; }
+dfn { font-style : italic; }
+
+hr {clear:both;display : block; margin :1.5em /* 24px -- 1px border */ 0 @baseline 0; padding : 0;height : 1px; border : 0; border-top : 1px solid @lightgrey;}
+
+ins { 
+background-color : lighten(@basecol, 20%); 
+color : @black; 
+text-decoration : none; }
+
+mark { 
+background-color : lighten(@basecol, 20%); 
+color : @black; 
+font-style : italic; 
+font-weight : bold; }
+
+pre, 
+code, 
+kbd, 
+samp { 
+.monospace;
+.font-size(14);
+line-height : @baseline; }
+
+pre { 
+white-space : pre; 
+white-space : pre-wrap; 
+word-wrap : break-word; }
+
+q { 
+quotes : none; }
+
+q:before, 
+q:after { 
+content : ""; 
+content : none; }
+
+small { 
+.font-size(14); }
+
+sub, sup { 
+.font-size(12);
+line-height : 0; 
+position : relative; 
+vertical-align : baseline; }
+
+sup { 
+top : -.5em; }
+
+sub { 
+bottom : -.25em; }
+
+.chromeframe {margin: .2em 0; background: #ccc; color: black; padding: .2em 0;}
+
+
+// 4.LINKS =============================================================================
+
+a { 
+color : @linkcol;     
+-webkit-transition: all .1s ease;
+-moz-transition: all .1s ease;
+-ms-transition: all .1s ease;
+-o-transition: all .1s ease;
+}
+
+a:visited { 
+color : @linkcolvisited; }
+
+a:hover { 
+color : @linkcolhover;
+/*
+-webkit-transition: all .1s ease;
+-moz-transition: all .1s ease;
+-ms-transition: all .1s ease;
+-o-transition: all .1s ease;
+*/
+}
+
+a:focus { 
+outline : thin dotted; 
+color : @linkcolfocus; }
+
+a:hover, 
+a:active { 
+
+outline : 0; }
+
+// 5.FIGURES & IMAGES =============================================================================
+
+img {max-width:100%;display: block;}
+a img {margin:0;}
+
+figure {
+margin-bottom : @baseline; }
+
+figure img,
+figure object,
+figure embed {
+margin-bottom : @baseline / 2;
+max-width : 100%; }
+
+figcaption {
+display : block;
+font-weight : normal; }
+
+img {
+border : 0; }
+
+svg:not(:root) {
+overflow : hidden; }
+
+
+/* captions */
+.wp-caption {margin:0;background:@white;padding:.3125em .375em 0 .3125em;}
+/*
+.entry-body .wp-caption p {margin: 0 0 1em 0;border:none;border:none;padding: 1em 0;font-size: .92857em; font-style: italic;color:#555;-webkit-border-radius: 3px;-moz-border-radius: 3px;border-radius: 3px;}
+.entry-body .wp-caption a{border:none;}
+.entry-body .wp-caption a:hover{background:#fff;}
+.entry-body .wp-caption a:hover img{opacity:0.6;}
+.entry-body .wp-caption a:focus img{opacity:0.6;}
+
+.entry-body .wp-caption.alignnone {float:none; width:auto;}
+.entry-body .wp-caption.alignnone img {width:100%;}
+.entry-body .wp-caption.alignleft {width:40%;margin:1em 1em 1em 0;}
+.entry-body .wp-caption.alignright {width:40%;margin-left:1em;}
+.entry-body .wp-caption.alignleft p {padding: .5em 0 0 0;}
+.entry-body .wp-caption.alignright p {padding: .5em 0 0 0;}
+*/
+
+
+
+
+
+// 6.TABLES =============================================================================
+
+table { 
+background: white;
+border-collapse : collapse;
+border-spacing : 0;
+margin-bottom : 3.571428571em; /* 50px */ 
+width : 100%;
+.font-size(14); }
+
+th, td, caption { 
+line-height: 1.785714286; /* 25px */
+ }
+
+tfoot { 
+font-style : italic; }
+
+caption { 
+background-color : @col_l2; }
+
+tbody tr:nth-child(odd) td {
+background-color : lighten(@basecol, 62%); }
+
+// 7.FORMS =============================================================================
+
+form { 
+margin : 0; }
+
+fieldset { 
+margin-bottom : @baseline; 
+padding : 0; 
+border-width : 0; }
+
+legend { 
+*margin-left : -7px; 
+padding : 0; 
+border-width : 0; }
+
+label { 
+font-weight : normal;
+cursor : pointer; }
+
+button, 
+input, 
+select, 
+textarea { 
+.font-size(12);
+margin : 0; 
+vertical-align : baseline; 
+*vertical-align : middle; }
+
+button, input { 
+line-height : normal; 
+*overflow : visible; }
+
+button, 
+input[type="button"], 
+input[type="reset"], 
+input[type="submit"] { 
+cursor : pointer; }
+
+input[type="checkbox"], 
+input[type="radio"] { 
+box-sizing : border-box; }
+
+input[type="search"] { 
+box-sizing : content-box; }
+
+button::-moz-focus-inner, 
+input::-moz-focus-inner { 
+padding : 0;
+border : 0; }
+
+textarea { 
+overflow : auto; 
+vertical-align : top; }
+
+
+
+// 8. BANNER    ===========================================================================
+#HeaderWrapper {margin:0;padding:1em @SidePadding;border-bottom: 1px solid @LinecColor;}
+header[role=banner] {}
+
+h1#Logo {margin:0;text-align: center;margin-top:.5em;}
+h1#Logo a {.sans-serif();text-decoration: none; color: @basecol; font-weight: 400; }
+h1#Logo a span {font-weight: 100;}
+
+/* Search form */
+form#Searchform {float:right;margin-top:3em;}
+form#Searchform #Searchbar {/* float: left; */width:15em;padding:.4em;border: 1px solid #c7c7c7;outline: none; /*Remove Chrome and Safari glows on focus*/}	
+form#Searchform #Searchbar.active {background: #ebf3fc url(bar-bg-active.png) repeat-x;}
+form#Searchform #Searchbtn {/* float: left; */padding:.4em;}	
+form#Searchform #Searchbtn:hover {background-position: 0 -70px;}
+
+/* Search results */
+p span.relevanssi-query-term {background:#FDF20D;}
+
+// 9. NAVIGATION 	=============================================================================
+#NavWrapper {margin:0;padding:0 @SidePadding;}
+
+/*
+nav[role=navigation] {width:100%;.gradient(#000, #EEE, #FFF);text-align: left;}
+nav[role=navigation] ul {list-style:none; background:transparent;}
+nav[role=navigation] ul li {padding: 0 1em 0 0;margin-top: 1.5em;float: left;}
+*/
+
+nav[role=navigation] {text-align: center;}	
+	nav[role=navigation] ul {list-style:none; background:transparent;margin: 0 auto;text-align: center;padding:.5em 0;}
+		nav[role=navigation] ul li {display: inline;}
+		nav[role=navigation] ul li:after {content: " | ";color:@grey;}
+		nav[role=navigation] ul li:last-child:after {content: " ";}
+		
+			nav[role=navigation] ul li a {text-decoration: none; color: @white;padding: 1em;.font-size(14); text-transform: uppercase;}
+				nav[role=navigation] ul li a:hover, nav[role=navigation] ul li.current-menu-item a, nav[role=navigation] ul li.current_page_parent a {background: @white; color: @basecol;}
+				/* nav[role=navigation] ul li:last-child a: {background: red;} */
+				
+		nav[role=navigation] ul li.current-menu-item a, 
+		nav[role=navigation] ul li.current_page_item a,
+		nav[role=navigation] ul li.current-page-ancestor a {}
+		
+		nav[role=navigation] ul li ul.sub-menu, nav[role=navigation] .menu ul li ul.children {}
+			nav[role=navigation] ul li ul li a {}
+				nav[role=navigation] ul li ul li a:hover {}
+			nav[role=navigation] ul li ul li:last-child a {}
+			nav[role=navigation] ul li:hover ul { }
+				nav[role=navigation] ul li ul li ul.sub-menu { }
+					nav[role=navigation] ul li ul li:hover ul.sub-menu { }
+
+// 10. CONTENT 		=============================================================================
+#ContentWrapper {padding:@baseline @SidePadding;margin:@baseline 0;background:url(i/25pxVerticalRhythm.png) 0 0 repeat;line-height: @MainLineHeight;} 
+[role="content"] {}
+
+// 11. MAIN 		=============================================================================
+[role="main"]{}
+
+// 12. COMPLEMENTARY =============================================================================
+[role="complementary"]{padding:2px 0 0 0; /* OBS! manual adjust for vertical rhythm */ margin:0;color:@col_l4;}
+
+ul.wrapper {list-style: none; margin:0; padding:0;}
+ul.wrapper li {list-style: none; margin:0; padding:0;.font-size(@SidebarTextsize);line-height: @SidebarLineHeight;color: @darkgrey;}
+[role="complementary"] .widget-title {.font-size(22);line-height: @SidebarLineHeight;line-height:1.136363636; /* 25px */margin-bottom: 1.136363636em; /* 25px */color:@col_l1;}
+[role="complementary"] .widget-container {padding-bottom: 1.666666667em; /* 25px */color:@darkgrey;}
+
+/* links widget */
+.widget_links {}
+.widget_links ul {}
+.widget_links ul li {}
+.widget_links ul li a {}
+
+/* meta widget */
+.widget_meta {}
+.widget_meta ul {}
+.widget_meta ul li {}
+.widget_meta ul li a {}
+
+/* pages widget */
+.widget_pages {}
+.widget_pages ul {}
+.widget_pages ul li {}
+.widget_pages ul li a {}
+
+/* recent-posts widget */
+.widget_recent_entries {}
+.widget_recent_entries ul {}
+.widget_recent_entries ul li {}
+.widget_recent_entries ul li a {}
+
+/* archives widget */
+.widget_archive {}
+.widget_archive ul {}
+.widget_archive ul li {} 
+.widget_archive ul li a {}
+.widget_archive select {}
+.widget_archive option {}
+
+/* tag-cloud widget */
+.widget_links {}
+.widget_links li:after {}
+.widget_links li:before {}
+.widget_tag_cloud {}
+.widget_tag_cloud a {}
+.widget_tag_cloud a:after {}
+.widget_tag_cloud a:before {}
+
+/* calendar widget */
+.widget_calendar {}
+#calendar_wrap {}
+#calendar_wrap th {}
+#calendar_wrap td {}
+#wp-calendar tr td {}
+#wp-calendar caption {}
+#wp-calendar a {}
+#wp-calendar #today {}
+#wp-calendar #prev {}
+#wp-calendar #next {}
+#wp-calendar #next a {}
+#wp-calendar #prev a {}
+
+/* category widget */
+.widget_categories {}
+.widget_categories ul {}
+.widget_categories ul li {} 
+.widget_categories ul ul.children {}
+.widget_categories a {}
+.widget_categories select{}
+.widget_categories select#cat {}
+.widget_categories select.postform {}
+.widget_categories option {}
+.widget_categories .level-0 {}
+.widget_categories .level-1 {}
+.widget_categories .level-2 {}
+.widget_categories .level-3 {}
+
+/* recent-comments widget */
+.recentcomments {}
+#recentcomments {}
+#recentcomments li {}
+#recentcomments li a {}
+.widget_recent_comments {}
+
+/* search widget */
+#searchform {}
+.widget_search {}
+.screen-reader-text {}
+
+/* text widget */
+.textwidget {}
+.widget_text {}
+.textwidget p {}
+
+
+// 13. CONTENTINFO 	=============================================================================
+#FooterWrapper {padding:0 @SidePadding;clear:both;background: @FooterBackgroundColor;}
+footer[role=contentinfo] {margin:0 auto;padding-top: 3em;}
+
+footer h3 {text-transform: uppercase;.calibri(); font-weight: normal; .font-size(14); color:@lightgrey;}
+footer p {.calibri(); font-weight: normal; .font-size(14);color:@lightgrey;}
+.widget-area ul{list-style: none;margin: 0;.calibri(); font-weight: normal; .font-size(14);}
+
+footer a:link{color:@lightgrey;border-bottom:1px dotted @lightgrey;text-decoration: none;}
+footer a:visited{color:@lightgrey;border-bottom:1px dotted @lightgrey;}
+footer a:hover, footer a:focus {color:@lightergrey;border-bottom:1px solid @lightergrey;}
+footer a:active{color:@lightergrey;}
+
+// 14. GLOBAL OBJECTS =============================================================================
+// 15. VENDOR-SPECIFIC =============================================================================
+
+html { 
+-webkit-overflow-scrolling : touch; 
+-webkit-tap-highlight-color : lighten(@basecol, 20%); 
+-webkit-text-size-adjust : 100%; 
+-ms-text-size-adjust : 100%; }
+
+::-webkit-selection { 
+background : @SelectTextBackground; 
+color : @SelectTextColor; 
+text-shadow : none; }
+
+::-moz-selection { 
+background : @SelectTextBackground; 
+color : @SelectTextColor; 
+text-shadow : none; }
+
+::selection { 
+background : @SelectTextBackground; 
+color : @SelectTextColor; 
+text-shadow : none; }
+
+button, 
+input[type="button"], 
+input[type="reset"], 
+input[type="submit"] { 
+-webkit-appearance : button; }
+
+::-webkit-input-placeholder {
+.font-size(14); }
+
+input:-moz-placeholder { 
+.font-size(14); }
+
+.ie7 img,
+.iem7 img { 
+-ms-interpolation-mode : bicubic; }
+
+input[type="checkbox"], 
+input[type="radio"] { 
+box-sizing : border-box; }
+
+input[type="search"] { 
+-webkit-box-sizing : content-box;
+-moz-box-sizing : content-box; }
+
+button::-moz-focus-inner, 
+input::-moz-focus-inner { 
+padding : 0;
+border : 0; }
+
+p {
+// http://www.w3.org/TR/css3-text/#hyphenation
+-webkit-hyphens : auto;
+-webkit-hyphenate-character : "\2010";
+-webkit-hyphenate-limit-after : 1;
+-webkit-hyphenate-limit-before : 3;
+-moz-hyphens : auto; }
+
+
+// Non-semantic helper classes -------------------------------
+
+.ir { display: block; border: 0; text-indent: -999em; overflow: hidden; background-color: transparent; background-repeat: no-repeat; text-align: left; direction: ltr; *line-height: 0; }
+.ir br { display: none; }
+.hidden { display: none !important; visibility: hidden; }
+.visuallyhidden { border: 0; clip: rect(0 0 0 0); height: 1px; margin: -1px; overflow: hidden; padding: 0; position: absolute; width: 1px; }
+.visuallyhidden.focusable:active, .visuallyhidden.focusable:focus { clip: auto; height: auto; margin: 0; overflow: visible; position: static; width: auto; }
+.invisible { visibility: hidden; }
+
+.clearfix:before, .clearfix:after { content: ""; display: table; }
+.clearfix:after { clear: both; }
+.clearfix { *zoom: 1; }
+
+// 17. TEMPLATE SPECIFICS =============================================================================
+// Non-semantic helper classes + required WP classes
+.aligncenter,.alignnone {float:left;}
+.alignleft {float:left;}
+.alignright {float:right;}
+
+// Accessibility
+/* Based on  http://nemesisdesign.net/blog/accessibility/nice-css-skip-links-appearing-focus/ */
+#Accessibility {position: absolute;left: 0;width: 95%;margin-left: 0;text-align: center;list-style:none;}
+#Accessibility li{ list-style-type: none;}
+#Accessibility a{position: absolute;left: -999em;top: 2em;}
+#Accessibility a:focus, #Accessibility a:active{position: relative;left: 0;z-index:9999;height: auto;margin: 0 auto;padding: .5em 1.5em;text-align: center;text-decoration: none;font-size:1.7em;color: #2B79AB;background: rgba(255,255,255,.8);border: 1px dotted #eee;}
+
+/* 18 MEDIA QUERIES */
+
+/* Print __________________________________________________________________________________________________________ */
+@import "print.less";
+
+/* 480px __________________________________________________________________________________________________________ */
+@import "480.less";
+
+/* 600px __________________________________________________________________________________________________________ */
+@import "600.less";
+
+/* 768px __________________________________________________________________________________________________________ */
+@import "768.less";
+
+/* 992px __________________________________________________________________________________________________________ */
+@import "992.less";
+
+/* 1382px __________________________________________________________________________________________________________ */
+@import "1382.less";

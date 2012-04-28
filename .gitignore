@@ -11,5 +11,6 @@ project.xcworkspace/
 xcuserdata
 .ai
 .psd
+.eps
 
 build/
