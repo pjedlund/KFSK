@@ -16,3 +16,41 @@
 })(document);
 
 scale.iOS();
+
+$(document).ready(function() {
+
+/*
+   //---- Fade for images ----
+  $("a img").each(function() {
+		$(this).parent("a").hover(function(){
+			$("img", this).stop().fadeTo(200, 0.5);
+		},function(){
+			$("img", this).stop().fadeTo(300, 1);
+		});
+  })
+*/
+
+});
+
+
+$(window).bind("load", function() {
+    var activeOpacity   = 0.5,
+        inactiveOpacity = 1,
+        fadeTime = 350,
+        images = "figure a img";
+
+    $(images).fadeTo(1, inactiveOpacity);
+
+    $(images).hover(
+        function(){
+            $(this).fadeTo(fadeTime, activeOpacity);
+        }, function(){
+            $(this).fadeTo(fadeTime, inactiveOpacity);
+        }, function(){
+            $(this).fadeTo(fadeTime, 0.1);
+        });
+        
+     $(images).click(function() {
+        $(this).fadeTo(fadeTime, inactiveOpacity);
+     });
+});

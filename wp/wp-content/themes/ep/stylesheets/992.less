@@ -1,0 +1,45 @@
+@media only screen and (min-width: 992px) {
+
+/* 1 ROOT */
+/* 2 HEADINGS */
+/* 3 TYPOGRAPHY */
+/* 4 LINKS */
+/* 5 FIGURES & IMAGES */
+/* 6 TABLES */
+/* 7 FORMS */
+/* 8 BANNER */
+#HeaderWrapper {}
+
+header[role=banner] {position:relative;margin:0 auto;padding:0;max-width:@MaxWidth;text-align: left;}
+h1#Logo {.font-size(48);float:left; .width(@MaxWidthPX, 360); text-align: left;}
+
+/* 9 NAVIGATION */
+nav[role=navigation] {padding:0 @SidePadding;background:@basecol;margin-top: 1em;}
+nav[role=navigation] ul {margin:0 auto;max-width:@MaxWidth;background:@basecol;}
+
+/* 10 CONTENT */
+#ContentWrapper {}
+[role="content"] {margin:0 auto;max-width:@MaxWidth;}
+/* 11 MAIN */
+[role="main"]{float:left;.width(@MaxWidthPX, 760);background:rgba(255,255,255,.4);}
+/* 12 COMPLEMENTARY */
+[role="complementary"]{float:right;.width(@MaxWidthPX, 360);font-family:Helvetica, Arial, sans-serif;background:rgba(255,255,255,.4);}
+/* 13 CONTENTINFO */
+#FooterWrapper {clear:both;padding:0 @SidePadding;}
+footer[role=contentinfo] {color:#ddd;margin:0 auto;max-width: @MaxWidth;}
+
+#Footer1{width:23.5%;float: left;margin: 0 2% 0 0;}
+#Footer2{width:23.5%;float: left;margin: 0 2% 0 0;}
+#Footer3{width:40%;float: left;}
+
+/* 14 GLOBAL OBJECTS */ 
+
+/* sticky footer */
+#StickyFooter {min-height: 100%;height:auto !important;height:100%;margin:0 auto @FooterHeight*-1;}
+#FooterWrapper, .push {height: @FooterHeight;}
+
+/* 15 VENDOR-SPECIFIC */
+/* 16 MODERNIZR */
+/* 17 TEMPLATE SPECIFICS */
+
+}

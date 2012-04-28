@@ -1,0 +1,532 @@
+/*
+Theme Name:         Malmo Biljardklubb
+Description:        Tema för MBK
+Version:            20120330
+Author:             Johan Edlund
+Author URI:         http://edlunddesign.com
+*/
+/*---------------------------------------------------
+    LESS Elements 0.6
+  ---------------------------------------------------
+    A set of useful LESS mixins by Dmitry Fadeyev
+    Special thanks for mixin suggestions to:
+      Kris Van Herzeele,
+      Benoit Adam,
+      Portenart Emile-Victor,
+      Ryan Faerman
+
+    More info at: http://lesselements.com
+-----------------------------------------------------*/
+* {
+  margin: 0;
+  padding: 0;
+  font-size: 1em;
+  text-decoration: none;
+  border: none;
+  list-style: none;
+  outline: none;
+}
+/* Based on  http://nemesisdesign.net/blog/accessibility/nice-css-skip-links-appearing-focus/ */
+#Accessibility {
+  position: absolute;
+  left: 0;
+  width: 95%;
+  margin-left: 0;
+  text-align: center;
+  list-style: none;
+}
+#Accessibility li {
+  list-style-type: none;
+}
+#Accessibility a {
+  position: absolute;
+  left: -999em;
+  top: 2em;
+}
+#Accessibility a:focus,
+#Accessibility a:active {
+  position: relative;
+  left: 0;
+  z-index: 9999;
+  height: auto;
+  margin: 0 auto;
+  padding: .5em 1.5em;
+  text-align: center;
+  text-decoration: none;
+  font-size: 1.7em;
+  color: #2B79AB;
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px dotted #eee;
+}
+/****** General ******/
+@font-face {
+  font-family: "Quicksand-Book";
+  src: url('fonts/Quicksand-Book.otf') format('opentype');
+}
+html,
+body {
+  margin: 0;
+  padding: 0;
+  color: #ddd;
+  background: #000000 url(i/stripedbg.png) top center repeat-x;
+  font-family: "Quicksand-Book", "Helvetica Neue", "Helvetica Neue Light", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 30px;
+  font-weight: normal;
+  text-align: left;
+  letter-spacing: 0.5px;
+}
+p {
+  margin: 20px 0;
+  padding: 0;
+  color: #aaa;
+}
+p.download {
+  padding-left: 25px;
+  background: url(i/32x32/download.png) no-repeat 0px 6px;
+}
+/****** Logo ******/
+h1#Logo {
+  position: absolute;
+  top: 80px;
+  left: 0;
+  margin: 0;
+  padding: 0;
+  color: #666;
+  -moz-opacity: 0.85;
+  -khtml-opacity: 0.85;
+  -webkit-opacity: 0.85;
+  opacity: 0.85;
+  -webkit-transition: all 0.2s ease;
+  -moz-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+}
+h1#Logo:hover,
+h1#Logo:focus {
+  -moz-opacity: 1;
+  -khtml-opacity: 1;
+  -webkit-opacity: 1;
+  opacity: 1;
+}
+#Logo a {
+  width: 239px;
+  height: 65px;
+  margin: 0;
+  padding: 0;
+  color: #bbb;
+  text-indent: -9000px;
+  background: transparent url(i/mbklogo2.png) top left no-repeat;
+  text-decoration: none;
+  border: none;
+  display: block;
+}
+/****** Nav ul ******/
+ul#menu-huvudnavigering {
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  top: 126px;
+  right: 20px;
+}
+ul#menu-huvudnavigering li {
+  margin: 0 0 0 10px;
+  padding: 0;
+  list-style: none;
+  display: inline;
+}
+ul#menu-huvudnavigering li a {
+  text-transform: uppercase;
+  color: #777;
+  margin: 0;
+  padding: 4px;
+  background-image: none;
+  background: transparent;
+}
+ul#menu-huvudnavigering li a:link,
+ul li a:visited {
+  text-decoration: none;
+  border: none;
+}
+ul#menu-huvudnavigering li a:hover,
+ul#menu-huvudnavigering li a:focus,
+ul li a:active {
+  color: white;
+  border: none;
+}
+ul#menu-huvudnavigering li.current_page_item a,
+ul#menu-huvudnavigering li.current-menu-parent a,
+ul#menu-huvudnavigering li.current-menu-item a {
+  color: red;
+}
+/****** Layout ******/
+/* sticky footer */
+#Header {
+  position: relative;
+  height: 170px;
+  margin: 0 auto;
+  width: 960px;
+  text-align: left;
+  background: transparent;
+}
+#Content {
+  margin: 0 auto;
+  padding: 0;
+  width: 960px;
+  font-weight: normal;
+  clear: both;
+  text-align: left;
+  padding-bottom: 50px;
+}
+.entry {
+  clear: both;
+  padding: 15px;
+  margin: 30px 0 15px 0;
+}
+.left {
+  float: left;
+  width: 450px;
+  margin: 0;
+}
+.right {
+  float: left;
+  width: 450px;
+  margin: 0 0 0 30px;
+}
+/****** Various ******/
+.hidden {
+  display: none;
+}
+.clearer {
+  clear: both;
+  height: 1em;
+}
+.pipe {
+  padding: 0 5px;
+  color: #222;
+  background: transparent;
+}
+.hr {
+  clear: both;
+  margin: 0;
+  border-bottom: 1px dotted #222;
+  height: 1px;
+  padding: 10px 0 20px 0;
+}
+hr {
+  display: none;
+}
+.off-left {
+  position: absolute;
+  left: -9999px;
+  width: 9999px;
+}
+acronym,
+abbr {
+  font-style: normal;
+  text-decoration: none;
+}
+acronym[title],
+abbr[title] {
+  border-bottom: 1px dotted #333;
+}
+img {
+  margin: 0;
+  float: left;
+  color: #111;
+  padding: 8px;
+  border: 2px solid #191919;
+  background: #160909;
+  -webkit-transition: all 0.2s ease-out;
+  -moz-transition: all 0.2s ease-out;
+  transition: all 0.2s ease-out;
+}
+a img:hover,
+a img:focus {
+  border-color: #333;
+}
+/****** Default Links *****/
+a:link {
+  color: #ccc;
+  text-decoration: none;
+  border-bottom: 1px dotted maroon;
+  -webkit-transition: all 0.2s ease;
+  -moz-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+}
+a:visited {
+  color: #bbb;
+  text-decoration: none;
+  border-bottom: 1px dotted maroon;
+}
+a:hover,
+a:focus {
+  color: white;
+  text-decoration: none;
+  border-bottom: 1px solid white;
+}
+a:active {
+  color: white;
+  text-decoration: none;
+  border-bottom: 1px solid white;
+}
+/****** Headerz ******/
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: 120%;
+  color: #ddd;
+  font-weight: normal;
+  margin: 0 0 10px 0;
+  padding: 0;
+  line-height: 1em;
+}
+h4 {
+  font-size: 100%;
+  color: #ccc;
+}
+/****** Content Specific ******/
+/* normal ul */
+ul {
+  margin: 0;
+  padding: 0;
+}
+ul li {
+  margin: 0;
+  padding: 4px 0;
+  list-style: none;
+}
+ul li a {
+  margin: 0;
+  padding: 11px 0 9px 43px;
+  background: url(i/32x32/mbkicon.png) no-repeat 0 3px;
+}
+ul li a:link,
+ul li a:visited {
+  text-decoration: none;
+  border: none;
+}
+ul li a:hover,
+ul li a:focus,
+ul li a:active {
+  color: red;
+  border: none;
+}
+.videolista {
+  margin: 10px 0;
+}
+.videolista a {
+  padding: 11px 0 9px 43px;
+  background: url(i/32x32/video.png) no-repeat 0 3px;
+  text-decoration: none;
+  border-bottom: none;
+}
+ul.pdf {
+  margin: 20px 0;
+  padding: 0;
+}
+ul.pdf li a {
+  background: url(i/32x32/pdf.png) no-repeat 0 3px;
+}
+ul.nyhetslista {
+  margin: 20px 0;
+  padding: 0;
+}
+ul.nyhetslista li a {
+  background: url(i/32x32/7.png) no-repeat 0 2px;
+}
+ul.resultatslista {
+  margin: 20px 0;
+  padding: 0;
+}
+ul.resultatslista li a {
+  background: url(i/32x32/5.png) no-repeat 0 2px;
+}
+/* definition list - links */
+dl {
+  font-size: 1.1em;
+  margin: 0;
+  padding: 20px 0 0 20px;
+}
+dl dt a {
+  font-weight: bold;
+  margin: 0;
+  padding: 3px 2px 2px 16px;
+  background: url(i/graphics/eicon.gif) no-repeat 0 3px;
+}
+dl dt a:link,
+dl dt a:visited {
+  font-weight: bold;
+  color: #85AB53;
+  text-decoration: none;
+  border: none;
+}
+dl dt a:hover,
+dl dt a:focus {
+  font-weight: bold;
+  background-position: 0 -16px;
+  color: #fff;
+  border: none;
+}
+dl dd {
+  margin: 0 0 12px 23px;
+  padding: 0;
+  background: transparent;
+  color: #bbb;
+}
+/* blockquote */
+#Content blockquote {
+  margin: 1em 0;
+  padding: 0 1em;
+  color: #444;
+  border-left: 3px solid #85AB53;
+}
+#Content blockquote p {
+  color: #555;
+  margin: 0;
+  padding: 0;
+}
+#Content blockquote p.source {
+  text-align: right;
+  padding-top: 1em;
+}
+/****** Footer ******/
+#Footer {
+  font-weight: normal;
+  clear: both;
+  margin: 10px 0 0 0;
+  padding: 10px 0;
+  text-align: center;
+  background: transparent;
+  font-size: 13px;
+}
+#FooterCont {
+  margin: 0 auto;
+  width: 960px;
+  text-align: left;
+  color: #333;
+}
+#Footer p {
+  color: #444;
+  padding: 0 15px;
+}
+#Footer p.mbksam {
+  margin: 0;
+  text-align: center;
+}
+#Footer p.footerleft {
+  float: left;
+  margin: 4px 0 1px 15px;
+  padding: 0;
+  font-size: 12px;
+  text-transform: uppercase;
+}
+p.footerright {
+  float: right;
+  margin: 5px 0 1px 0;
+  padding: 10px 0;
+  font-size: 12px;
+  width: 18px;
+}
+#Footer a.ed {
+  font-size: 11px;
+  float: right;
+  width: 18px;
+  height: 18px;
+  overflow: hidden;
+  display: block;
+  border: none;
+  color: #ccc;
+  background: url(i/edicon.gif) top left no-repeat;
+  text-indent: -9999px;
+  margin: 0;
+}
+#Footer a.ed:hover,
+#Footer a.ed:focus {
+  background-position: 0px -30px;
+  border: none;
+}
+#Footer p.mbksam {
+  color: #444;
+  margin: 0 0 5px 0;
+}
+#Footer .simages {
+  background: #151515;
+  margin: 0;
+  position: relative;
+  color: #333;
+  height: 112px;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+}
+#Footer .simages a {
+  -moz-opacity: 0.6;
+  -khtml-opacity: 0.6;
+  -webkit-opacity: 0.6;
+  opacity: 0.6;
+  -webkit-transition: all 0.2s ease;
+  -moz-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+}
+#Footer .simages a:hover,
+#Footer .simages a:focus {
+  -webkit-transform: scale(1.06);
+  -moz-transform: scale(1.06);
+  transform: scale(1.06);
+  -moz-opacity: 1;
+  -khtml-opacity: 1;
+  -webkit-opacity: 1;
+  opacity: 1;
+}
+#Footer .simages a.rb {
+  position: absolute;
+  top: -25px;
+  left: 15px;
+}
+#Footer .simages a.xl {
+  position: absolute;
+  top: 34px;
+  left: 245px;
+}
+#Footer .simages a.sbf {
+  position: absolute;
+  top: 20px;
+  left: 473px;
+}
+#Footer .simages a.malmo {
+  position: absolute;
+  top: 12px;
+  left: 580px;
+}
+#Footer .simages a.am {
+  position: absolute;
+  top: 38px;
+  left: 675px;
+}
+#Footer img {
+  margin: 0;
+  color: #555;
+  padding: 0;
+  border: none;
+  background: transparent;
+}
+#Footer a:link {
+  color: #444;
+  border: none;
+}
+#Footer a:visited {
+  color: #444;
+  border: none;
+}
+#Footer a:hover,
+#Footer a:focus {
+  color: #ccc;
+  border: none;
+}
+#Footer a:active {
+  color: #ccc;
+  border: none;
+}

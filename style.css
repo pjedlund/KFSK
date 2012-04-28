@@ -29,99 +29,6 @@ Author URI:         http://edlunddesign.com
 .times {
   font-family: TimesNewRoman, "Times New Roman", Times, Georgia, serif;
 }
-.ir {
-  display: block;
-  border: 0;
-  text-indent: -999em;
-  overflow: hidden;
-  background-color: transparent;
-  background-repeat: no-repeat;
-  text-align: left;
-  direction: ltr;
-  *line-height: 0;
-}
-.ir br {
-  display: none;
-}
-.hidden {
-  display: none !important;
-  visibility: hidden;
-}
-.visuallyhidden {
-  border: 0;
-  clip: rect(0 0 0 0);
-  height: 1px;
-  margin: -1px;
-  overflow: hidden;
-  padding: 0;
-  position: absolute;
-  width: 1px;
-}
-.visuallyhidden.focusable:active,
-.visuallyhidden.focusable:focus {
-  clip: auto;
-  height: auto;
-  margin: 0;
-  overflow: visible;
-  position: static;
-  width: auto;
-}
-.invisible {
-  visibility: hidden;
-}
-.clearfix:before,
-.clearfix:after {
-  content: "";
-  display: table;
-}
-.clearfix:after {
-  clear: both;
-}
-.clearfix {
-  *zoom: 1;
-}
-.aligncenter,
-.alignnone {
-  float: left;
-}
-.alignleft {
-  float: left;
-}
-.alignright {
-  float: right;
-}
-/* Based on  http://nemesisdesign.net/blog/accessibility/nice-css-skip-links-appearing-focus/ */
-#Accessibility {
-  position: absolute;
-  left: 0;
-  width: 100%;
-  margin-left: 0;
-  text-align: center;
-  list-style: none;
-}
-#Accessibility li {
-  list-style-type: none;
-}
-#Accessibility a {
-  position: absolute;
-  left: -999em;
-  top: 2em;
-}
-#Accessibility a:focus,
-#Accessibility a:active {
-  position: relative;
-  left: 0;
-  z-index: 9999;
-  height: auto;
-  margin: 0 auto;
-  padding: .5em 1.5em;
-  text-align: center;
-  text-decoration: none;
-  font-size: 1.7em;
-  color: #167872;
-  background: rgba(255, 255, 255, 0.8);
-  border: 1px dotted #eee;
-}
 /* modified version of.. */
 /*
    ######   ######     ###    ##       ########
@@ -265,7 +172,138 @@ video {
   _width: 100%;
 }
 /*
-  !SELECTIONS
+  VARIOUS
+--------------------------------------------- */
+.ir {
+  display: block;
+  border: 0;
+  text-indent: -999em;
+  overflow: hidden;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  text-align: left;
+  direction: ltr;
+  *line-height: 0;
+}
+.ir br {
+  display: none;
+}
+.hidden {
+  display: none !important;
+  visibility: hidden;
+}
+.visuallyhidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+.visuallyhidden.focusable:active,
+.visuallyhidden.focusable:focus {
+  clip: auto;
+  height: auto;
+  margin: 0;
+  overflow: visible;
+  position: static;
+  width: auto;
+}
+.invisible {
+  visibility: hidden;
+}
+.clearfix:before,
+.clearfix:after {
+  content: "";
+  display: table;
+}
+.clearfix:after {
+  clear: both;
+}
+.clearfix {
+  *zoom: 1;
+}
+.visuallyhidden {
+  position: absolute;
+  margin: -1px;
+  padding: 0;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  border: 0;
+  clip: rect(0);
+}
+.visuallyhidden.focusable:active,
+.visuallyhidden.focusable:focus {
+  position: static;
+  margin: 0;
+  height: auto;
+  width: auto;
+  overflow: visible;
+  clip: auto;
+}
+acronym,
+abbr {
+  font-style: normal;
+  text-decoration: none;
+  cursor: help;
+}
+acronym[title],
+abbr[title] {
+  border-bottom: 1px dotted #999;
+}
+span.amp {
+  font: normal 1em Baskerville, Palatino, Constantia, "Book Antiqua", "URW Palladio L", serif;
+  font-style: italic;
+  margin: 0 .2em;
+}
+/* 20px */
+.aligncenter,
+.alignnone {
+  float: left;
+}
+.alignleft {
+  float: left;
+}
+.alignright {
+  float: right;
+}
+/* Based on  http://nemesisdesign.net/blog/accessibility/nice-css-skip-links-appearing-focus/ */
+#Accessibility {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  margin-left: 0;
+  text-align: center;
+  list-style: none;
+}
+#Accessibility li {
+  list-style-type: none;
+}
+#Accessibility a {
+  position: absolute;
+  left: -999em;
+  top: 2em;
+}
+#Accessibility a:focus,
+#Accessibility a:active {
+  position: relative;
+  left: 0;
+  z-index: 9999;
+  height: auto;
+  margin: 0 auto;
+  padding: .5em 1.5em;
+  text-align: center;
+  text-decoration: none;
+  font-size: 1.7em;
+  color: #167872;
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px dotted #eee;
+}
+/*
+  SELECTIONS
 --------------------------------------------- */
 ::-moz-selection {
   background: #d08c0f;
@@ -290,16 +328,15 @@ img::-moz-selection {
 /*
   BASE TYPOGRAPHY
 --------------------------------------------- */
-html {
-  background: #f9f9f9;
-}
 body {
   font: 75%/1.5em Georgia, serif;
   max-width: 40.49984em;
-  border-top: 5px solid #f1b13a;
-  color: #000000;
+  border-top: 0.375em solid #f1b13a;
+  color: #000;
   margin: 0 auto;
   padding: 1em;
+  /* background: @white; */
+
   background: #ffffff;
 }
 .ie body {
@@ -479,11 +516,13 @@ pre {
 img {
   margin: .5em auto 1.5em auto;
   display: block;
-  background: #f9f9f9;
-  /* border:.0625em solid lighten(@logogrey, 37%); /* 1px */
+  background: #000000;
+  /* .rounded(3px); */
 
-  /* padding:.0625em; */
-  /* 1px */
+  /*
+  border:.0625em dotted darken(@backgroundTileColor, 40%); /* 2 px
+  padding:.5em;
+*/
 
 }
 img.alignleft {
@@ -497,9 +536,45 @@ img.alignright {
   margin-right: 0;
 }
 img.alignnone {
+  /* max-width:96%; */
+
   float: none;
   margin-left: 0;
   margin-right: 0;
+}
+figure {
+  background: #000000 url(img/magnify.png) 50% 43% no-repeat;
+}
+.svg figure {
+  background: #000000 url(img/magnify.svg) 50% 43% no-repeat;
+}
+figure img {
+  margin-bottom: 0;
+  background: black;
+}
+figcaption {
+  padding-left: 1.4em;
+  font-size: .75em;
+  font-style: italic;
+  color: #7f8487;
+  background: #ffffff url(img/graphics.png) 0 -400px no-repeat;
+}
+.svg figcaption {
+  background: #ffffff url(img/graphics.svg) 0 -394px no-repeat;
+}
+figure a {
+  background: black;
+}
+figcaption a:link {
+  font-weight: normal;
+  border: none;
+  background: transparent;
+}
+figcaption:hover:before {
+  -moz-opacity: 1;
+  -khtml-opacity: 1;
+  -webkit-opacity: 1;
+  opacity: 1;
 }
 /*
   LINKS
@@ -655,7 +730,7 @@ nav[role=navigation] ul li.current_page_parent a {
 --------------------------------------------- */
 @media screen and (min-width: 29.9375em) {
   html {
-    background: #f9f9f9 url(img/pattern11.jpg) repeat;
+    background: #ffffff url(img/pattern11.jpg) repeat;
   }
   body {
     /* background:@white url(img/grid.gif) top center repeat; */
@@ -711,8 +786,26 @@ nav[role=navigation] ul li.current_page_parent a {
     /* Org. 51.2px, now 47px 23*/
   
   }
+  /* byline */
   h3.byline {
     text-align: center;
+  }
+  h3.byline a.kfsk {
+    padding-left: 2.923076923em;
+    /* 38px */
+  
+    background: url(img/graphics.png) 0 -100px no-repeat;
+  }
+  h3.byline a.regionskane {
+    margin-left: .307692308em;
+    padding-left: 1.923076923em;
+    background: url(img/graphics.png) 0 0 no-repeat;
+  }
+  .svg h3.byline a.kfsk {
+    background-image: url(img/graphics.svg);
+  }
+  .svg h3.byline a.regionskane {
+    background-image: url(img/graphics.svg);
   }
 }
 /* 
@@ -749,24 +842,6 @@ nav[role=navigation] ul li.current_page_parent a {
     /* 110px */
   
   }
-  /* byline */
-  h3.byline a.kfsk {
-    padding-left: 2.923076923em;
-    /* 38px */
-  
-    background: url(img/graphics.png) 0 -100px no-repeat;
-  }
-  h3.byline a.regionskane {
-    margin-left: .307692308em;
-    padding-left: 1.923076923em;
-    background: url(img/graphics.png) 0 0 no-repeat;
-  }
-  .svg h3.byline a.kfsk {
-    background-image: url(img/graphics.svg);
-  }
-  .svg h3.byline a.regionskane {
-    background-image: url(img/graphics.svg);
-  }
 }
 /*
   MIN-WIDTH: 99.9375em = 1599px
@@ -785,6 +860,11 @@ nav[role=navigation] ul li.current_page_parent a {
   .container {
     max-width: 34.43736em;
   }
+  img.alignright,
+  img.alignleft {
+    width: 287px;
+  }
+  /* ????????????? */
   h3.byline a.kfsk {
     padding-left: 2.777777778em;
     /* 50px */
