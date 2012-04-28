@@ -1,3 +1,0 @@
-/*************************************************
-**  Init
-*************************************************/$(document).ready(function(){$("#Searchbar").attr("value","Jag söker...");var a="Jag söker...";$("#Searchbar").focus(function(){$(this).addClass("active");$(this).attr("value")===a&&$(this).attr("value","")});$("#Searchbar").blur(function(){$(this).removeClass("active");$(this).attr("value")===""&&$(this).attr("value",a)})});$(window).bind("load",function(){$("img").baselineAlign({container:".popup"})});
