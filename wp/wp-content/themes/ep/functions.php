@@ -8,6 +8,16 @@ add_image_size( 'medium', 528, 297, true ); // single post size
 add_image_size( 'large', 1440, 1024 ); // lightbox size 
 }
 
+
+/*
+function filter_images($content){
+  $pattern = '/((?:<\s*a\s*(?:.*)\s*>)<\s*img\s*(?:.*)\s*\/>(?:<\/\s*a\s*>))/i';
+  return preg_replace($pattern, '<div class="imagewrapper">\1</div>', $content);
+}
+add_filter('the_content', 'filter_images');
+*/
+
+
 /**** Enable menus ****/
 add_action( 'init', 'register_my_menus' );
 function register_my_menus() {
@@ -24,13 +34,21 @@ function admin_maintenace_mode() {
     global $current_user;
     get_currentuserinfo();
     if($current_user->user_login != 'admin') { ?>
-			<style> .updated{margin:30px !important;} </style><?
+			<style> .updated{margin:3em !important;} </style><?
 			die('<h3 id="message" class="updated">Underhållsarbete pågår.</h3>');
 		}
 }
-//add_action('admin_head', 'admin_maintenace_mode'); 
+//add_action('admin_head', 'admin_maintenace_mode');
 
+
+/**** Visual editor styles ****/
+add_action( 'after_setup_theme', 'wptuts_theme_setup' );
+function wptuts_theme_setup() {
+    set_user_setting( 'dfw_width', 500 );
+}
 add_editor_style();
+
+
 
 /**** Enqueue jquery.. ****/ 
 if( !is_admin()){
@@ -38,14 +56,6 @@ if( !is_admin()){
 	wp_register_script('jquery', ("http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"), false, '1.7.1', true);
 	wp_enqueue_script('jquery');
 }
-
-/**** ..and modernizr ****/ 
-function addmod(){
-wp_register_script( 'modernizr', get_template_directory_uri() . '/js/libs/modernizr-2.5.0.min.js' );
-wp_enqueue_script( 'modernizr' );
-}
-add_action( 'wp_enqueue_scripts', 'addmod', 1 );  
-
 
 /**** Add post classes  ****/
 function additional_post_classes( $classes ) {
@@ -77,30 +87,62 @@ function rel_external($content){
 }
 add_filter('the_content', 'rel_external');
 
+/* -----------------------------
+MODIFIED WPAUTOP - Allow HTML5 block elements in wordpress posts
+----------------------------- */
 
-/**** Clean away width and height attributes ****/
-function remove_width_attributes($string) {
-	return preg_replace('/\<(.*?)(width="(.*?)")(.*?)(height="(.*?)")(.*?)\>/i', '<$1$4$7>',$string);
-	return $string;
+function html5autop($pee, $br = 1) {
+   if ( trim($pee) === '' )
+      return '';
+   $pee = $pee . "\n"; // just to make things a little easier, pad the end
+   $pee = preg_replace('|<br />\s*<br />|', "\n\n", $pee);
+   // Space things out a little
+// *insertion* of section|article|aside|header|footer|hgroup|figure|details|figcaption|summary
+   $allblocks = '(?:table|thead|tfoot|caption|col|colgroup|tbody|tr|td|th|div|dl|dd|dt|ul|ol|li|pre|select|form|map|area|blockquote|address|math|style|input|p|h[1-6]|hr|fieldset|legend|section|article|aside|header|footer|hgroup|figure|details|figcaption|summary)';
+   $pee = preg_replace('!(<' . $allblocks . '[^>]*>)!', "\n$1", $pee);
+   $pee = preg_replace('!(</' . $allblocks . '>)!', "$1\n\n", $pee);
+   $pee = str_replace(array("\r\n", "\r"), "\n", $pee); // cross-platform newlines
+   if ( strpos($pee, '<object') !== false ) {
+      $pee = preg_replace('|\s*<param([^>]*)>\s*|', "<param$1>", $pee); // no pee inside object/embed
+      $pee = preg_replace('|\s*</embed>\s*|', '</embed>', $pee);
+   }
+   $pee = preg_replace("/\n\n+/", "\n\n", $pee); // take care of duplicates
+   // make paragraphs, including one at the end
+   $pees = preg_split('/\n\s*\n/', $pee, -1, PREG_SPLIT_NO_EMPTY);
+   $pee = '';
+   foreach ( $pees as $tinkle )
+      $pee .= '<p>' . trim($tinkle, "\n") . "</p>\n";
+   $pee = preg_replace('|<p>\s*</p>|', '', $pee); // under certain strange conditions it could create a P of entirely whitespace
+// *insertion* of section|article|aside
+   $pee = preg_replace('!<p>([^<]+)</(div|address|form|section|article|aside)>!', "<p>$1</p></$2>", $pee);
+   $pee = preg_replace('!<p>\s*(</?' . $allblocks . '[^>]*>)\s*</p>!', "$1", $pee); // don't pee all over a tag
+   $pee = preg_replace("|<p>(<li.+?)</p>|", "$1", $pee); // problem with nested lists
+   $pee = preg_replace('|<p><blockquote([^>]*)>|i', "<blockquote$1><p>", $pee);
+   $pee = str_replace('</blockquote></p>', '</p></blockquote>', $pee);
+   $pee = preg_replace('!<p>\s*(</?' . $allblocks . '[^>]*>)!', "$1", $pee);
+   $pee = preg_replace('!(</?' . $allblocks . '[^>]*>)\s*</p>!', "$1", $pee);
+   if ($br) {
+      $pee = preg_replace_callback('/<(script|style).*?<\/\\1>/s', create_function('$matches', 'return str_replace("\n", "<WPPreserveNewline />", $matches[0]);'), $pee);
+      $pee = preg_replace('|(?<!<br />)\s*\n|', "<br />\n", $pee); // optionally make line breaks
+      $pee = str_replace('<WPPreserveNewline />', "\n", $pee);
+   }
+   $pee = preg_replace('!(</?' . $allblocks . '[^>]*>)\s*<br />!', "$1", $pee);
+// *insertion* of img|figcaption|summary
+   $pee = preg_replace('!<br />(\s*</?(?:p|li|div|dl|dd|dt|th|pre|td|ul|ol|img|figcaption|summary)[^>]*>)!', '$1', $pee);
+   if (strpos($pee, '<pre') !== false)
+      $pee = preg_replace_callback('!(<pre[^>]*>)(.*?)</pre>!is', 'clean_pre', $pee );
+   $pee = preg_replace( "|\n</p>$|", '</p>', $pee );
+
+   return $pee;
 }
 
-add_filter( 'post_thumbnail_html', 'remove_thumbnail_dimensions', 10 );
-add_filter( 'image_send_to_editor', 'remove_thumbnail_dimensions', 10 );
-add_filter( 'the_content', 'remove_thumbnail_dimensions', 10 );	
-
-// Removes attached image sizes as well
- /* -------------------------- */
-function remove_thumbnail_dimensions( $html ) {
-	$html = preg_replace( '/(width|height)=\"\d*\"\s/', "", $html );
-	return $html;
-}
-
-/**** Clean away title attribute ****/
-function remove_title_attributes($input) {
-    return preg_replace('/\s*title\s*=\s*(["\']).*?\1/', '', $input);
-}
-add_filter( 'wp_list_pages', 'remove_title_attributes' );
-
+// remove the original wpautop function
+remove_filter('the_excerpt', 'wpautop');
+remove_filter('the_content', 'wpautop');
+  
+// add our new html5autop function
+add_filter('the_excerpt', 'html5autop');
+add_filter('the_content', 'html5autop');
 
 /**** captions ****/
 add_shortcode('wp_caption', 'fixed_img_caption_shortcode');
@@ -118,11 +160,61 @@ function fixed_img_caption_shortcode($attr, $content = null) {
 	if ( empty($caption) )
 	return $content;
 	if ( $id ) $id = 'id="' . esc_attr($id) . '" ';
-	return '<div ' . $id . 'class="wp-caption clearfix ' . esc_attr($align)
+	return '<p><figure ' . $id . 'class="wp-caption clearfix' . esc_attr($align)
 	. '">'
-	. do_shortcode( $content ) . '<p class="wp-caption-text">'
-	. $caption . '</p></div>';
+	. do_shortcode( $content ) . '<figcaption class="wp-caption-text">'
+	. $caption . '</figcaption></figure></p>';
 }
+
+/*
+add_shortcode('wp_caption', 'twentyten_img_caption_shortcode');
+add_shortcode('caption', 'twentyten_img_caption_shortcode');
+function twentyten_img_caption_shortcode($attr, $content = null) {
+extract(shortcode_atts(array(
+'id'    => '',
+'align'    => 'alignnone',
+'width'    => '',
+'caption' => ''
+), $attr));
+if ( 1 > (int) $width || empty($caption) )
+return $content;
+if ( $id ) $idtag = 'id="' . esc_attr($id) . '" ';
+  return '<figure ' . $idtag . 'aria-describedby="figcaption_' . $id . '">' . do_shortcode( $content ) . '<figcaption id="figcaption_' . $id . '">' . $caption . '</figcaption></figure>';
+}
+*/
+
+
+/*
+add_filter('the_content', 'add_figure', 12);
+function add_figure ($content) {
+  $pattern = "/<a(.*?)href=('|\")([^>]*)('|\")(.*?)><img(.*?)src=('|\")([^>]*).(bmp|gif|jpeg|jpg|png)('|\")(.*?)class=('|\")([^>]*)('|\")(.*?)\/><\/a>/i";
+  $replacement = "<$1><span class=\"some-class\">$2</span></$3>"
+  $content = preg_replace($pattern, $replacement, $content);
+  }
+  return $content;
+}
+*/
+
+/*
+
+{   global $post;
+    
+    $replacement = '<a$1href=$2$3$4$5><img$6src=$7$8.$9$10$11class=$12$13 imagelink$14$15$16/><\/a>';
+    $content = preg_replace($pattern, $replacement, $content);
+    return $content;
+}
+
+			if ($matches[2][$m] == 'blank') {
+				$temp = str_replace($matches[1][$m], 'rel="external"', $matches[0][$m]);
+				$content = str_replace($matches[0][$m], $temp, $content);
+			} else if ($matches[2][$m] == 'self') {
+				$temp = str_replace(' ' . $matches[1][$m], '', $matches[0][$m]);
+				$content = str_replace($matches[0][$m], $temp, $content);
+			}
+*/
+
+
+
 
 
 /**** Archive date function ****/
@@ -371,5 +463,6 @@ function munge_mail_shortcode( $atts , $content=null ) {
 for ($i = 0; $i < strlen($content); $i++) $encodedmail .= "&#" . ord($content[$i]) . ';';
 return '<a href="mailto:'.$encodedmail.'">'.$encodedmail.'</a>';}
 add_shortcode('mailto', 'munge_mail_shortcode');
+
 
 ?>

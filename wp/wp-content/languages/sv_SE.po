@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Development (future 3.3) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2011-12-13 00:57+0100\n"
+"PO-Revision-Date: 2012-04-20 18:29+0100\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -193,7 +193,7 @@ msgstr "Prenumeranter kan läsa kommentarer/kommentera/ta emot nyhetsbrev osv, m
 
 #: wp-admin/import.php:133
 msgid "If the importer you need is not listed, <a href=\"%s\">search the plugin directory</a> to see if an importer is available."
-msgstr "Om impotören du behöver inte är listad, <a href=\"%s\">sök i tilläggskatalogen</a> för att se om en importör finns tillgänglig."
+msgstr "Om importören du behöver inte är listad, <a href=\"%s\">sök i tilläggskatalogen</a> för att se om en importör finns tillgänglig."
 
 #: wp-admin/edit.php:187
 msgid "When using Bulk Edit, you can change the metadata (categories, author, etc.) for all selected posts at once. To remove a post from the grouping, just click the x next to its name in the Bulk Edit area that appears."
@@ -653,7 +653,7 @@ msgstr "Design för adminpanelen"
 
 #: wp-admin/about.php:61
 msgid "Flyout Menus"
-msgstr "Dropdown-menyer"
+msgstr "Interaktiva menyer"
 
 #: wp-admin/about.php:93
 msgid "New Feature Pointers"
@@ -6855,7 +6855,7 @@ msgstr "&raquo;"
 
 #: wp-includes/general-template.php:1605
 msgid "%1$s %2$s Feed"
-msgstr "%1$s %2$s -flöde"
+msgstr "%1$s %2$s flöde"
 
 #: wp-includes/general-template.php:1607
 msgid "%1$s %2$s Comments Feed"
@@ -6875,11 +6875,11 @@ msgstr "%1$s %2$s %3$s etikettflöde"
 
 #: wp-includes/general-template.php:1634
 msgid "%1$s %2$s Posts by %3$s Feed"
-msgstr "%1$s %2$s Inlägg av %3$s -flöde"
+msgstr "%1$s %2$s Inlägg av %3$s flöde"
 
 #: wp-includes/general-template.php:1636
 msgid "%1$s %2$s Search Results for &#8220;%3$s&#8221; Feed"
-msgstr "%1$s %2$s Sökresultat för &#8221;%3$s&#8221; -flöde"
+msgstr "%1$s %2$s Sökresultat för &#8221;%3$s&#8221; flöde"
 
 #: wp-includes/general-template.php:1929
 msgid "&laquo; Previous"

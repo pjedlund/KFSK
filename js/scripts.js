@@ -19,16 +19,27 @@ scale.iOS();
 
 $(document).ready(function() {
 
-/*
-   //---- Fade for images ----
-  $("a img").each(function() {
-		$(this).parent("a").hover(function(){
-			$("img", this).stop().fadeTo(200, 0.5);
-		},function(){
-			$("img", this).stop().fadeTo(300, 1);
-		});
-  })
-*/
+    /* $('.lightbox').wrap('<figure class="wrapper" />'); */
+    /* $('figure').css("background","yellow", "backgroundImage"); */
+
+		 	$(".lightbox").fancybox({
+				padding: 0,
+
+				openEffect : 'fade',
+				openSpeed  : 100,
+
+				closeEffect : 'fade',
+				closeSpeed  : 100,
+
+				helpers : {
+					overlay : {
+						css : {
+							'background-color' : '#8c9193'
+						}
+					}
+				}
+				
+			});
 
 });
 
@@ -37,7 +48,7 @@ $(window).bind("load", function() {
     var activeOpacity   = 0.5,
         inactiveOpacity = 1,
         fadeTime = 350,
-        images = "figure a img";
+        images = ".lightbox img";
 
     $(images).fadeTo(1, inactiveOpacity);
 

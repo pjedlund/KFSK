@@ -517,13 +517,6 @@ img {
   margin: .5em auto 1.5em auto;
   display: block;
   background: #000000;
-  /* .rounded(3px); */
-
-  /*
-  border:.0625em dotted darken(@backgroundTileColor, 40%); /* 2 px
-  padding:.5em;
-*/
-
 }
 img.alignleft {
   float: none;
@@ -550,31 +543,29 @@ figure {
 }
 figure img {
   margin-bottom: 0;
-  background: black;
+}
+/* obs! wp adds a br to all captions -- this is a hack to hide it */
+figure br {
+  display: none;
 }
 figcaption {
-  padding-left: 1.4em;
+  /* padding-left:1.4em; */
+
   font-size: .75em;
   font-style: italic;
   color: #7f8487;
-  background: #ffffff url(img/graphics.png) 0 -400px no-repeat;
+  background: #ffffff;
 }
-.svg figcaption {
-  background: #ffffff url(img/graphics.svg) 0 -394px no-repeat;
-}
-figure a {
-  background: black;
+figcaption:before {
+  margin-right: .4em;
+  font-style: normal;
+  content: "\00bb";
+  color: #f1b13a;
 }
 figcaption a:link {
   font-weight: normal;
   border: none;
   background: transparent;
-}
-figcaption:hover:before {
-  -moz-opacity: 1;
-  -khtml-opacity: 1;
-  -webkit-opacity: 1;
-  opacity: 1;
 }
 /*
   LINKS

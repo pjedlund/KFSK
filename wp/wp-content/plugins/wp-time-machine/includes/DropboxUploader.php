@@ -83,9 +83,8 @@ class DropboxUploader {
     
     protected function login() {
         $data = $this->request('https://www.dropbox.com/login');
-        $token = $this->extractToken($data, '/login');
         
-        $data = $this->request('https://www.dropbox.com/login', true, array('login_email'=>$this->email, 'login_password'=>$this->password, 't'=>$token));
+        $data = $this->request('https://www.dropbox.com/login', true, array('login_email'=>$this->email, 'login_password'=>$this->password));
         
         if (stripos($data, 'location: /home') === false)
             throw new Exception('Login unsuccessful.');
@@ -97,7 +96,7 @@ class DropboxUploader {
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
         switch ($this->caCertSourceType) {
             case self::CACERT_SOURCE_FILE:
                 curl_setopt($ch, CURLOPT_CAINFO, $this->caCertSource);

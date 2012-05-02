@@ -1,12 +1,14 @@
 <?php
+
+$login_error = false;
       
 switch ($offsite) {
 
     case "dropbox":
     
         $uploader = new DropboxUploader( $POST_remote_user, $POST_remote_pass );
-        
-        wpTimeMachine_logger( $use_log,  '--- Instantiate new DropboxUploader()' );
+            
+        wpTimeMachine_logger( $use_log,  '--- Instantiate new DropboxUploader() ' );
 
         if ($POST_remote_path == "") {
             $dropbox_dir = "/wpTimeMachine";
@@ -20,7 +22,23 @@ switch ($offsite) {
 
         foreach ($files as $i => $file) {
             if (file_exists($file)) {
-                $uploader->upload( $file, $remoteDir = $dropbox_dir );
+
+                wpTimeMachine_logger( $use_log,  '--- files loop: ' . $file . ' >> ' .  $dropbox_dir  . ' >> ' .  baseName( $file ) );
+
+                try {
+                
+                    $uploader->upload( $file, $remoteDir = $dropbox_dir );
+
+                } catch (Exception $e) {
+
+                    wpTimeMachine_logger( $use_log,  '--- error w/ S3(): ' . $e );
+
+                    $login_error = true;
+
+                    break;
+
+                }
+
             }
         }   
 
@@ -44,10 +62,22 @@ switch ($offsite) {
         $bucket = uniqid( $bucket . "-" );
         
         $s3 = new S3( $POST_remote_user, $POST_remote_pass );
-                
+
         wpTimeMachine_logger( $use_log,  '--- Instantiate new S3()' );
+
+        try {
         
-        $s3->putBucket( $bucket, S3::ACL_PRIVATE );
+            $s3->putBucket( $bucket, S3::ACL_PRIVATE );
+
+        } catch (Exception $e) {
+
+            wpTimeMachine_logger( $use_log,  '--- error w/ S3(): ' . $e );
+
+            $login_error = true;
+
+            break;
+
+        }
         
         foreach ($files as $i => $file) {
         
@@ -58,6 +88,7 @@ switch ($offsite) {
                 $s3->putObjectFile( $file, $bucket, baseName( $file ), S3::ACL_PRIVATE );
             
             }
+
         }
         
         $remote_path = $bucket;

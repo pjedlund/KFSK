@@ -42,7 +42,6 @@ Author URI:         http://edlunddesign.com
 @col_l2 : lighten(@basecol, 10%);
 @col_l3 : lighten(@basecol, 15%);
 @col_l4 : lighten(@basecol, 20%);
-
 @col_d1 : darken(@basecol, 5%);
 @col_d2 : darken(@basecol, 10%);
 @col_d3 : darken(@basecol, 15%);
@@ -400,14 +399,7 @@ img {
   margin: .5em auto 1.5em auto;
   display: block;
   background: @black;
-  /* .rounded(3px); */
-  
-/*
-  border:.0625em dotted darken(@backgroundTileColor, 40%); /* 2 px
-  padding:.5em;
-*/
 }
-
 
 img.alignleft {
     float:none;
@@ -435,38 +427,35 @@ figure {
   background: @black url(img/magnify.svg) 50% 43% no-repeat;
 }
 
-
 figure img {
   margin-bottom: 0;
-  background:black;
 }
 
+/* obs! wp adds a br to all captions -- this is a hack to hide it */
+figure br {display: none;}
+
+
 figcaption {
-  padding-left:1.4em;
+  /* padding-left:1.4em; */
   font-size: .75em;
   font-style: italic; 
   color: darken(@logogrey, 5%);
-  background: @white url(img/graphics.png) 0 -400px no-repeat;
+  background: @white;
 }
 
-.svg figcaption {
-  background: @white url(img/graphics.svg) 0 -394px no-repeat;
+figcaption:before {
+  margin-right:.4em;
+  font-style: normal;
+  content:"\00bb";
+  color:@basecol;
 }
 
-figure a {
-  background:black;
-}
 
 figcaption a:link {
   font-weight: normal;
   border:none;
   background:transparent;
 }
-
-figcaption:hover:before {
-  .opacity(1);
-}
-
 
 
 /*

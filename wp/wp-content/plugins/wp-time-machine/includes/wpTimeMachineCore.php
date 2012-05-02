@@ -275,20 +275,20 @@ function wpTimeMachine_init($offsites)
 
         }
         
-        var show_info_labels = new Array(
-            "<?php echo $wpTimeMachineText['show_info_labels'][0]; ?>", 
-            "<?php echo $wpTimeMachineText['show_info_labels'][1]; ?>"
-        );
+        // var show_info_labels = new Array(
+        //     "<?php echo $wpTimeMachineText['show_info_labels'][0]; ?>", 
+        //     "<?php echo $wpTimeMachineText['show_info_labels'][1]; ?>"
+        // );
     
         var use_log_labels = new Array(
             "<?php echo $wpTimeMachineText['use_log_labels'][0]; ?>", 
             "<?php echo $wpTimeMachineText['use_log_labels'][1]; ?>"
         );
     
-        var show_options_labels = new Array(
-            "<?php echo $wpTimeMachineText['show_options_labels'][0]; ?>", 
-            "<?php echo $wpTimeMachineText['show_options_labels'][1]; ?>"
-        );
+        // var show_options_labels = new Array(
+        //     "<?php echo $wpTimeMachineText['show_options_labels'][0]; ?>", 
+        //     "<?php echo $wpTimeMachineText['show_options_labels'][1]; ?>"
+        // );
     
         var format_labels = new Array(
             "<?php echo $wpTimeMachineText['format_labels'][0]; ?>", 
@@ -321,51 +321,30 @@ function wpTimeMachine_init($offsites)
 
     <div class="wrap" id="wpTimeMachine">
 
+        <h2>wp Time Machine, version: <?php echo wpTimeMachineVersion;?></h2>
+
         <?php
-    
-    	// start inline instructions
-    
-    	echo "<h2>wp Time Machine, version: " . wpTimeMachineVersion;
 
-        	echo "<div id=\"help_links\">";
-        
-        	if ($wpTimeMachineOptionsStorage['show_info'] == "true") {
-        		echo '<a href="javascript:void(0)" id="show_info" value="true">'.$wpTimeMachineText['show_info_labels'][0].'</a> &nbsp;&nbsp;';
-        	} else {
-        		echo '<a href="javascript:void(0)" id="show_info" value="false">'.$wpTimeMachineText['show_info_labels'][1].'</a> &nbsp;&nbsp;';
-        	}
-        
-        	if ($wpTimeMachineOptionsStorage['show_options'] == "true") {
-        		echo '<a href="javascript:void(0)" id="show_options" value="true">'.$wpTimeMachineText['show_options_labels'][0].'</a> &nbsp;&nbsp;';
-        	} else {
-        		echo '<a href="javascript:void(0)" id="show_options" value="false">'.$wpTimeMachineText['show_options_labels'][1].'</a> &nbsp;&nbsp;';
-        	}
-        
-        	echo '<a href="http://wpTimeMachine.com" target="_new" title="Official website for the wp Time Machine">wpTimeMachine.com</a>';
-        		
-        	echo "</div>";
-
-        echo "</h2>";
+    	echo "";
     
     	if ($wpTimeMachineOptionsStorage['recent_archive_name'] != "") {
     
     		echo "<div id=\"RecentInfo\">";
     		echo "<h3>Recent Archive Information:</h3>";
     		echo "<span id='recent_archive_info'>Your archives are ready, they took about " . $wpTimeMachineOptionsStorage['recent_archive_duration'] . " seconds to create;";
-    		echo " and are in your ".$offsite_name." account (in this ".strtolower($remote_path_label).": ".$wpTimeMachineOptionsStorage['recent_archive_path'].").</span>";
-    		echo "<p><a href='javascript:void(0)' onclick='javascript:jQuery(\"#RecentInfo\").fadeSliderToggle()'>Close this</a></p>";
+    		echo " and are in your <b class=\"offsite_name\">".$offsite_name."</b> account (in this ".strtolower($remote_path_label).": ".$wpTimeMachineOptionsStorage['recent_archive_path']." as a ".$wpTimeMachineOptionsStorage['recent_archive_format']." file).</span>";
+    		echo "<p><a href='javascript:;' onclick='javascript:jQuery(\"#RecentInfo\").fadeSliderToggle()'>Close this</a></p>";
     		echo "</div>";
     
     	} else {
     
-    		echo "<div id=\"RecentInfo\" style=\"display:none\">";
+    		echo "<div id=\"RecentInfo\">";
+            echo "<h3>Your Archive Information:</h3>";
+            echo "Stored on <b class=\"offsite_name\">".$offsite_name."</b> (in this ".strtolower($remote_path_label).": ".$wpTimeMachineOptionsStorage['recent_archive_path']." as a ".$wpTimeMachineOptionsStorage['recent_archive_format']." file).</span>";
+            echo "<p><a href='javascript:;' onclick='javascript:jQuery(\"#RecentInfo\").fadeSliderToggle()'>Close this</a></p>";
     		echo "</div>";
     
     	}
-    
-    	echo "<div id=\"Info\">";
-    	require 'wpTimeMachineIntructions.' . wpTimeMachinePHP . '.html';
-    	echo "</div>";
     
         ?>
         
@@ -389,7 +368,7 @@ function wpTimeMachine_init($offsites)
                 <p>
                     They should now be available via your offsite provider: <br /><br />
                     <span class="offsite_name"><?php echo $offsite_name;?></span><br /><br />
-                    <a href="javascript:void(0)" onclick="jQuery.modal.close()"><?php _e("Remove this message"); ?></a>
+                    <a href="javascript:;" onclick="jQuery.modal.close()"><?php _e("Remove this message"); ?></a>
                 </p>
 
             </div>
@@ -400,7 +379,7 @@ function wpTimeMachine_init($offsites)
 
                 <p>
                     Unfortunately more information is not available (yet).<br /><br />
-                    <a href="javascript:void(0)" onclick="jQuery.modal.close()"><?php _e("Remove this message"); ?></a>
+                    <a href="javascript:;" onclick="jQuery.modal.close()"><?php _e("Remove this message"); ?></a>
                 </p>
 
             </div>
@@ -408,203 +387,6 @@ function wpTimeMachine_init($offsites)
             <form id="wpTimeMachine_generator_form" method="post" action="<?php echo $_SERVER["REQUEST_URI"]; ?>&generate=1">
 
                 <?php wp_nonce_field('wpTimeMachine_nonce'); ?>
-
-                <fieldset class="wpTimeMachineOptions">
-
-                <?php
-
-            	if (wpTimeMachinePHP == 'php4') {
-                    ?>
-
-                    <label for="offsite" class="offsite">
-                    Current offsite service: <strong>FTP</strong> <em> PHP4 only has support for FTP </em>
-                    </label> <br />
-                    <input type="hidden" name="offsite" value="ftp">
-
-                    <?php
-            	} else {
-            
-            		if ($offsite != "") {
-                    ?>
-
-                    <label for="offsite" class="offsite">
-                    Current offsite service: <strong><?php echo $offsite_name; ?></strong>
-                    &nbsp;&nbsp;<a href="javascript:void(0)" onclick="jQuery('#offsite_selections').toggle()">Change your offsite service</a>
-                    </label> <br />
-                    <span id="offsite_selections" style="display:none">
-
-                    <?php
-                    } else {
-                    ?>
-
-                    <label for="offsite">Select an offsite service:</label> <br />
-
-                    <?php
-                    }
-                    ?>
-
-                    <?php
-
-                    foreach ($offsites as $provider) {
-                    	echo "<input class=\"rd\" type=\"radio\" name=\"offsite\" value=\"".$provider['offsite_short']."\"> ".$provider['offsite_name']." <br />";
-                    }
-                    
-                    ?>
-
-                    <script type="text/javascript">
-                    jQuery("input[value='<?php echo $offsite; ?>']").attr("checked", true);
-                    </script>
-
-                    <?php
-                    if ($offsite != "") {
-                        ?>
-                        </span>
-                        <?php
-            		}
-            
-            	}
-            
-                ?>
-
-                </fieldset>
-
-                <fieldset class="wpTimeMachineOptions">
-
-                    File format:
-                    <?php
-                    	if ($wpTimeMachineOptionsStorage['format'] == "zip") {
-                    		echo '<strong id="format_label">.zip</strong> &nbsp;&nbsp;<a href="javascript:void(0)" id="format" value="zip">'.$wpTimeMachineText['format_labels'][0].'</a>';
-                    	} else {
-                    		echo '<strong id="format_label">.tar.gz</strong> &nbsp;&nbsp;<a href="javascript:void(0)" id="format" value="tar">'.$wpTimeMachineText['format_labels'][1].'</a>';
-                    	}
-                    ?>
-
-                    &nbsp;&nbsp; <a href="javascript:void(0)" onclick="jQuery('#wpTimeMachine_learn_about_formats').toggle()" class="help_link"><?php _e("Learn More"); ?></a>
-
-                    <p id="wpTimeMachine_learn_about_formats" class="help" style="display:none">
-
-                    By default File Formats is set to generate all of your archives as ZIP (.zip) files; since that seems to be the most commonly used archive format on most 
-                    operating systems (which means you probably already have the software needed to extract Zip files).  That said, tar files (or .tar.gz) provide better
-                    compression and therefore take up less disk space and take less time to transfer.  
-
-                    </p>
-                
-                </fieldset>
-
-                <fieldset class="wpTimeMachineOptions">
-
-                <?php
-                	if ($wpTimeMachineOptionsStorage['use_post_pub'] == "true") {
-                ?>
-                    <a class="full" href="javascript:void(0)" id="use_post_pub" value="true"><?php echo $wpTimeMachineText['use_post_pub_labels'][0]; ?></a>
-                    <input type="hidden" name="use_post_pub" value="true" />
-                <?php
-                	} else {
-                ?>
-                    <a class="full" href="javascript:void(0)" id="use_post_pub" value="false"><?php echo $wpTimeMachineText['use_post_pub_labels'][1]; ?></a>
-                    <input type="hidden" name="use_post_pub" value="false" />
-                <?php
-                	}
-                ?>
-
-                    &nbsp;&nbsp; <a href="javascript:void(0)" onclick="jQuery('#wpTimeMachine_learn_about_post_pub').toggle()" class="help_link"><?php _e("Learn More"); ?></a>
-
-                    <p id="wpTimeMachine_learn_about_post_pub" class="help" style="display:none">
-
-                    This feature lets you take advantage of WordPress' ability to add events after a post gets published (or updated).  Using this plugin you
-                    can force WordPress to start wp Time Machine every time a publish or update event occurs.  There is a considerable price worth thinking 
-                    about: using this feature will add time to publishing (depending on the size of your blog it may add several seconds, or even minutes). 
-                    
-                    </p>
-
-                </fieldset>
-                
-                <fieldset class="wpTimeMachineOptions">
-
-                <?php
-                	if ($wpTimeMachineOptionsStorage['use_timestamp_dir'] == "true") {
-                ?>
-                    <a class="full" href="javascript:void(0)" id="use_timestamp_dir" value="true"><?php echo $wpTimeMachineText['use_timestamp_dir_labels'][0]; ?></a>
-                    <input type="hidden" name="use_timestamp_dir" value="true" />
-                <?php
-                	} else {
-                ?>
-                    <a class="full" href="javascript:void(0)" id="use_timestamp_dir" value="false"><?php echo $wpTimeMachineText['use_timestamp_dir_labels'][1]; ?></a>
-                    <input type="hidden" name="use_timestamp_dir" value="false" />
-                <?php
-                	}
-                ?>
-
-                    &nbsp;&nbsp; <a href="javascript:void(0)" onclick="jQuery('#wpTimeMachine_learn_about_timestamps').toggle()" class="help_link"><?php _e("Learn More"); ?></a>
-
-                    <p id="wpTimeMachine_learn_about_timestamps" class="help" style="display:none">
-
-                    This feature adds a date to paths or files <br />(depending on which offsite service you use).<br /><br />
-                    For example, if you use Dropbox, the folder the archives appear in will now look like folder-YEAR-MONTH-DAY (or wpTimeMachine-2010-04-15).
-                    This is helpful if you want to have archives kept of relatively discrete changes; but can consume a lot of space.  At this time the plugin
-                    makes no attempt to delete archives of this type beyond a certain date.  What you archive stays until you delete it...
-
-                    </p>
-
-                </fieldset>
-
-                <fieldset class="wpTimeMachineOptions">
-
-                <?php
-                	if ($wpTimeMachineOptionsStorage['exclude_cache'] == "true") {
-                ?>
-                    <a class="full" href="javascript:void(0)" id="exclude_cache" value="true"><?php echo $wpTimeMachineText['exclude_cache_labels'][0]; ?></a>
-                    <input type="hidden" name="exclude_cache" value="true" />
-                <?php
-                	} else {
-                ?>
-                    <a class="full" href="javascript:void(0)" id="exclude_cache" value="false"><?php echo $wpTimeMachineText['exclude_cache_labels'][1]; ?></a>
-                    <input type="hidden" name="exclude_cache" value="false" />
-                <?php
-                	}
-                ?>
-
-                    &nbsp;&nbsp; <a href="javascript:void(0)" onclick="jQuery('#wpTimeMachine_learn_about_cache').toggle()" class="help_link"><?php _e("Learn More"); ?></a>
-
-                    <p id="wpTimeMachine_learn_about_cache" class="help" style="display:none">
-
-                    This feature let's you exclude a directory called "cache" which might exist in your wp-content directory.<br /><br />
-                    Important: by default wp Time Machine excludes cache directories.<br /><br />
-                    This helps reduce the size of your archive if you're also using a plugin like WP Super Cache, for example.
-
-                    </p>
-
-                </fieldset>
-
-                <fieldset class="wpTimeMachineOptions">
-
-                    <?php
-    
-                    	if ($wpTimeMachineOptionsStorage['use_log'] == "true") {
-                    		echo '<a class="full" href="javascript:void(0)" id="use_log" value="true">'.$wpTimeMachineText['use_log_labels'][0].'</a> &nbsp;&nbsp;';
-                    	} else {
-                    		echo '<a class="full" href="javascript:void(0)" id="use_log" value="false">'.$wpTimeMachineText['use_log_labels'][1].'</a> &nbsp;&nbsp;';
-                    	}
-                    
-                    	if ( file_exists( wpTimeMachineLog ) ) {
-                    		echo '<a class="full" href="'. wpcontent_url .'/wpTimeMachine_log.txt" target="_blank">'.$wpTimeMachineText['view_log_label'].'</a> &nbsp;&nbsp;';
-                    		echo '<a class="full" href="javascript:void(0)" id="clear_log">'.$wpTimeMachineText['clear_log_label'].'</a> &nbsp;&nbsp;';
-                    	}
-                    ?>
-
-                    &nbsp;&nbsp; <a href="javascript:void(0)" onclick="jQuery('#wpTimeMachine_learn_about_logging').toggle()" class="help_link"><?php _e("Learn More"); ?></a>
-
-                    <p id="wpTimeMachine_learn_about_logging" class="help" style="display:none">
-
-                    This feature is intended to make it easier for you to get help with issues you have while using the plugin.  The log that's created is located
-                    directly in your wp-content directory &amp; contains helpful but yet harmless information that would be good to share if you have problems...
-                    You can read more about logging here: <a href="http://wptimemachine.com/-/troubleshooting-and-the-log-in-1-8-5/">Troubleshooting & the log, in 1.8.5</a>.
-                    And if you have issues you need help with, you can paste a link to your log along with a description
-                    here: <a title="Feedback" href="http://wptimemachine.com/feedback/">Feedback</a>.
-
-                    </p>
-
-                </fieldset>
 
                 <fieldset class="last">
 
@@ -623,14 +405,14 @@ function wpTimeMachine_init($offsites)
                         <?php
                         	if ($wpTimeMachineOptionsStorage['remote_pass_storage'] == "true") {
                         ?>
-                            <a href="javascript:void(0)" id="remote_pass_storage" value="true">
-                                Don't save my <span class="remote_pass_label"></span>
+                            <a href="javascript:;" id="remote_pass_storage" value="true" title="Click here to stop storing your password">
+                                <span class="remote_pass_label"></span> stored: Enabled
                             </a>
                         <?php
                         	} else {
                         ?>
-                            <a href="javascript:void(0)" id="remote_pass_storage" value="false">
-                                Save my <span class="remote_pass_label"></span>
+                            <a href="javascript:;" id="remote_pass_storage" value="false" title="Click here to store your password">
+                                <span class="remote_pass_label"></span> stored: Disabled
                             </a>
                             <?php
                         	}
@@ -645,22 +427,246 @@ function wpTimeMachine_init($offsites)
                     <label for="remote_path"><?php echo $remote_path_label; ?>: </label>
                         <input type="text" name="remote_path" value="<?php echo $wpTimeMachineOptionsStorage['remote_path']; ?>" />
 
-                            <span>Optional &amp; <a href='http://wptimemachine.com/-/remote-directory-or-bucket-tips/' target='_new' class='med'>Tips</a></span> <br />
+                            <span>Optional</span> <br />
 
                 </fieldset>
 
-                <div class="submit">
-                    <input class="sb" type="submit" id="submit_package_request" value="Generate wp Time Machine archive" />
+                <div>
+
+                    <a class="button-secondary" href="javascript:;" id="show_options">Plugin Options</a> &nbsp;&nbsp;
+                    <a class="button-secondary" href="javascript:;" id="show_info">Plugin Help</a>
+
+                    <input class="button-secondary sb" type="submit" id="submit_package_request" value="Generate wp Time Machine archive" />
+
+                </div>
+
+                <div class="wpTimeMachineOptions">
+
+                    <fieldset>
+
+                    <?php
+
+                    if (wpTimeMachinePHP == 'php4') {
+                        ?>
+
+                        <label for="offsite" class="offsite">
+                        Current offsite service: <strong>FTP</strong> <em> PHP4 only has support for FTP </em>
+                        </label> <br />
+                        <input type="hidden" name="offsite" value="ftp">
+
+                        <?php
+                    } else {
+                
+                        if ($offsite != "") {
+                        ?>
+
+                        <label for="offsite" class="offsite">
+                        Current offsite service: <strong class="offsite_name"><?php echo $offsite_name; ?></strong>
+                        &nbsp;&nbsp;<a href="javascript:;" onclick="jQuery('#offsite_selections').toggle()">Change your offsite service</a>
+                        </label> <br />
+                        <span id="offsite_selections" style="display:none">
+
+                        <?php
+                        } else {
+                        ?>
+
+                        <label for="offsite">Select an offsite service:</label> <br />
+
+                        <?php
+                        }
+                        ?>
+
+                        <?php
+
+                        foreach ($offsites as $provider) {
+                            echo "<input class=\"rd\" type=\"radio\" name=\"offsite\" value=\"".$provider['offsite_short']."\"> ".$provider['offsite_name']." ";
+                        }
+                        
+                        ?>
+
+                        <script type="text/javascript">
+                        jQuery("input[value='<?php echo $offsite; ?>']").attr("checked", true);
+                        </script>
+
+                        <?php
+                        if ($offsite != "") {
+                            ?>
+                            </span>
+                            <?php
+                        }
+                
+                    }
+                
+                    ?>
+
+                    </fieldset>
+
+                    <fieldset>
+
+                        File format:
+                        <?php
+                            if ($wpTimeMachineOptionsStorage['format'] == "zip") {
+                                echo '<strong id="format_label">.zip</strong> &nbsp;&nbsp;<a href="javascript:;" id="format" value="zip">'.$wpTimeMachineText['format_labels'][0].'</a>';
+                            } else {
+                                echo '<strong id="format_label">.tar.gz</strong> &nbsp;&nbsp;<a href="javascript:;" id="format" value="tar">'.$wpTimeMachineText['format_labels'][1].'</a>';
+                            }
+                        ?>
+
+                        &nbsp;&nbsp; <a href="javascript:;" onclick="javascript:show_help('#wpTimeMachine_learn_about_formats')" class="help_link"><?php _e("Learn More"); ?></a>
+
+                        <p id="wpTimeMachine_learn_about_formats" class="help" style="display:none">
+
+                        By default File Formats is set to generate all of your archives as ZIP (.zip) files; since that seems to be the most commonly used archive format on most 
+                        operating systems (which means you probably already have the software needed to extract Zip files).  That said, tar files (or .tar.gz) provide better
+                        compression and therefore take up less disk space and take less time to transfer.  
+
+                            <a href="javascript:;" onclick="$(this).parent().hide()" class="close">Close</a>
+
+                        </p>
+                    
+                    </fieldset>
+
+                    <fieldset>
+
+                    <?php
+                        if ($wpTimeMachineOptionsStorage['use_post_pub'] == "true") {
+                    ?>
+                        <a class="full" href="javascript:;" id="use_post_pub" value="true"><?php echo $wpTimeMachineText['use_post_pub_labels'][0]; ?></a>
+                        <input type="hidden" name="use_post_pub" value="true" />
+                    <?php
+                        } else {
+                    ?>
+                        <a class="full" href="javascript:;" id="use_post_pub" value="false"><?php echo $wpTimeMachineText['use_post_pub_labels'][1]; ?></a>
+                        <input type="hidden" name="use_post_pub" value="false" />
+                    <?php
+                        }
+                    ?>
+
+                        &nbsp;&nbsp; <a href="javascript:;" onclick="javascript:show_help('#wpTimeMachine_learn_about_post_pub')" class="help_link"><?php _e("Learn More"); ?></a>
+
+                        <p id="wpTimeMachine_learn_about_post_pub" class="help" style="display:none">
+
+                        This feature lets you take advantage of WordPress' ability to add events after a post gets published (or updated).  Using this plugin you
+                        can force WordPress to start wp Time Machine every time a publish or update event occurs.  There is a considerable price worth thinking 
+                        about: using this feature will add time to publishing (depending on the size of your blog it may add several seconds, or even minutes). 
+                        
+                            <a href="javascript:;" onclick="$(this).parent().hide()" class="close">Close</a>
+
+                        </p>
+
+                    </fieldset>
+                    
+                    <fieldset>
+
+                    <?php
+                        if ($wpTimeMachineOptionsStorage['use_timestamp_dir'] == "true") {
+                    ?>
+                        <a class="full" href="javascript:;" id="use_timestamp_dir" value="true"><?php echo $wpTimeMachineText['use_timestamp_dir_labels'][0]; ?></a>
+                        <input type="hidden" name="use_timestamp_dir" value="true" />
+                    <?php
+                        } else {
+                    ?>
+                        <a class="full" href="javascript:;" id="use_timestamp_dir" value="false"><?php echo $wpTimeMachineText['use_timestamp_dir_labels'][1]; ?></a>
+                        <input type="hidden" name="use_timestamp_dir" value="false" />
+                    <?php
+                        }
+                    ?>
+
+                        &nbsp;&nbsp; <a href="javascript:;" onclick="javascript:show_help('#wpTimeMachine_learn_about_timestamps')" class="help_link"><?php _e("Learn More"); ?></a>
+
+                        <p id="wpTimeMachine_learn_about_timestamps" class="help" style="display:none">
+
+                        This feature adds a date to paths or files <br />(depending on which offsite service you use).<br /><br />
+                        For example, if you use Dropbox, the folder the archives appear in will now look like folder-YEAR-MONTH-DAY (or wpTimeMachine-2010-04-15).
+                        This is helpful if you want to have archives kept of relatively discrete changes; but can consume a lot of space.  At this time the plugin
+                        makes no attempt to delete archives of this type beyond a certain date.  What you archive stays until you delete it...
+
+                            <a href="javascript:;" onclick="$(this).parent().hide()" class="close">Close</a>
+
+                        </p>
+
+                    </fieldset>
+
+                    <fieldset>
+
+                    <?php
+                        if ($wpTimeMachineOptionsStorage['exclude_cache'] == "true") {
+                    ?>
+                        <a class="full" href="javascript:;" id="exclude_cache" value="true"><?php echo $wpTimeMachineText['exclude_cache_labels'][0]; ?></a>
+                        <input type="hidden" name="exclude_cache" value="true" />
+                    <?php
+                        } else {
+                    ?>
+                        <a class="full" href="javascript:;" id="exclude_cache" value="false"><?php echo $wpTimeMachineText['exclude_cache_labels'][1]; ?></a>
+                        <input type="hidden" name="exclude_cache" value="false" />
+                    <?php
+                        }
+                    ?>
+
+                        &nbsp;&nbsp; <a href="javascript:;" onclick="javascript:show_help('#wpTimeMachine_learn_about_cache')" class="help_link"><?php _e("Learn More"); ?></a>
+
+                        <p id="wpTimeMachine_learn_about_cache" class="help" style="display:none">
+
+                        This feature let's you exclude a directory called "cache" which might exist in your wp-content directory.<br /><br />
+                        Important: by default wp Time Machine excludes cache directories.<br /><br />
+                        This helps reduce the size of your archive if you're also using a plugin like WP Super Cache, for example.
+
+                            <a href="javascript:;" onclick="$(this).parent().hide()" class="close">Close</a>
+
+                        </p>
+
+                    </fieldset>
+
+                    <fieldset>
+
+                        <?php
+        
+                            if ($wpTimeMachineOptionsStorage['use_log'] == "true") {
+                                echo '<a class="full" href="javascript:;" id="use_log" value="true">'.$wpTimeMachineText['use_log_labels'][0].'</a> &nbsp;&nbsp;';
+                            } else {
+                                echo '<a class="full" href="javascript:;" id="use_log" value="false">'.$wpTimeMachineText['use_log_labels'][1].'</a> &nbsp;&nbsp;';
+                            }
+                        
+                            if ( file_exists( wpTimeMachineLog ) ) {
+                                echo '<a class="full" href="'. wpcontent_url .'/wpTimeMachine_log.txt" target="_blank">'.$wpTimeMachineText['view_log_label'].'</a> &nbsp;&nbsp;';
+                                echo '<a class="full" href="javascript:;" id="clear_log">'.$wpTimeMachineText['clear_log_label'].'</a> &nbsp;&nbsp;';
+                            }
+                        ?>
+
+                        &nbsp;&nbsp; <a href="javascript:;" onclick="javascript:show_help('#wpTimeMachine_learn_about_logging')" class="help_link"><?php _e("Learn More"); ?></a>
+
+                        <p id="wpTimeMachine_learn_about_logging" class="help" style="display:none">
+
+                        This feature is intended to make it easier for you to get help with issues you have while using the plugin.  The log that's created is located
+                        directly in your wp-content directory &amp; contains helpful but yet harmless information that would be good to share if you have problems...
+                        You can read more about logging here: <a href="http://wptimemachine.com/-/troubleshooting-and-the-log-in-1-8-5/">Troubleshooting & the log, in 1.8.5</a>.
+                        And if you have issues you need help with, you can paste a link to your log along with a description
+                        here: <a title="Feedback" href="http://wptimemachine.com/feedback/">Feedback</a>.
+
+                            <a href="javascript:;" onclick="$(this).parent().hide()" class="close">Close</a>
+
+                        </p>
+
+                    </fieldset>
+
                 </div>
 
             </form>
+
+
+
+            <div id="Info">
             
+            <?php require 'wpTimeMachineIntructions.' . wpTimeMachinePHP . '.html'; ?>
+
+            </div>
+
             <div class="wpTimeMachine_footer">
             
             	<ul>            	
             	<li class="Twitter"><a href="http://twitter.com/home?status=An awesome WordPress plugin for backups: wp Time Machine: http://wpTimeMachine.com" target="_new">Share on Twitter</a></li>
             	<li class="Facebook"><a href="http://www.facebook.com/sharer.php?u=http://wpTimeMachine.com" target="_new">Share on Facebook</a></li>
-            	<li class="Official"><a href="http://wpTimeMachine.com" target="_new" title="Official website for the wp Time Machine">wpTimeMachine.com</a></li>
+            	<li class="Official"><a href="http://wpTimeMachine.com" target="_new" title="Official website for the wp Time Machine">wpTimeMachine.com</a>, version: <?php echo wpTimeMachineVersion; ?></li>
             	</ul>
             
             </div>
@@ -800,33 +806,33 @@ function wpTimeMachine_init($offsites)
             $POST_remote_path = $_POST['remote_path'];
             $POST_remote_host = $_POST['remote_host'];
 
-            //if ($POST_remote_path != "") {
-            //    
-            //    if ($offsite != "ftp") {
-            //        $POST_remote_path = ereg_replace("[^A-Za-z0-9-]", "", $POST_remote_path );
-            //    } else {
-            //        $POST_remote_path = ereg_replace("[^A-Za-z0-9-]", "", $POST_remote_path );
-            //    }
-            //    
-            //}
-
     		if (wpTimeMachinePHP == 'php4') {
     			require "wpTimeMachineNonSwitch.php4";
     		} else {
     			require "wpTimeMachineSwitch.php5";
     		}
-    
-    		wpTimeMachine_logger( $use_log,  '--- Transfer has completed, to remote_path: ' . $remote_path );
 
-    		// store info about this archive    
-    		$wpTimeMachineOptionsStorage['recent_archive_path']     = $remote_path;
-    		$wpTimeMachineOptionsStorage['recent_archive_format']   = $format;
-    		$wpTimeMachineOptionsStorage['recent_archive_duration'] = time() - $wpTimeMachine_start;    
-    		update_option(adminOptionsName, $wpTimeMachineOptionsStorage);
+            if (! $login_error) {
     
-    		echo "<span id='update'>Your archives are ready, they took about " . $wpTimeMachineOptionsStorage['recent_archive_duration'] . " seconds to create;";
-    		echo " and are in your ".$offsite_name." account (in this ".strtolower($remote_path_label).": ".$wpTimeMachineOptionsStorage['recent_archive_path'].").</span>";
-    
+        		wpTimeMachine_logger( $use_log,  '--- Transfer has completed, to remote_path: ' . $remote_path );
+
+        		// store info about this archive    
+        		$wpTimeMachineOptionsStorage['recent_archive_path']     = $remote_path;
+        		$wpTimeMachineOptionsStorage['recent_archive_format']   = $format;
+        		$wpTimeMachineOptionsStorage['recent_archive_duration'] = time() - $wpTimeMachine_start;    
+        		update_option(adminOptionsName, $wpTimeMachineOptionsStorage);
+        
+        		echo "<span id='update'>Your archives are ready, they took about " . $wpTimeMachineOptionsStorage['recent_archive_duration'] . " seconds to create;";
+        		echo " and are in your ".$offsite_name." account (in this ".strtolower($remote_path_label).": ".$wpTimeMachineOptionsStorage['recent_archive_path'].").</span>";
+        
+            } else {
+
+                wpTimeMachine_logger( $use_log,  '--- Transfer not completed' );
+        
+                echo "<span id='update'>Archiving failed</span>";
+        
+            }
+
     	}
     
         ?>
@@ -865,13 +871,13 @@ function wpTimeMachine_publish_post($offsites)
 function wpTimeMachine_enqueue_scripts() 
 {
 	
-    wp_deregister_script( 'jquery' );
-    wp_register_script( 'jquery', 'https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js');
-    wp_enqueue_script( 'jquery' );
+    // wp_deregister_script( 'jquery' );
+    // wp_register_script( 'jquery', 'https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js');
+    // wp_enqueue_script( 'jquery' );
     
-    wp_deregister_script( 'jquery-ui-core' );
-    wp_register_script( 'jquery-ui-core', 'https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.14/jquery-ui.min.js' );
-    wp_enqueue_script( 'jquery-ui-core' );
+    // wp_deregister_script( 'jquery-ui-core' );
+    // wp_register_script( 'jquery-ui-core', 'https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.14/jquery-ui.min.js' );
+    // wp_enqueue_script( 'jquery-ui-core' );
     
     wp_deregister_script( 'jquery-form' );
     wp_register_script( 'jquery-form', wpcontent_url . '/plugins/wp-time-machine/javascript/jquery.form.js' );
@@ -1031,3 +1037,4 @@ add_action('publish_post', 'wpTimeMachine_post_pub',1,1);
 
 register_deactivation_hook('wp-time-machine/wp-time-machine.php', 'wpTimeMachine_deactivate');
 
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               

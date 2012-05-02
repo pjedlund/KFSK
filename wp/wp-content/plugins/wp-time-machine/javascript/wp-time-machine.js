@@ -1,12 +1,17 @@
 function wpTimeMachine_toggle(key, negative, positive) {
 
     //jQuery("#submit_package_request").css("opacity","0.1").attr("disabled", "true");
+
     if (jQuery("#" + key).attr("value") == "false") {
         var val = true;
         jQuery("#" + key).html(negative).removeClass("wpTM_unchecked").addClass("wpTM_checked");
     } else {
         var val = false;
         jQuery("#" + key).html(positive).removeClass("wpTM_checked").addClass("wpTM_unchecked");
+    }
+
+    if (key == "show_info" || key == "show_options") {
+        jQuery("#" + key).removeClass("wpTM_checked").removeClass("wpTM_unchecked");
     }
 
     if (key == "format") {
@@ -31,14 +36,6 @@ function wpTimeMachine_toggle(key, negative, positive) {
 
     if (key == "use_post_pub") {
         jQuery("input[name='use_post_pub']").val(val);
-    }
-
-    if (key == "show_info") {
-        jQuery("#Info").fadeSliderToggle();
-    }
-
-    if (key == "show_options") {
-        jQuery(".wpTimeMachineOptions").fadeSliderToggle();
     }
 
     var __time__ = new Date().getTime();
@@ -77,6 +74,14 @@ function wpTimeMachine_NotificationResponse(Message) {
 	}
 }
 
+function show_help(_for) {
+
+    jQuery('p.help').hide();
+
+    jQuery(_for).show();
+
+}
+
 jQuery(document).ready(function () {
 
     wpTimeMachine_toggle_host_field(offsite);
@@ -101,7 +106,8 @@ jQuery(document).ready(function () {
 
     jQuery("#show_info").click(function (event) {
         event.preventDefault();
-        wpTimeMachine_toggle("show_info", show_info_labels[0], show_info_labels[1]);
+        jQuery("#Info").toggle();
+        jQuery(".wpTimeMachineOptions").hide();
     });
 
     jQuery("#use_log").click(function (event) {
@@ -111,7 +117,8 @@ jQuery(document).ready(function () {
 
     jQuery("#show_options").click(function (event) {
         event.preventDefault();
-        wpTimeMachine_toggle("show_options", show_options_labels[0], show_options_labels[1]);
+        jQuery(".wpTimeMachineOptions").toggle();
+        jQuery("#Info").hide();
     });
 
     jQuery("#format").click(function (event) {
@@ -188,13 +195,6 @@ jQuery(document).ready(function () {
 
             jQuery.modal.close();
 
-            jQuery("div.wpTimeMachine_complete").modal({
-                opacity: 60,
-                overlayCss: {
-                    backgroundColor: "#fff"
-                }
-            });
-
             var recent_status = jQuery(response).find("span#update").text();
 
             jQuery("div#RecentInfo")
@@ -206,16 +206,37 @@ jQuery(document).ready(function () {
                     recent_status
                 );
 
-            jQuery.ajax({
-                async: false,
-                data: "page=wpTimeMachineCore.php&clean=1",
-                url: "options-general.php"
-            });
+            if (recent_status == "Archiving failed") {
 
-            // Chrome / WebKit specific
-            //var Message = jQuery(response).find("span#update").text();
-            var Message = "Visit "+jQuery(".offsite_name").text()+" to verify receipt.";
-            wpTimeMachine_Notification( Message );
+                jQuery("div.wpTimeMachine_error").modal({
+                    opacity: 60,
+                    overlayCss: {
+                        backgroundColor: "#fff"
+                    }
+                });
+
+            } else {
+
+                jQuery("div.wpTimeMachine_complete").modal({
+                    opacity: 60,
+                    overlayCss: {
+                        backgroundColor: "#fff"
+                    }
+                });
+
+                jQuery.ajax({
+                    async: false,
+                    data: "page=wpTimeMachineCore.php&clean=1",
+                    url: "options-general.php"
+                });
+
+                //Chrome / WebKit specific
+                var Message = "Visit "+jQuery(".offsite_name").text()+" to verify receipt.";
+                wpTimeMachine_Notification( Message );
+
+            }
+
+
             
         },
         error: function () {

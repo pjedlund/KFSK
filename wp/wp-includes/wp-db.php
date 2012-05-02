@@ -752,7 +752,7 @@ class wpdb {
 <li>Har användaren <code>%2$s</code> rättigheter att använda <code>%1$s</code> databasen?</li>
 <li>På vissa system så används ditt användarnamn som databasprefix, så att det skulle bli t.ex <code>användarnamn_%1$s</code>. Kan det vara problemet?</li>
 </ul>
-<p>Om du inte vet hur du skapar en databas så bör du <strong>kontakta ditt webbhotell</strong>. Om allt annat misslyckas så kan du hitta hjälp på <a href="http://wp-support.se/forum/">WP-Support Sveriges forum</a> eller <a href="http://wordpress.org/support/">WordPress Support Forums</a> (engelska).</p>'/*/WP_I18N_DB_SELECT_DB*/, $db, $this->dbuser ), 'db_select_fail' );
+<p>Om du inte vet hur du skapar en databas så bör du <strong>kontakta ditt webbhotell</strong>. Om allt annat misslyckas så kan du hitta hjälp på <a href="http://wp-support.se/forum/">WP-Support Sveriges forum</a> eller <a href="http://wordpress.org/support/">WordPress Support Forums</a> (engelska).</p>'/*/WP_I18N_DB_SELECT_DB*/, htmlspecialchars( $db, ENT_QUOTES ), htmlspecialchars( $this->dbuser, ENT_QUOTES ) ), 'db_select_fail' );
 			return;
 		}
 	}
@@ -1046,7 +1046,7 @@ class wpdb {
 	<li>Är du säker på att databasservern är online?</li>
 </ul>
 <p>Är du osäker på vad dessa termer betyder så bör du kanske kontakta ditt webbhotell. Behöver du fortfarande hjälp så kan du besöka <a href=\'http://wp-support.se/forum/\'>WP-Support Sveriges forum</a>.</p>
-'/*/WP_I18N_DB_CONN_ERROR*/, $this->dbhost ), 'db_connect_fail' );
+'/*/WP_I18N_DB_CONN_ERROR*/, htmlspecialchars( $this->dbhost, ENT_QUOTES ) ), 'db_connect_fail' );
 
 			return;
 		}
