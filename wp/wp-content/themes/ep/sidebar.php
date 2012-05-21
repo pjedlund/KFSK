@@ -1,4 +1,4 @@
-<aside role="complementary">
+<aside id="Sidebar" role="complementary">
 <ul class="wrapper"><!-- start widget ul-wrapper -->
 
 <?php if (is_home()) : ?>

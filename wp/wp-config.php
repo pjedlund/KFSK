@@ -22,7 +22,7 @@ define('DB_NAME', 'kfsk');
 define('DB_USER', 'root');
 
 /** MySQL-databasens lösenord */
-define('DB_PASSWORD', 'root');
+define('DB_PASSWORD', 'bennybenny');
 
 /** MySQL-server */
 define('DB_HOST', 'localhost');

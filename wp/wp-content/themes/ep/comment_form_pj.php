@@ -27,7 +27,7 @@
 
 <div class="<?php if($user_ID) : ?>form-logged-in<?php else : ?>form-right<?php endif; ?> clearfix">
 <p><label for="comment">Kommentar:</label><br />
-<textarea name="comment" id="comment" cols="100%" rows="10"></textarea></p>
+<textarea name="comment" id="comment" rows="10"></textarea></p>
 <p><button class="button" name="submit" type="submit" value="Skicka kommentar">Skicka</button></p>
 <?php comment_id_fields(); ?>
 <?php do_action('comment_form', $post->ID); ?>

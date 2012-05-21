@@ -520,7 +520,7 @@ function wpTimeMachine_init($offsites)
                         operating systems (which means you probably already have the software needed to extract Zip files).  That said, tar files (or .tar.gz) provide better
                         compression and therefore take up less disk space and take less time to transfer.  
 
-                            <a href="javascript:;" onclick="$(this).parent().hide()" class="close">Close</a>
+                            <a href="javascript:;" onclick="jQuery(this).parent().hide()" class="close">Close</a>
 
                         </p>
                     
@@ -550,7 +550,7 @@ function wpTimeMachine_init($offsites)
                         can force WordPress to start wp Time Machine every time a publish or update event occurs.  There is a considerable price worth thinking 
                         about: using this feature will add time to publishing (depending on the size of your blog it may add several seconds, or even minutes). 
                         
-                            <a href="javascript:;" onclick="$(this).parent().hide()" class="close">Close</a>
+                            <a href="javascript:;" onclick="jQuery(this).parent().hide()" class="close">Close</a>
 
                         </p>
 
@@ -581,7 +581,7 @@ function wpTimeMachine_init($offsites)
                         This is helpful if you want to have archives kept of relatively discrete changes; but can consume a lot of space.  At this time the plugin
                         makes no attempt to delete archives of this type beyond a certain date.  What you archive stays until you delete it...
 
-                            <a href="javascript:;" onclick="$(this).parent().hide()" class="close">Close</a>
+                            <a href="javascript:;" onclick="jQuery(this).parent().hide()" class="close">Close</a>
 
                         </p>
 
@@ -611,7 +611,7 @@ function wpTimeMachine_init($offsites)
                         Important: by default wp Time Machine excludes cache directories.<br /><br />
                         This helps reduce the size of your archive if you're also using a plugin like WP Super Cache, for example.
 
-                            <a href="javascript:;" onclick="$(this).parent().hide()" class="close">Close</a>
+                            <a href="javascript:;" onclick="jQuery(this).parent().hide()" class="close">Close</a>
 
                         </p>
 
@@ -643,7 +643,7 @@ function wpTimeMachine_init($offsites)
                         And if you have issues you need help with, you can paste a link to your log along with a description
                         here: <a title="Feedback" href="http://wptimemachine.com/feedback/">Feedback</a>.
 
-                            <a href="javascript:;" onclick="$(this).parent().hide()" class="close">Close</a>
+                            <a href="javascript:;" onclick="jQuery(this).parent().hide()" class="close">Close</a>
 
                         </p>
 

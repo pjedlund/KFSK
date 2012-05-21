@@ -1,9 +1,7 @@
 <?php get_header(); ?>
 
-<div id="ContentWrapper">
-<section role="content" class="clearfix">
-
-<section role="main">
+<section id="Content" class="clearfix">
+<section id="Main" role="main">
 
 <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 
@@ -21,7 +19,7 @@ $year  = get_the_time('Y');?>
 Skrivet av <?php the_author_posts_link(); ?>, 
 <time pubdate datetime="<?php the_time('c'); ?>">
 <a href="<?php  echo $baseUrl .'/'. $year .'/'. $month . '/'. $day . '/'; ?>"><?php the_time('j F Y'); ?></a></time>,
-i <?php the_category(', '); ?>. 
+i <?php the_category(''); ?>. 
 <?php the_tags('<span class="tags-title">Etiketter:</span> ', ', ', ''); ?>. 
 <?php comments_popup_link('Lämna en kommentar', 'En kommentar', '% Kommentarer'); ?>
 </p><!-- end entry-meta-wrapper -->
@@ -44,6 +42,5 @@ i <?php the_category(', '); ?>.
 <?php get_sidebar(); ?>
 
 </section><!-- end section Content -->
-</div><!-- end ContentWrapper -->
 
 <?php get_footer(); ?>

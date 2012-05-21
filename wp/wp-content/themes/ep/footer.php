@@ -1,28 +1,11 @@
-<div class="push"></div>
-</div><!-- end StickyFooter -->
-
 <div id="FooterWrapper">
 <footer role="contentinfo" class="clearfix">
 
-<h3>Trust Partner</h3>
-
-<div id="Footer1" class="widget-area">
+<div id="Footer" class="widget-area">
 <ul> 
-<?php dynamic_sidebar('Footer1'); ?>
+<?php dynamic_sidebar('Footer'); ?>
 </ul>
-</div><!-- end Footer 1 -->
-
-<div id="Footer2" class="widget-area">
-<ul>
-<?php dynamic_sidebar('Footer2'); ?>
-</ul>
-</div><!-- end Footer 2 -->
-
-<div id="Footer3" class="widget-area">
-<ul>
-<?php dynamic_sidebar('Footer3'); ?>
-</ul>
-</div><!-- end Footer 3 -->
+</div><!-- end Footer widget -->
 
 </footer><!-- end footer -->
 </div><!-- end FooterWrapper -->

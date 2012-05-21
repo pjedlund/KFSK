@@ -28,26 +28,21 @@
 
 <body <?php body_class(); ?>>
 
-<!--[if lt IE 7]><p class=chromeframe>Din webbläsare är <em>uråldrig!</em> <a href="http://browsehappy.com/">Uppgradera till en bättre webbläsare</a> eller <a href="http://www.google.com/chromeframe/?redirect=true">installera Google Chrome Frame</a> för att se denna sida.</p><![endif]-->
-
-<div id="StickyFooter">
-
-<div id="HeaderWrapper">
 <header role="banner" class="clearfix">
 
-<h1 id="Logo" class="h1"><a href="<?php echo home_url(); ?>">Trust<span>partner</span></a></h1>
-
 <ul id="Accessibility">
-<li><a href="#ContentWrapper">Hoppa till innehåll</a></li>
-<li><a href="#Navigation">Hoppa till navigering</a></li>
+    <li><a href="#Content">Hoppa till innehåll</a></li>
+    <li><a href="#Navigation">Hoppa till navigering</a></li>
+    <li><a href="#Search">Hoppa till sökruta</a></li>
 </ul>
 
-<!-- Search -->
-<?php include( TEMPLATEPATH . '/searchform.php' ); ?>
+<nav id="Enkolumnsnavigering" role="navigation" class="clearfix">
+<?php wp_nav_menu( array( 'theme_location' => 'enkolumnnsavigering', 'container' => '' ) ); ?>
+</nav>
+
+<hgroup>
+<h1>Evidensbaserad praktik</h1>
+<h3 class="byline"><a class="kfsk" href="http://kfsk.se">Kommunförbundet Skåne</a> <span class="amp">&amp;</span> <a class="regionskane" href="http://www.skane.se/">Region Skåne</a></h3>
+</hgroup>
 
 </header>
-</div><!-- end HeaderWrapper -->
-
-<nav id="Navigation" role="navigation" class="clearfix">
-<?php wp_nav_menu( array( 'theme_location' => 'huvudnavigering', 'container' => '' ) ); ?>
-</nav>

@@ -1,9 +1,7 @@
 <?php get_header(); ?>
 
-<div id="ContentWrapper">
-<section role="content" class="clearfix">
-
-<section role="main">
+<section id="Content" class="clearfix">
+<section id="Main" role="main">
 
 <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 
@@ -29,17 +27,9 @@ i <?php the_category(', '); ?>.
 </header> <!-- end article header -->
 
 <section class="post_content clearfix">
-<?php
-if (has_post_thumbnail()) {
-	$fullSrc = wp_get_attachment_image_src(get_post_thumbnail_id(), 'full');
-	echo '<figure><a href="#">' . get_the_post_thumbnail($post->ID, 'post-large') . '</a></figure>';}
-?>
-<?php the_content(); ?>
-</section><!-- end post_content section -->
-
-<footer>
-<p class="tags"><?php the_tags('<span class="tags-title">Etiketter:</span> ', ', ', ''); ?></p>
-</footer> <!-- end article footer -->
+<?php the_excerpt('&raquo; &raquo; &raquo; &raquo;'); ?>
+<p class="textright"><a class="more button" href="<?php the_permalink(); ?> ">Läs mer<span class="hidden"> av <?php the_title(); ?> </span></a></p>
+</section><!-- end article section -->
 
 </article> <!-- end article -->
 
@@ -47,11 +37,10 @@ if (has_post_thumbnail()) {
 
 <?php endwhile; endif ?>
 
-</section><!-- end main -->
+</section><!-- end section main -->
 
 <?php get_sidebar(); ?>
 
-</section><!-- end section content -->
-</div><!-- end ContentWrapper -->
+</section><!-- end section Content -->
 
 <?php get_footer(); ?>

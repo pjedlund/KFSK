@@ -1,7 +1,7 @@
 /*
 Theme Name:         Evidensbaserad praktik
 Description:        Tema byggt med scale - http://scalecss.com
-Version:            20120417
+Version:            20120514
 Author:             Johan Edlund
 Author URI:         http://edlunddesign.com
 */
@@ -661,7 +661,43 @@ nav[role=navigation] ul li.current_page_parent a {
 --------------------------------------------- */
 #Sidebar {
   color: #5a5e5f;
+  font-size: .875em;
+  /* 14px */
+
+  margin: 0.571428571em /* 8px */ 0 0 0;
 }
+ul.wrapper {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+ul.wrapper li ul {
+  margin-left: 1.2em;
+  margin-bottom: 1.714285714em;
+  /* 24px */
+}
+#Sidebar h3 {
+  color: #5a5e5f;
+  /* 14px */
+
+  margin: 0;
+  font-size: 1.142857143em;
+  /* 16px */
+
+  text-transform: uppercase;
+  letter-spacing: .1em;
+}
+/* links widget */
+/* meta widget */
+/* pages widget */
+/* recent-posts widget */
+/* archives widget */
+/* tag-cloud widget */
+/* calendar widget */
+/* category widget */
+/* recent-comments widget */
+/* search widget */
+/* text widget */
 /*
   PRINT STYLES
 --------------------------------------------- */
@@ -724,8 +760,7 @@ nav[role=navigation] ul li.current_page_parent a {
     background: #ffffff url(img/pattern11.jpg) repeat;
   }
   body {
-    /* background:@white url(img/grid.gif) top center repeat; */
-  
+    background: #ffffff /* url(img/grid.gif) top center repeat */;
     padding: 1.5em 3em;
     max-width: 34.3em;
   }
@@ -812,6 +847,9 @@ nav[role=navigation] ul li.current_page_parent a {
   header .container {
     max-width: 53.75em;
   }
+  #Enkolumnsnavigering {
+    display: none;
+  }
   #Content {
     max-width: 53.75em;
   }
@@ -848,6 +886,17 @@ nav[role=navigation] ul li.current_page_parent a {
     /* 18px */
   
   }
+  /*
+      p, ul, ol, dl, blockquote, .content img {
+        margin-bottom: 1.777777778em; /* 32px 
+      }
+  */
+  /*
+      h2 {
+        margin-bottom: 32px;
+      }
+      h2.dropcap {line-height:40.5px;margin-bottom: 1em;}
+  */
   .container {
     max-width: 34.43736em;
   }

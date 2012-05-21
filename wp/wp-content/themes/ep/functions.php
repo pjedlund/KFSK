@@ -17,6 +17,10 @@ function filter_images($content){
 add_filter('the_content', 'filter_images');
 */
 
+/**** Limit postrevisions ****/
+define('AUTOSAVE_INTERVAL', 300 ); // seconds
+define('WP_POST_REVISIONS', 5 );
+
 
 /**** Enable menus ****/
 add_action( 'init', 'register_my_menus' );
@@ -24,7 +28,7 @@ function register_my_menus() {
 	register_nav_menus(
 		array(
 			'huvudnavigering' => __( 'Huvudnavigering' ),
-			'sidfotsnavigering' => __( 'Sidfotsnavigering' )
+			'enkolumnnsavigering' => __( 'Enkolumnnsavigering' )
 		)
 	);
 }
@@ -47,7 +51,6 @@ function wptuts_theme_setup() {
     set_user_setting( 'dfw_width', 500 );
 }
 add_editor_style();
-
 
 
 /**** Enqueue jquery.. ****/ 
@@ -355,26 +358,8 @@ function widgets_init_pj() {
 	'after_title' => '</h3>'));
 	
 	register_sidebar(array(
-	'id' => 'footer1',
-	'name' => 'Footer1',
-	'before_widget' => '<li id="%1$s" class="widget-container %2$s">',
-	'after_widget' => '</li>',
-	'description' => '',
-	'before_title' => '<h3 class="widget-title">',
-	'after_title' => '</h3>'));
-	
-    register_sidebar(array(
-	'id' => 'footer2',
-	'name' => 'Footer2',
-	'before_widget' => '<li id="%1$s" class="widget-container %2$s">',
-	'after_widget' => '</li>',
-	'description' => '',
-	'before_title' => '<h3 class="widget-title">',
-	'after_title' => '</h3>'));
-	
-	register_sidebar(array(
-	'id' => 'footer3',
-	'name' => 'Footer3',
+	'id' => 'footer',
+	'name' => 'Footer',
 	'before_widget' => '<li id="%1$s" class="widget-container %2$s">',
 	'after_widget' => '</li>',
 	'description' => '',
@@ -416,22 +401,6 @@ function allow_contributor_uploads() {
     $contributor->add_cap('upload_files');
 }
 
-/**** Add copyright info to footer ****/
-/**** Usage: echo copyright_dates();  ****/
-function copyright_dates() {
-	global $wpdb;
-	$copyright_dates = $wpdb->get_results("SELECT YEAR(min(post_date_gmt)) AS firstdate, YEAR(max(post_date_gmt)) AS lastdate FROM $wpdb->posts WHERE post_status = 'publish'");
-	$output = '';
-	if($copyright_dates) {
-		$copyright = "&copy; " . $copyright_dates[0]->firstdate;
-		if($copyright_dates[0]->firstdate != $copyright_dates[0]->lastdate) {
-			$copyright .= '-' . $copyright_dates[0]->lastdate;
-		}
-	$output = $copyright;
-	}
-	return $output;
-}
-
 
 /**** Disable auto formatting in posts shortcode ****/
 /**** Usage: [raw]Unformatted content[/raw] ****/
@@ -456,13 +425,6 @@ add_filter('the_content', 'my_formatter', 99);
 
 /**** Enable widget shortcode ****/
 add_filter('widget_text', 'do_shortcode');
-
-
-/**** Obfuscate email shortcode ****/
-function munge_mail_shortcode( $atts , $content=null ) {
-for ($i = 0; $i < strlen($content); $i++) $encodedmail .= "&#" . ord($content[$i]) . ';';
-return '<a href="mailto:'.$encodedmail.'">'.$encodedmail.'</a>';}
-add_shortcode('mailto', 'munge_mail_shortcode');
 
 
 ?>
