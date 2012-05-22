@@ -27,8 +27,7 @@ i <?php the_category(', '); ?>.
 </header> <!-- end article header -->
 
 <section class="post_content clearfix">
-<?php the_excerpt('&raquo; &raquo; &raquo; &raquo;'); ?>
-<p class="textright"><a class="more button" href="<?php the_permalink(); ?> ">Läs mer<span class="hidden"> av <?php the_title(); ?> </span></a></p>
+<?php the_content(); ?>
 </section><!-- end article section -->
 
 </article> <!-- end article -->

@@ -3,7 +3,7 @@ Contributors: automattic, apeatling, beaulebens, hugobaeta, joen, mdawaffe, andy
 Tags: WordPress.com, statistics, stats, views, tweets, twitter, widget, gravatar, hovercards, profile, equations, latex, math, maths, youtube, shortcode, archives, audio, blip, bliptv, dailymotion, digg, flickr, googlevideo, google, googlemaps, kyte, kytetv, livevideo, redlasso, rockyou, rss, scribd, slide, slideshare, soundcloud, vimeo, shortlinks, wp.me, subscriptions
 Requires at least: 3.2
 Tested up to: 3.3.2
-Stable tag: 1.3
+Stable tag: 1.3.1
 
 Supercharge your WordPress site with powerful features previously only available to WordPress.com users.
 
@@ -75,6 +75,15 @@ Use [shortcodes](http://support.wordpress.com/shortcodes/) to embed your media. 
 5. Spelling and Grammar demo.
 
 == Changelog ==
+
+= 1.3.1 = 
+* Enhancement: Add a new widget, the Facebook Likebox
+* Bug Fix: Sharing: Sharing buttons can now be used on custom post types.
+* Bug Fix: Contact Forms: Make Contact Forms widget shortcode less aggressive about the shortcodes it converts.
+* Bug Fix: Ensure contact forms are parsed correctly in text widgets.
+* Bug Fix: Connection notices now only appear on the Dashboard and plugin page.
+* Bug Fix: Connection notices are now dismissable if Jetpack is not network activated.
+* Bug Fix: Subscriptions: Fix an issue that was causing errors with new BuddyPress forum posts.
 
 = 1.3 =
 * Enhancement: Add Contact Forms feature.  Formerly Grunion Contact Forms.
