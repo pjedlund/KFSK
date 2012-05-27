@@ -15,7 +15,7 @@
   };
 })(document);
 
-scale.iOS();
+scale.iOS(); 
 
 $(document).ready(function() {
 
