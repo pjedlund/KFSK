@@ -1,7 +1,7 @@
 /*
 Theme Name:         Evidensbaserad praktik
-Description:        Tema byggt med scale - http://scalecss.com
-Version:            20120514
+Description:        Theme built with http://scalecss.com as a base
+Version:            20120530
 Author:             Johan Edlund
 Author URI:         http://edlunddesign.com
 */
@@ -176,6 +176,7 @@ span.amp {font:normal 1em Baskerville, Palatino, Constantia, "Book Antiqua", "UR
 #Accessibility a{position: absolute;left: -999em;top:2em;}
 #Accessibility a:focus, #Accessibility a:active{position: relative;left: 0;z-index:9999;height: auto;margin: 0 auto;padding: .5em 1.5em;text-align: center;text-decoration: none;font-size:1.7em;color: darken(@logoredcomp, 20%);background: rgba(255,255,255,.8);border: 1px dotted #eee;}
 
+
 /*
   SELECTIONS
 --------------------------------------------- */
@@ -217,7 +218,7 @@ body {
   color: #000;
   margin: 0 auto;
   padding: 1em;
-  /* background: @white; */
+  -webkit-text-size-adjust:100%; /* for iOS bug */
   background: @backgroundColor;
   }
 
@@ -235,7 +236,7 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: normal;
   }
 
-p, ul, ol, dl, blockquote, .content img {
+p, ul, ol, dl, blockquote, .content img, figure {
   margin-bottom: 1.5em;
 /*
   -webkit-hyphens: auto;
@@ -295,9 +296,26 @@ ul {
 ol {
   list-style-type: lower-roman;
   }
+  
+/* footnotes */
+.footnote a {
+/*   border:none; */
+  font-size: 1.2em;
+  margin: 0 0 0 .2em;
+}
 
-
-hgroup {}
+.footnotes ol {
+  list-style-type:decimal;
+  border-bottom:1px dotted #ccc;
+  padding:0 0 1em 1.5em;
+  font-size: .875em; 
+  color:#444; 
+}
+.footnotedivider {padding:1em 0 0 0; border-top:1px dotted #ccc;}
+.footnotes a {
+/* font-size: .875em;  */
+text-decoration: none;
+}
 
 h1 {
   margin: .97em 0 .5em; /* margin-bottom: 20px */
@@ -316,7 +334,7 @@ h1 {
   font-size: 4em;
   }
 
-h2 {
+h2, p.excerpt {
   line-height: 1.77777em;
   margin-bottom: 1em;
   font-size: 1.2em;
@@ -437,9 +455,10 @@ figure br {display: none;}
 
 figcaption {
   /* padding-left:1.4em; */
-  font-size: .75em;
+  padding:.3em 0;
+  font-size: .8125em; /* 13px - 1024 */
   font-style: italic; 
-  color: darken(@logogrey, 5%);
+  color: darken(@logogrey, 7%);
   background: @white;
 }
 
@@ -486,11 +505,9 @@ a:hover,
 a:active { 
 outline : 0; }
 
-
 /*
   NAVIGATION
 --------------------------------------------- */
-
 nav[role=navigation] {width:45%;float:left;}	
 	nav[role=navigation] ul {list-style:none; background:transparent;margin: 0;padding:1em 0;}
 		nav[role=navigation] ul li {display: inline;}
@@ -530,7 +547,125 @@ nav[role=navigation] {width:45%;float:left;}
   SIDEBAR
 --------------------------------------------- */
 
-#Sidebar {color:darken(@logogrey, 20%);}
+#Sidebar {
+  color:darken(@logogrey, 20%);
+  font-size: .875em; /* 14px */
+  margin:.571428571em /* 8px */  0 0 0;
+  }
+
+ul.wrapper {list-style: none; margin:0; padding:0;}
+ul.wrapper li ul {margin-left:1.2em; margin-bottom: 1.714285714em; /* 24px */}
+
+#Sidebar h3 {
+  color:darken(@logogrey, 20%); /* 14px */
+  margin:0;
+  font-size: 1.142857143em; /* 16px */
+  text-transform: uppercase;
+  letter-spacing: .1em;
+}
+
+/* links widget */
+.widget_links {}
+.widget_links ul {}
+.widget_links ul li {}
+.widget_links ul li a {}
+
+/* meta widget */
+.widget_meta {}
+.widget_meta ul {}
+.widget_meta ul li {}
+.widget_meta ul li a {}
+
+/* pages widget */
+.widget_pages {}
+.widget_pages ul {}
+.widget_pages ul li {}
+.widget_pages ul li a {}
+
+/* recent-posts widget */
+.widget_recent_entries {}
+.widget_recent_entries ul {}
+.widget_recent_entries ul li {}
+.widget_recent_entries ul li a {}
+
+/* archives widget */
+.widget_archive {}
+.widget_archive ul {}
+.widget_archive ul li {} 
+.widget_archive ul li a {}
+.widget_archive select {}
+.widget_archive option {}
+
+/* tag-cloud widget */
+.widget_links {}
+.widget_links li:after {}
+.widget_links li:before {}
+.widget_tag_cloud {}
+.widget_tag_cloud a {}
+.widget_tag_cloud a:after {}
+.widget_tag_cloud a:before {}
+
+/* calendar widget */
+.widget_calendar {}
+#calendar_wrap {}
+#calendar_wrap th {}
+#calendar_wrap td {}
+#wp-calendar tr td {}
+#wp-calendar caption {}
+#wp-calendar a {}
+#wp-calendar #today {}
+#wp-calendar #prev {}
+#wp-calendar #next {}
+#wp-calendar #next a {}
+#wp-calendar #prev a {}
+
+/* category widget */
+.widget_categories {}
+.widget_categories ul {}
+.widget_categories ul li {} 
+.widget_categories ul ul.children {}
+.widget_categories a {}
+.widget_categories select{}
+.widget_categories select#cat {}
+.widget_categories select.postform {}
+.widget_categories option {}
+.widget_categories .level-0 {}
+.widget_categories .level-1 {}
+.widget_categories .level-2 {}
+.widget_categories .level-3 {}
+
+/* recent-comments widget */
+.recentcomments {}
+#recentcomments {}
+#recentcomments li {}
+#recentcomments li a {}
+.widget_recent_comments {}
+
+/* search widget */
+#searchform {}
+.widget_search {}
+.screen-reader-text {}
+
+/* text widget */
+.textwidget {}
+.widget_text {}
+.textwidget p {}
+
+
+/*
+  FOOTER - CONTENTINFO
+--------------------------------------------- */
+footer[role=contentinfo]{
+  margin: 3em 0;
+}
+
+small {
+  font-size: .875em;
+  color: #666;
+  line-height: 1.142857143em; /* 16px */
+}
+
+
 
 /*
   PRINT STYLES
@@ -612,7 +747,9 @@ nav[role=navigation] {width:45%;float:left;}
 
 @media screen and (min-width: 29.9375em) {
 
-  html{background: @backgroundColor url(img/pattern11.jpg) repeat;}
+  html{
+    background: @backgroundColor url(img/pattern11.jpg) repeat;
+    }
 
   body {
     /* background:@white url(img/grid.gif) top center repeat; */
@@ -655,24 +792,19 @@ body {
     }
 
   h1 {
-    margin: .97em 0 .8em;/*  margin-bottom: = 51.2px ? */
+    margin: .97em 0 0;
     font-size: 4em;
     text-align: center; 
     }
-    
-    /* remove margin-bottom for h1 - margin-top added to #Content instead */
-  h1 {
-    margin-bottom: 0;
-  }
-  #Content {
-    margin-top:1.4375em; /* Org. 51.2px, now 47px 23*/
-  }
 
+  #Content {
+    margin:0;
+  }
 
   /* byline */
-
   h3.byline{
       text-align:center;
+      margin-bottom:2.25em;/* 40.5px; */
   }
 
   h3.byline a.kfsk {
@@ -748,6 +880,19 @@ body {
     font-size: 112.5%; /* 18px */
     }
     
+/*
+    p, ul, ol, dl, blockquote, .content img {
+      margin-bottom: 1.777777778em; /* 32px 
+    }
+*/
+    
+/*
+    h2 {
+      margin-bottom: 32px;
+    }
+    h2.dropcap {line-height:40.5px;margin-bottom: 1em;}
+*/
+    
     .container {
     max-width: 34.43736em;
     }
@@ -772,6 +917,8 @@ body {
 
   .svg h3.byline a.regionskane {
     background-image: url(img/graphics.svg);
-  }
+  } 
+  
+  
    
 }

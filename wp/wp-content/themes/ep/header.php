@@ -2,7 +2,7 @@
 <!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
 <!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
 <!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" <?php language_attributes( $doctype ) ?>> <!--<![endif]-->
 
 <head>
 
@@ -24,6 +24,8 @@
 <link rel="stylesheet" type="text/css" media="screen, projection" href="http://universal-ie6-css.googlecode.com/files/ie6.1.1.css">
 <![endif]-->
 
+<script src="<?php echo get_template_directory_uri(); ?>/js/libs/modernizr-2.5.0.min.js"></script>
+
 </head>
 
 <body <?php body_class(); ?>>
@@ -36,13 +38,10 @@
     <li><a href="#Search">Hoppa till sökruta</a></li>
 </ul>
 
+<!--
 <nav id="Enkolumnsnavigering" role="navigation" class="clearfix">
 <?php wp_nav_menu( array( 'theme_location' => 'enkolumnnsavigering', 'container' => '' ) ); ?>
 </nav>
-
-<hgroup>
-<h1>Evidensbaserad praktik</h1>
-<h3 class="byline"><a class="kfsk" href="http://kfsk.se">Kommunförbundet Skåne</a> <span class="amp">&amp;</span> <a class="regionskane" href="http://www.skane.se/">Region Skåne</a></h3>
-</hgroup>
+-->
 
 </header>

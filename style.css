@@ -302,6 +302,10 @@ span.amp {
   background: rgba(255, 255, 255, 0.8);
   border: 1px dotted #eee;
 }
+small {
+  font-size: .875em;
+  color: #666;
+}
 /*
   SELECTIONS
 --------------------------------------------- */
@@ -362,7 +366,8 @@ ul,
 ol,
 dl,
 blockquote,
-.content img {
+.content img,
+figure {
   margin-bottom: 1.5em;
   /*
   -webkit-hyphens: auto;
@@ -417,14 +422,27 @@ ol {
   list-style-type: lower-roman;
 }
 /* footnotes */
+.footnote a {
+  /*   border:none; */
+
+  font-size: 1.2em;
+  margin: 0 0 0 .2em;
+}
 .footnotes ol {
   list-style-type: decimal;
   border-bottom: 1px dotted #ccc;
-  padding-bottom: 1em;
+  padding: 0 0 1em 1.5em;
+  font-size: .875em;
+  color: #444;
 }
 .footnotedivider {
   padding: 1em 0 0 0;
   border-top: 1px dotted #ccc;
+}
+.footnotes a {
+  /* font-size: .875em;  */
+
+  text-decoration: none;
 }
 h1 {
   margin: .97em 0 .5em;
@@ -562,9 +580,12 @@ figure br {
 figcaption {
   /* padding-left:1.4em; */
 
-  font-size: .75em;
+  padding: .3em 0;
+  font-size: .8125em;
+  /* 13px - 1024 */
+
   font-style: italic;
-  color: #7f8487;
+  color: #7a7f82;
   background: #ffffff;
 }
 figcaption:before {
@@ -771,7 +792,7 @@ ul.wrapper li ul {
     background: #ffffff url(img/pattern11.jpg) repeat;
   }
   body {
-    background: #ffffff /* url(img/grid.gif) top center repeat */;
+    background: #ffffff url(img/grid.gif) top center repeat;
     padding: 1.5em 3em;
     max-width: 34.3em;
   }

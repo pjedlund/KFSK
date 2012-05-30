@@ -33,6 +33,10 @@ define('DB_CHARSET', 'utf8');
 /** Kollationeringstyp för databasen. Ändra inte om du är osäker. */
 define('DB_COLLATE', '');
 
+/**** Limit postrevisions ****/
+define('AUTOSAVE_INTERVAL', 300 ); // seconds
+define('WP_POST_REVISIONS', 5 );
+
 /**#@+
  * Unika autentiseringsnycklar och salter.
  *

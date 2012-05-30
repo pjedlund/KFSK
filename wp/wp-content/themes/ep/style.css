@@ -1,7 +1,7 @@
 /*
 Theme Name:         Evidensbaserad praktik
-Description:        Tema byggt med scale - http://scalecss.com
-Version:            20120514
+Description:        Theme built with http://scalecss.com as a base
+Version:            20120530
 Author:             Johan Edlund
 Author URI:         http://edlunddesign.com
 */
@@ -335,7 +335,8 @@ body {
   color: #000;
   margin: 0 auto;
   padding: 1em;
-  /* background: @white; */
+  -webkit-text-size-adjust: 100%;
+  /* for iOS bug */
 
   background: #ffffff;
 }
@@ -361,7 +362,8 @@ ul,
 ol,
 dl,
 blockquote,
-.content img {
+.content img,
+figure {
   margin-bottom: 1.5em;
   /*
   -webkit-hyphens: auto;
@@ -415,6 +417,29 @@ ul {
 ol {
   list-style-type: lower-roman;
 }
+/* footnotes */
+.footnote a {
+  /*   border:none; */
+
+  font-size: 1.2em;
+  margin: 0 0 0 .2em;
+}
+.footnotes ol {
+  list-style-type: decimal;
+  border-bottom: 1px dotted #ccc;
+  padding: 0 0 1em 1.5em;
+  font-size: .875em;
+  color: #444;
+}
+.footnotedivider {
+  padding: 1em 0 0 0;
+  border-top: 1px dotted #ccc;
+}
+.footnotes a {
+  /* font-size: .875em;  */
+
+  text-decoration: none;
+}
 h1 {
   margin: .97em 0 .5em;
   /* margin-bottom: 20px */
@@ -432,7 +457,8 @@ h1 {
 .ie h1 {
   font-size: 4em;
 }
-h2 {
+h2,
+p.excerpt {
   line-height: 1.77777em;
   margin-bottom: 1em;
   font-size: 1.2em;
@@ -551,9 +577,12 @@ figure br {
 figcaption {
   /* padding-left:1.4em; */
 
-  font-size: .75em;
+  padding: .3em 0;
+  font-size: .8125em;
+  /* 13px - 1024 */
+
   font-style: italic;
-  color: #7f8487;
+  color: #7a7f82;
   background: #ffffff;
 }
 figcaption:before {
@@ -661,6 +690,55 @@ nav[role=navigation] ul li.current_page_parent a {
 --------------------------------------------- */
 #Sidebar {
   color: #5a5e5f;
+  font-size: .875em;
+  /* 14px */
+
+  margin: 0.571428571em /* 8px */ 0 0 0;
+}
+ul.wrapper {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+ul.wrapper li ul {
+  margin-left: 1.2em;
+  margin-bottom: 1.714285714em;
+  /* 24px */
+}
+#Sidebar h3 {
+  color: #5a5e5f;
+  /* 14px */
+
+  margin: 0;
+  font-size: 1.142857143em;
+  /* 16px */
+
+  text-transform: uppercase;
+  letter-spacing: .1em;
+}
+/* links widget */
+/* meta widget */
+/* pages widget */
+/* recent-posts widget */
+/* archives widget */
+/* tag-cloud widget */
+/* calendar widget */
+/* category widget */
+/* recent-comments widget */
+/* search widget */
+/* text widget */
+/*
+  FOOTER - CONTENTINFO
+--------------------------------------------- */
+footer[role=contentinfo] {
+  margin: 3em 0;
+}
+small {
+  font-size: .875em;
+  color: #666;
+  line-height: 1.142857143em;
+  /* 16px */
+
 }
 /*
   PRINT STYLES
@@ -762,24 +840,19 @@ nav[role=navigation] ul li.current_page_parent a {
   
   }
   h1 {
-    margin: .97em 0 .8em;
-    /*  margin-bottom: = 51.2px ? */
-  
+    margin: .97em 0 0;
     font-size: 4em;
     text-align: center;
   }
-  /* remove margin-bottom for h1 - margin-top added to #Content instead */
-  h1 {
-    margin-bottom: 0;
-  }
   #Content {
-    margin-top: 1.4375em;
-    /* Org. 51.2px, now 47px 23*/
-  
+    margin: 0;
   }
   /* byline */
   h3.byline {
     text-align: center;
+    margin-bottom: 2.25em;
+    /* 40.5px; */
+  
   }
   h3.byline a.kfsk {
     padding-left: 2.923076923em;
@@ -851,6 +924,17 @@ nav[role=navigation] ul li.current_page_parent a {
     /* 18px */
   
   }
+  /*
+      p, ul, ol, dl, blockquote, .content img {
+        margin-bottom: 1.777777778em; /* 32px 
+      }
+  */
+  /*
+      h2 {
+        margin-bottom: 32px;
+      }
+      h2.dropcap {line-height:40.5px;margin-bottom: 1em;}
+  */
   .container {
     max-width: 34.43736em;
   }

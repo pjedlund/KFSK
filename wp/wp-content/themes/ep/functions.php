@@ -17,9 +17,13 @@ function filter_images($content){
 add_filter('the_content', 'filter_images');
 */
 
-/**** Limit postrevisions ****/
-define('AUTOSAVE_INTERVAL', 300 ); // seconds
-define('WP_POST_REVISIONS', 5 );
+
+/**** Add class="excerpt" to excerpts ****/
+function add_excerpt_class( $excerpt ){
+  $excerpt = str_replace( "<p", "<p class=\"excerpt\"", $excerpt );
+  return $excerpt;
+}
+add_filter( "the_excerpt", "add_excerpt_class" );
 
 
 /**** Enable menus ****/

@@ -1,17 +1,8 @@
-<div id="FooterWrapper">
-<footer role="contentinfo" class="clearfix">
+<footer role="contentinfo">
+<p><small>Sidfot: Nam pulvinar, odio sed rhoncus suscipit, sem diam ultrices mauris, eu consequat purus metus eu velit. Proin metus odio, aliquam eget <a href="#">molestie nec</a>, gravida ut sapien. Phasellus quis est sed turpis sollicitudin venenatis sed eu odio. Praesent eget neque eu eros interdum malesuada non vel leo. Sed fringilla porta ligula egestas tincidunt. Nullam risus magna, ornare vitae varius eget, scelerisque a libero. Morbi eu. Nullam lorem nisi, posuere <a href="#">porttitor ipsum</a> quis volutpat eget, luctus nec massa. Pellentesque.</small></p>
+</footer>
 
-<div id="Footer" class="widget-area">
-<ul> 
-<?php dynamic_sidebar('Footer'); ?>
-</ul>
-</div><!-- end Footer widget -->
-
-</footer><!-- end footer -->
-</div><!-- end FooterWrapper -->
-
-<!-- Scripts - jquery enqueued in functions.php  -->
-<?php wp_footer(); ?> 
+<!-- Scripts - jquery enqueued in functions.php  --> 
 <script src="<?php echo get_template_directory_uri(); ?>/js/plugins.js"></script>
 <script src="<?php echo get_template_directory_uri(); ?>/js/script.js"></script>
 
@@ -27,12 +18,16 @@ yepnope({
 });
 </script>
 
+<!--
 <script>
     var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
     (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
     g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
     s.parentNode.insertBefore(g,s)}(document,'script'));
 </script>
+-->
+
+<?php wp_footer(); ?>
 
 </body>
 </html>
