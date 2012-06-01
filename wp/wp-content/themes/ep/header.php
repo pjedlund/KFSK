@@ -18,6 +18,8 @@
 
 <!--[if ! lte IE 6]><!-->
 <link rel="stylesheet" href="<?php $theme_data = get_theme_data(TEMPLATEPATH . '/style.css'); bloginfo('stylesheet_url'); echo '?' . $theme_data['Version']; ?>" />
+<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/js/libs/fancybox/source/jquery.fancybox.css?v=2.0.6;" />
+
 <!--<![endif]-->
 
 <!--[if lte IE 6]>

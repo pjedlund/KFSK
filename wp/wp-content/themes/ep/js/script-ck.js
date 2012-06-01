@@ -1,3 +1,1 @@
-/*************************************************
-**  Init
-*************************************************/$(document).ready(function(){$("#Searchbar").attr("value","Jag söker...");var a="Jag söker...";$("#Searchbar").focus(function(){$(this).addClass("active");$(this).attr("value")===a&&$(this).attr("value","")});$("#Searchbar").blur(function(){$(this).removeClass("active");$(this).attr("value")===""&&$(this).attr("value",a)})});$(window).bind("load",function(){$("img").baselineAlign({container:".popup"})});
+$(document).ready(function(){$(".lightbox").fancybox({padding:0,openEffect:"fade",openSpeed:100,closeEffect:"fade",closeSpeed:100,helpers:{overlay:{css:{"background-color":"#8c9193"}}}})});$(window).bind("load",function(){var a=.5,b=1,c=350,d=".lightbox img";$(d).fadeTo(1,b);$(d).hover(function(){$(this).fadeTo(c,a)},function(){$(this).fadeTo(c,b)},function(){$(this).fadeTo(c,.1)});$(d).click(function(){$(this).fadeTo(c,b)})});

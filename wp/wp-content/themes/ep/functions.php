@@ -3,8 +3,8 @@
 /**** Add post thumbnail functionality ****/
 if (function_exists('add_theme_support')){
 add_theme_support( 'post-thumbnails' );
-set_post_thumbnail_size( 260, 146, true );//  thumbnail size
-add_image_size( 'medium', 528, 297, true ); // single post size
+set_post_thumbnail_size( 287, 200, true );//  thumbnail size 160 = 16/9
+add_image_size( 'medium', 627, 627 ); // medium == 2 columns
 add_image_size( 'large', 1440, 1024 ); // lightbox size 
 }
 
@@ -17,6 +17,12 @@ function filter_images($content){
 add_filter('the_content', 'filter_images');
 */
 
+/**** Remove rel="cat" since it's not valid html5 ****/
+function add_nofollow_cat( $text ) {
+  $text = str_replace('rel="category tag"', '', $text); 
+  return $text;
+}
+add_filter( 'the_category', 'add_nofollow_cat' );
 
 /**** Add class="excerpt" to excerpts ****/
 function add_excerpt_class( $excerpt ){
@@ -24,6 +30,15 @@ function add_excerpt_class( $excerpt ){
   return $excerpt;
 }
 add_filter( "the_excerpt", "add_excerpt_class" );
+
+function the_post_thumbnail_caption() {
+  global $post;
+  $thumbnail_id = get_post_thumbnail_id($post->ID); 
+  $thumbnail_image = get_posts(array('p' => $thumbnail_id, 'post_type' => 'attachment'));
+  if ($thumbnail_image && isset($thumbnail_image[0])) {
+    return $thumbnail_image[0]->post_title;
+    }
+}
 
 
 /**** Enable menus ****/
@@ -58,11 +73,13 @@ add_editor_style();
 
 
 /**** Enqueue jquery.. ****/ 
+/*
 if( !is_admin()){
 	wp_deregister_script('jquery');
 	wp_register_script('jquery', ("http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"), false, '1.7.1', true);
 	wp_enqueue_script('jquery');
 }
+*/
 
 /**** Add post classes  ****/
 function additional_post_classes( $classes ) {

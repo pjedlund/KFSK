@@ -1,23 +1,44 @@
-/*************************************************
-**  Init
-*************************************************/
 $(document).ready(function() {
-	$("#Searchbar").attr("value", "Jag söker...");
 
-	var text = "Jag söker...";
+$(".lightbox").fancybox({
+  padding: 0,
+  
+  openEffect : 'fade',
+  openSpeed  : 100,
+  
+  closeEffect : 'fade',
+  closeSpeed  : 100,
+  
+  helpers : {
+    overlay : {
+      css : {
+        'background-color' : '#8c9193'
+        }
+      }
+    }
+  });
 
-	$("#Searchbar").focus(function() {
-		$(this).addClass("active");
-		if($(this).attr("value") === text) $(this).attr("value", "");
-	});
-
-	$("#Searchbar").blur(function() {
-		$(this).removeClass("active");
-		if($(this).attr("value") === "") $(this).attr("value", text);
-	});
 });
 
-/* vertical rhythm for images    */
-$(window).bind('load', function(){
-$("img").baselineAlign({container:'.popup'});
+
+$(window).bind("load", function() {
+    var activeOpacity   = 0.5,
+        inactiveOpacity = 1,
+        fadeTime = 350,
+        images = ".lightbox img";
+
+    $(images).fadeTo(1, inactiveOpacity);
+
+    $(images).hover(
+        function(){
+            $(this).fadeTo(fadeTime, activeOpacity);
+        }, function(){
+            $(this).fadeTo(fadeTime, inactiveOpacity);
+        }, function(){
+            $(this).fadeTo(fadeTime, 0.1);
+        });
+        
+     $(images).click(function() {
+        $(this).fadeTo(fadeTime, inactiveOpacity);
+     });
 });

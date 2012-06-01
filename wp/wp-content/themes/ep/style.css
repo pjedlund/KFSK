@@ -1,7 +1,7 @@
 /*
 Theme Name:         Evidensbaserad praktik
-Description:        Theme built with http://scalecss.com as a base
-Version:            20120530
+Description:        Theme built with http://scalecss.com
+Version:            20120531
 Author:             Johan Edlund
 Author URI:         http://edlunddesign.com
 */
@@ -457,8 +457,7 @@ h1 {
 .ie h1 {
   font-size: 4em;
 }
-h2,
-p.excerpt {
+h2 {
   line-height: 1.77777em;
   margin-bottom: 1em;
   font-size: 1.2em;
@@ -470,7 +469,7 @@ h3 {
 }
 /* Byline */
 h3.byline {
-  color: #666b6d;
+  color: #7f8487;
   margin: .666666667em  0 1em;
   /* TODO!! manually change to fit the vertical rhythm 12? */
 
@@ -500,6 +499,7 @@ h3.byline a:link {
   /* 2px */
 
   border-bottom: none;
+  margin: 0 3px;
 }
 h3.byline a:hover {
   color: #a31e26;
@@ -560,6 +560,11 @@ img.alignnone {
   float: none;
   margin-left: 0;
   margin-right: 0;
+}
+img.alignleft,
+img.alignright {
+  max-width: 15.9375em /* 255px; */
+;
 }
 figure {
   background: #000000 url(img/magnify.png) 50% 43% no-repeat;
@@ -783,13 +788,29 @@ small {
   h1 {
     font-size: 2.5em;
   }
-  .dropcap:first-letter {
+  .page p.excerpt,
+  .single p.excerpt {
+    font-size: 1.25em;
+    /* 20px; */
+  
+    line-height: 1.8em;
+    /* 36px; */
+  
+    margin-bottom: .95em;
+    /* 20px; */
+  
+  }
+  .dropcap:first-letter,
+  .page p.excerpt:first-letter,
+  .single p.excerpt:first-letter {
     font: 3.32956em/0.7em Georgia, serif;
     -webkit-font-smoothing: antialiased;
     margin: .2em .15em .1em 0;
     float: left;
   }
-  .ie9 .dropcap:first-letter {
+  .ie9 .dropcap:first-letter,
+  .ie9 .page p.excerpt:first-letter,
+  .ie9 .single p.excerpt:first-letter {
     margin: .2em .45em 0 0;
     line-height: .9em;
   }
@@ -896,6 +917,7 @@ small {
     /* 557px */
   
     float: left;
+    clear: both;
   }
   #Sidebar {
     max-width: 15.9375em;
@@ -938,11 +960,10 @@ small {
   .container {
     max-width: 34.43736em;
   }
-  img.alignright,
-  img.alignleft {
-    width: 287px;
+  img.alignleft,
+  img.alignright {
+    max-width: none;
   }
-  /* ????????????? */
   h3.byline a.kfsk {
     padding-left: 2.777777778em;
     /* 50px */
