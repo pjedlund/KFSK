@@ -1,0 +1,123 @@
+html {background: #fff;font-size:100%;}
+
+body.mceContentBody {
+    max-width:530px;
+    margin:10px 0 0 60px;
+    background: #fff;
+}
+* {
+    font-family: Georgia, serif;
+    font-size:16px;
+    color: #222;
+    line-height: 1.5;
+}
+
+strong,b{font-weight:bold;}
+i,em,blockquote{font-style:italic;}
+img,embed,object,video{max-width:100%;height:inherit;_width:100%;}
+.ir{display:block;border:0;text-indent:-999em;overflow:hidden;background-color:transparent;background-repeat:no-repeat;text-align:left;direction:ltr;*line-height:0;}
+.ir br{display:none;}
+.hidden{display:none !important;visibility:hidden;}
+.visuallyhidden{border:0;clip:rect(0 0 0 0);height:1px;margin:-1px;overflow:hidden;padding:0;position:absolute;width:1px;}
+.visuallyhidden.focusable:active,.visuallyhidden.focusable:focus{clip:auto;height:auto;margin:0;overflow:visible;position:static;width:auto;}
+.invisible{visibility:hidden;}
+.clearfix:before,.clearfix:after{content:"";display:table;}
+.clearfix:after{clear:both;}
+.clearfix{*zoom:1;}
+.visuallyhidden{position:absolute;margin:-1px;padding:0;height:1px;width:1px;overflow:hidden;border:0;clip:rect(0);}
+.visuallyhidden.focusable:active,.visuallyhidden.focusable:focus{position:static;margin:0;height:auto;width:auto;overflow:visible;clip:auto;}
+acronym,abbr{font-style:normal;text-decoration:none;cursor:help;}
+acronym[title],abbr[title]{border-bottom:1px dotted #999;}
+span.amp{font:normal 1em Baskerville,Palatino,Constantia,"Book Antiqua","URW Palladio L",serif;font-style:italic;margin:0 .2em;}
+#Accessibility{position:absolute;left:0;width:100%;margin-left:0;text-align:center;list-style:none;}
+#Accessibility li{list-style-type:none;}
+#Accessibility a{position:absolute;left:-999em;top:2em;}
+#Accessibility a:focus,#Accessibility a:active{position:relative;left:0;z-index:9999;height:auto;margin:0 auto;padding:.5em 1.5em;text-align:center;text-decoration:none;font-size:1.7em;color:#167872;background:rgba(255, 255, 255, 0.8);border:1px dotted #eee;}
+::-moz-selection{background:#d08c0f;color:#ffffff;text-shadow:none;}
+::selection{background:#d08c0f;color:#ffffff;text-shadow:none;}
+::selection:window-inactive{background:#dcdcdc;color:#323232;}
+img::selection{background:transparent;}
+img::-moz-selection{background:transparent;}
+
+h1,h2,h3,h4,h5,h6{-moz-font-feature-settings:"liga=1, kern=1";-ms-font-feature-settings:"liga" 1,"kern" 1;text-rendering:optimizeLegibility;margin-bottom:1.42382em;font-weight:normal;}
+
+p,ul,ol,dl,blockquote,.content img,figure{margin-bottom:1.5em;}
+abbr{text-transform:lowercase;font-variant:small-caps;letter-spacing:0.1em;cursor:help;}
+sub,sup{vertical-align:baseline;position:relative;font-size:65%;line-height:0;}
+sub{bottom:-0.25em;}
+sup{top:-0.5em;}
+.mceContentBody blockquote{margin:1.5em 0 1.5em 1.80203em;color:#5a5a5a;position:relative;}
+.mceContentBody blockquote:before{-webkit-font-smoothing:antialiased;color:#8c8c8c;font-size:3.60406em;position:absolute;font-style:italic;content:"\201C";line-height:1em;left:-0.6018em;top:0;}
+pre {
+    background: #f4f4f4;
+    font: 13px "Courier 10 Pitch", Courier, monospace;
+    line-height: 1.5;
+    margin-bottom: 1.625em;
+    padding: 0.75em 1.625em;
+}
+code, kbd, code var {
+    font: 13px Monaco, Consolas, "Andale Mono", "DejaVu Sans Mono", monospace;
+}
+
+
+ul,ol{margin-left:0; padding-left: 0;}
+ul{list-style-type:circle;}
+ol{list-style-type:lower-roman;}
+
+h2, h3, h4{font-size:20px;}
+h5{text-transform:uppercase;font-size: 18px;}
+h6{font-size: 18px;}
+pre,code{font:0.9375em/1.26562em monospace,monospace;-webkit-font-smoothing:subpixel-antialiased;}
+pre{color:#5a5a5a;padding:1.5em 1em;margin-bottom:3em;line-height:1em;white-space:pre;white-space:pre-wrap;word-wrap:break-word;}
+img{margin:.5em auto 1.5em auto;display:block;background:#000000;max-width:500px;}
+
+a{color:#ce2630;text-decoration:none;border-bottom:2px solid #dbdcdd;font-weight:bold;}
+a:visited{color:#da343e;}
+a:hover{color:#78161c;border-bottom:2px solid #8c9193;}
+a:focus{outline:thin dotted;color:#78161c;}
+a:hover,a:active{outline:0;}
+
+.wp-caption  {
+	text-align: left;
+	background-color: white;
+	padding-top: 4px;
+	margin: 10px 10px 5px 10px;
+	border: none;
+}
+
+.wp-caption img  {
+	margin: 0;
+	padding: 0;
+	border: 0 none;
+}
+
+.wp-caption a img  {
+	margin: 0;
+	padding: 0;
+	border: 0 none;
+}
+
+.wp-caption-dd {
+	font-size: .86em;
+	line-height: 1.2;
+	padding: 5px 4px;
+	margin: 0;
+}
+
+/* Alignment */
+.alignleft {
+    display: inline;
+    float: left;
+    margin-right: 1.625em;
+}
+.alignright {
+    display: inline;
+    float: right;
+    margin-left: 1.625em;
+}
+.aligncenter {
+    clear: both;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}

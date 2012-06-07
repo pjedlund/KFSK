@@ -1,7 +1,7 @@
 /*
 Theme Name:         Evidensbaserad praktik
 Description:        Theme built with http://scalecss.com
-Version:            20120531
+Version:            20120604
 Author:             Johan Edlund
 Author URI:         http://edlunddesign.com
 */
@@ -130,18 +130,6 @@ html {
   -ms-text-size-adjust: 100%;
   background: rgb(255,255,255);
   overflow-y: scroll;
-  }
-
-img {
-  -ms-interpolation-mode: bicubic;
-  background: transparent;
-  border: 0;
-  }
-
-img, embed, object, video { 
-  max-width: 100%;
-  height: inherit;
-  _width: 100%;
   }
   
 /*
@@ -413,6 +401,35 @@ pre {
 /*
   IMAGES
 --------------------------------------------- */
+img {
+  -ms-interpolation-mode: bicubic;
+  background: transparent;
+  border: 0;
+  }
+
+img, embed, object, video, iframe { 
+  max-width: 100%;
+  height: inherit;
+  _width: 100%;
+}
+  
+/* http://amobil.se/2011/11/responsive-embeds/ */
+.embed-container {
+  position: relative;
+  padding-bottom: 56.25%; /* 16/9 ratio */
+  height: 0;
+  overflow: hidden;
+  margin-bottom: 2em;
+}
+.embed-container iframe,
+.embed-container object,
+.embed-container embed {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
 
 img {
   margin: .5em auto 1.5em auto;
@@ -433,13 +450,19 @@ img.alignright{
 }
 
 img.alignnone{
-    /* max-width:96%; */
     float:none;
-    margin-left: 0;
+    margin-left: 0; 
     margin-right: 0;
 }
 
-img.alignleft, img.alignright {
+
+a.alignright, a.alignright:hover {
+  border: none;
+  margin-left:.5em;
+}
+
+
+img.alignleft, img.alignright, a.alignright img {
   max-width: 15.9375em /* 255px; */
 }
 
@@ -513,40 +536,15 @@ outline : 0; }
 /*
   NAVIGATION
 --------------------------------------------- */
-nav[role=navigation] {width:45%;float:left;}	
-	nav[role=navigation] ul {list-style:none; background:transparent;margin: 0;padding:1em 0;}
-		nav[role=navigation] ul li {display: inline;}
-		nav[role=navigation] ul li:after {content: " | ";color:@grey;}
-		nav[role=navigation] ul li:last-child:after {content: " ";}
-		
-			nav[role=navigation] ul li a {text-decoration: none; color: #444; text-transform: uppercase;}
-				nav[role=navigation] ul li a:hover, nav[role=navigation] ul li.current-menu-item a, nav[role=navigation] ul li.current_page_parent a {background: @white; color: @basecol;}
-				/* nav[role=navigation] ul li:last-child a: {background: red;} */
-				
-		nav[role=navigation] ul li.current-menu-item a, 
-		nav[role=navigation] ul li.current_page_item a,
-		nav[role=navigation] ul li.current-page-ancestor a {}
-		
-		nav[role=navigation] ul li ul.sub-menu, nav[role=navigation] .menu ul li ul.children {}
-			nav[role=navigation] ul li ul li a {}
-				nav[role=navigation] ul li ul li a:hover {}
-			nav[role=navigation] ul li ul li:last-child a {}
-			nav[role=navigation] ul li:hover ul { }
-				nav[role=navigation] ul li ul li ul.sub-menu { }
-					nav[role=navigation] ul li ul li:hover ul.sub-menu { }
 
 
 /*
   SEARCHFORM
 --------------------------------------------- */
-#Searchform {float:right;margin-top:.5em;width:auto;background: #efefef;padding:.2em;text-align: right;}
 
-#Searchform .forminner{background:#f6f6f6; padding: .4em;}
 
-#Searchform #Searchbar{width:55%;font-size:0.75em;font-family:Helvetica, Arial, sans-serif;margin:0;padding:.5em .5em .416667em 1em; border: 1px solid @logogrey;}
-
-#Searchform input:focus {background: @white;color: #444;outline: aqua;}
-
+/* Search results */
+p span.relevanssi-query-term {background:#FDF20D;}
 
 /*
   SIDEBAR
@@ -655,6 +653,59 @@ ul.wrapper li ul {margin-left:1.2em; margin-bottom: 1.714285714em; /* 24px */}
 .textwidget {}
 .widget_text {}
 .textwidget p {}
+
+
+/* `Comments
+---------------------------------------------------------------*/
+#comments .comments-title {}
+#comments .comment-wrap {padding-bottom:1em;}
+#comments ol.commentlist li {list-style: none;}
+#comments ul.comment-meta {}
+#comments .comment-text, .reply {}
+#comments ol.commentlist {}
+#comments ol.commentlist li {border-bottom:1px dotted #ccc;}
+#comments ol.commentlist li.thread-even{background-color: transparent;}
+#comments ol.commentlist li.thread-odd{background-color: #f9f9f9;}
+#comments ol.children li {background:transparent;}
+#comments ol.children li.depth-2 ul.comment-meta {}
+
+#comments ul.comment-meta  li {}
+#comments .comment-meta  li cite, div.comment-meta cite {}
+#comments .comment-meta a {border:none;color:#6A7A56;text-transform: uppercase;font-style:normal;font-size:1em;letter-spacing: .083333em;border:none;margin:0; padding:0;}
+#comments .comment-meta a:hover {color:#333;border-bottom: 1px solid #ccc;}
+
+
+.reply {font-size: .9375em;}
+
+p.guidelines {color:#555;}
+
+/* `Respond form
+---------------------------------------------------------------*/
+/* hand cursor on clickable input elements */
+label, input[type=button], input[type=submit], button {cursor:pointer;}
+
+#respond {}
+#respond form  {margin:1em 0;}
+
+.form-right {}
+.form-logged-in {}
+
+.form-left {}
+
+#respond p {margin:.9em 0;}
+#respond fieldset {padding:1em 0;}
+#respond legend {font-size: 1.2em;}
+#respond label {font-size:.8125em;font-family:Helvetica, Arial, sans-serif;padding:0;margin:0;color:#666;}
+html.FontSmoothing-true #respond label {font-family: "ff-meta-web-pro-1","ff-meta-web-pro-2",sans-serif;}
+
+#respond .accesskey {text-decoration: underline;margin:0;padding:0;}
+#respond input, #respond textarea {width:auto;font-size:.9275em;font-family:Helvetica, Arial, sans-serif; margin:0;padding:.5em;color:#333;border-top: 1px solid #D9D8D3;border-left: 1px solid #D9D8D3;background: #EDEBE7;-webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;}
+html.hasFontSmoothing-true #respond input, html.hasFontSmoothing-true #respond textarea {font-family: "ff-meta-web-pro-1","ff-meta-web-pro-2",sans-serif;}
+
+#respond textarea {height:13em;width:97%;}
+#respond input:focus, #respond textarea:focus {background:#fff;}
+#respond p.tecken {font-family:Helvetica, Arial, sans-serif;color:#555;font-size:.9275em; padding-top: 0;}
+html.hasFontSmoothing-true #respond p.tecken {font-family:"ff-meta-web-pro-1","ff-meta-web-pro-2",sans-serif;}
 
 
 /*
@@ -907,7 +958,7 @@ body {
     .container {
     max-width: 34.43736em;
     }
-    img.alignleft, img.alignright {
+    img.alignleft, img.alignright, a.alignright img {
       max-width: none;
     }
     

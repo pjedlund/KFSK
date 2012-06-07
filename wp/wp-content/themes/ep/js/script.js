@@ -22,7 +22,7 @@ $(".lightbox").fancybox({
 
 
 $(window).bind("load", function() {
-    var activeOpacity   = 0.5,
+    var activeOpacity   = 0.4,
         inactiveOpacity = 1,
         fadeTime = 350,
         images = ".lightbox img";

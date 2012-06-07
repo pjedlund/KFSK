@@ -16,11 +16,11 @@
 <?php else : ?>
 <div class="form-left">
 <p><label for="author">Namn <?php if ($req) echo "(obligatoriskt)"; ?></label><br />
-<input type="text" name="author" id="author" value="<?php echo $comment_author; ?>" size="22" /></p>
+<input type="text" name="author" id="author" value="<?php echo $comment_author; ?>" size="40" /></p>
 <p><label for="email">E-post (publiceras aldrig &ndash; <?php if ($req) echo " obligatoriskt)"; ?></label><br />
-<input type="text" name="email" id="email" value="<?php echo $comment_author_email; ?>" size="22" /></p>
+<input type="text" name="email" id="email" value="<?php echo $comment_author_email; ?>" size="40" /></p>
 <p><label for="url">Webbplats</label><br />
-<input type="text" name="url" id="url" value="<?php echo $comment_author_url; ?>" size="22" /></p>
+<input type="text" name="url" id="url" value="<?php echo $comment_author_url; ?>" size="40" /></p>
 </div>
 <?php endif; ?>
 

@@ -2,8 +2,10 @@
 Contributors: Godaddy, StarfieldTech
 Tags: debug, debugging, developer, development, performance, plugin, profiler, speed
 Requires at least: 3.3
-Tested up to: 3.3.1
-Stable tag: 1.2.0
+Tested up to: 3.4
+Stable tag: 1.3.1
+License: GPLv2
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 See which plugins are slowing down your site.  This plugin creates a performance report for your site.
 
@@ -43,6 +45,12 @@ Manual installation:
 
 == Upgrade Notice ==
 
+= 1.3.1 =
+Fixed an error when upgrading to 1.3.x from 1.1.x and skipping the 1.2.x upgrade.
+
+= 1.3.0 =
+Internationalized P3, major refactoring for lower memory usage, compatibility with WordPress 3.4.
+
 = 1.2.0 =
 Many compatibility fixes based on user feedback.  Upgrading is recommended.
 
@@ -63,6 +71,10 @@ This version addresses a path disclosure issue.  Users are encouraged to upgrade
 
 == Frequently Asked Questions ==
 
+= I installed P3, what now? =
+
+Open the **Tools** menu, then open **P3 Plugin Profiler** then click **Scan Now**.
+
 = What if I get a warning about usort()? =
 
 Warning messages like this: `Warning: usort() [function.usort]: Array was modified by the user comparison function` are due to a known php bug.  See [php bug #50688](https://bugs.php.net/bug.php?id=50688) for more information.  This warning does not affect the functionality of your site and it is not visible to your users.
@@ -77,7 +89,44 @@ We love to make P3 better.  When reporting a bug, please visit this page so we c
 
 Thanks!
 
+= Help!  I used P3 and now my site is down! =
+
+First, get your site back up!  There are two ways to do this.  Try the emergency shutoff switch first.  If that doesn't work, delete the plugin files.
+
+Emergency Shutoff Switch
+
+1. Visit yoursite.com/wordpress/index.php?P3_SHUTOFF=1
+
+Delete the Plugin Files
+
+1. Delete wp-content/plugins/p3-profiler (the whole folder)
+2. Delete wp-content/mu-plugins/p3-profiler.php (if it exists)
+
+This can happen if P3 hits the memory limit on your server while it's running.  This happens most often on sites with many active plugins or a complex theme.  Consider switching to the Twenty Eleven theme or deactivating a few plugins before re-running P3.
+
+= I get "Warning: file_put_contents( .... )" =
+
+Please check your media settings.  This is in Settings -> Media -> Store uploads in this folder.  If this folder is not set correctly, P3 won't know where to read the files.
+
+= How do I use P3 with multisite? =
+
+P3 is available on the Tools menu for each site in the network.
+
 == Changelog ==
+
+= 1.3.1 =
+ * Fixed an error when upgrading to 1.3.x from 1.1.x and skipping the 1.2.x upgrade.
+
+= 1.3.0 =
+ * Internationalized P3
+ * Compatibility with WordPress 3.4.0
+ * Fixed a bug with European decimalization (0,00 vs. 0.00)
+ * Major refactoring for better adherence to best practices, using fewer hooks, and consuming less memory
+ * Raised memory limit override to 256M so large backtraces don't kill the site
+ * Added a kill switch.  If P3 is causing problems, visit yoursite.com/wordpress/index.php?P3_SHUTOFF=1 to turn off P3
+ * Added automatic error detection.  If a page fails to load during profiling, the next page load will turn off P3 automatically
+ * Removed ajax error alerts; they weren't helpful
+ * Path to the profiles folder is now determined on the init hook
 
 = 1.2.0 =
  * Remove .profiling_enabled file, store profiling flag as a WordPress option

@@ -73,13 +73,11 @@ add_editor_style();
 
 
 /**** Enqueue jquery.. ****/ 
-/*
 if( !is_admin()){
 	wp_deregister_script('jquery');
-	wp_register_script('jquery', ("http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"), false, '1.7.1', true);
+	wp_register_script('jquery', ("https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"), false, '1.7.2', true);
 	wp_enqueue_script('jquery');
 }
-*/
 
 /**** Add post classes  ****/
 function additional_post_classes( $classes ) {
@@ -168,7 +166,8 @@ remove_filter('the_content', 'wpautop');
 add_filter('the_excerpt', 'html5autop');
 add_filter('the_content', 'html5autop');
 
-/**** captions ****/
+
+/**** rewrite captions to figure ****/
 add_shortcode('wp_caption', 'fixed_img_caption_shortcode');
 add_shortcode('caption', 'fixed_img_caption_shortcode');
 
@@ -181,14 +180,21 @@ function fixed_img_caption_shortcode($attr, $content = null) {
 		'align'	=> 'alignnone',
 		'width'	=> '',
 		'caption' => ''), $attr));
-	if ( empty($caption) )
-	return $content;
-	if ( $id ) $id = 'id="' . esc_attr($id) . '" ';
-	return '<figure ' . $id . 'class="wp-caption clearfix' . esc_attr($align)
-	. '">'
+	return '<figure class="wp-caption">'
 	. do_shortcode( $content ) . '<figcaption class="wp-caption-text">'
 	. $caption . '</figcaption></figure>';
 }
+
+
+/**** add "lightbox" to all image links ****/
+function my_addlightboxrel($content) {
+  global $post;
+  $pattern ="/<a(.*?)href=('|\")(.*?).(bmp|gif|jpeg|jpg|png)('|\")(.*?)>/i";
+  $replacement = '<a$1href=$2$3.$4$5 class="lightbox image" title="'. $caption.'"$6>';
+  $content = preg_replace($pattern, $replacement, $content);
+  return $content;
+}
+add_filter('the_content', 'my_addlightboxrel');
 
 /*
 add_shortcode('wp_caption', 'twentyten_img_caption_shortcode');
@@ -303,7 +309,6 @@ $GLOBALS['comment'] = $comment; ?>
 
 <li <?php comment_class(); ?> id="comment-<?php comment_ID(); ?>">
 <div class="comment-wrap">
-<div class="gravatarHolder"><?php echo get_avatar(get_comment_author_email(), $size = '50'); ?></div>
 
 <ul class="comment-meta">
 <li><?php printf(__('%s'), get_comment_author_link()); ?></li>
@@ -361,15 +366,6 @@ $GLOBALS['comment'] = $comment; ?>
 /**** Enable widgets ****/
 function widgets_init_pj() {
 	register_sidebar(array(
-	'id' => 'frontpage',
-	'name' => 'Frontpage',
-	'before_widget' => '<li id="%1$s" class="widget-container %2$s">',
-	'after_widget' => '</li>',
-	'description' => '',
-	'before_title' => '<h3 class="widget-title">',
-	'after_title' => '</h3>'));
-	
-	register_sidebar(array(
 	'id' => 'sidebar',
 	'name' => 'Sidebar',
 	'before_widget' => '<li id="%1$s" class="widget-container %2$s">',
@@ -377,7 +373,6 @@ function widgets_init_pj() {
 	'description' => '',
 	'before_title' => '<h3 class="widget-title">',
 	'after_title' => '</h3>'));
-	
 	register_sidebar(array(
 	'id' => 'footer',
 	'name' => 'Footer',
@@ -442,7 +437,6 @@ function my_formatter($content) {
 remove_filter('the_content', 'wpautop');
 remove_filter('the_content', 'wptexturize');
 add_filter('the_content', 'my_formatter', 99);
-
 
 /**** Enable widget shortcode ****/
 add_filter('widget_text', 'do_shortcode');

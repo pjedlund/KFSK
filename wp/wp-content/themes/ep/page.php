@@ -5,7 +5,7 @@
 <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 
 <hgroup>
-<h1><?php bloginfo('name'); ?></h1> 
+<h1><?php the_title(); ?></h1> 
 <h3 class="byline"><a class="kfsk" href="http://kfsk.se">Kommunförbundet Skåne</a> <span class="amp">&amp;</span> <a class="regionskane" href="http://www.skane.se/">Region Skåne</a></h3>
 </hgroup>
 

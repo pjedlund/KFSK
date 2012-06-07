@@ -1,9 +1,7 @@
-<form method="get" id="Searchform" action="<?php bloginfo('home'); ?>/">
-    <label class="visuallyhidden" for="s">Sök hela webbplatsen</label>
-    <?php if (is_search()) : ?>
-    <input type="text" name="s" id="Searchbar" value="<?php echo wp_specialchars($s, 1); ?>" />
-    <?php else : ?>
-    <input type="text" name="s" id="Searchbar" value="Sök..." />
-    <?php endif; ?>
-    <input class="submit" type="submit" id="Searchbtn" value="Sök" />
-</form>
+<?php 
+echo '<form role="search" method="get" id="searchform" action="' . home_url( '/' ) . '" >
+    <label class="assistive-text" for="s">' . __('Search for:') . '</label>
+    <input type="search" placeholder="'.__("Sökord...").'" value="' . get_search_query() . '" name="s" id="s" />
+    <input type="submit" id="searchsubmit" value="Search" />
+</form>';
+?>

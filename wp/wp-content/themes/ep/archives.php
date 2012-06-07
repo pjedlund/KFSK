@@ -3,7 +3,8 @@
 <section id="Content" class="clearfix">
 
 <hgroup>
-<h1><?php echo 'Sökresultat för &ldquo;' . $s . '&rdquo;'; ?></h1>
+<h1><?php if (is_category())  { single_cat_title();} ?></h1> 
+
 <h3 class="byline"><a class="kfsk" href="http://kfsk.se">Kommunförbundet Skåne</a> <span class="amp">&amp;</span> <a class="regionskane" href="http://www.skane.se/">Region Skåne</a></h3>
 </hgroup>
 
@@ -30,21 +31,7 @@
 
 <?php comments_template(); ?>
 
-<?php endwhile; ?>
-
-<?php else : ?>
-
-<div>
-<h3>Tyvärr, inga träffar för &ldquo;<em><?php echo wp_specialchars($s, 1); ?></em>&rdquo;. <?php if (function_exists('relevanssi_didyoumean')) {
-    relevanssi_didyoumean(get_search_query(), "Du kanske menade ", "?", 5);
-}?></h3>
-</div>
-
-<?php endif; ?>
-
-<?php if(function_exists('wp_paginate')) {
-    wp_paginate();
-} ?>
+<?php endwhile; endif ?>
 
 </section><!-- end section main -->
 
