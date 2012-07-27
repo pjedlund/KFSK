@@ -24,12 +24,20 @@ function add_nofollow_cat( $text ) {
 }
 add_filter( 'the_category', 'add_nofollow_cat' );
 
+remove_action(‘wp_head’, ‘adjacent_posts_rel_link_wp_head’, 10, 0);
+remove_action(‘wp_head’, ‘start_post_rel_link’, 10, 0 );
+
+/**** Remove css for wp-paginate ****/
+function my_deregister_styles(){wp_deregister_style('wp-paginate');}
+add_action('wp_print_styles','my_deregister_styles',100);
+
 /**** Add class="excerpt" to excerpts ****/
 function add_excerpt_class( $excerpt ){
   $excerpt = str_replace( "<p", "<p class=\"excerpt\"", $excerpt );
   return $excerpt;
 }
 add_filter( "the_excerpt", "add_excerpt_class" );
+
 
 function the_post_thumbnail_caption() {
   global $post;
@@ -168,6 +176,7 @@ add_filter('the_content', 'html5autop');
 
 
 /**** rewrite captions to figure ****/
+/*
 add_shortcode('wp_caption', 'fixed_img_caption_shortcode');
 add_shortcode('caption', 'fixed_img_caption_shortcode');
 
@@ -184,67 +193,50 @@ function fixed_img_caption_shortcode($attr, $content = null) {
 	. do_shortcode( $content ) . '<figcaption class="wp-caption-text">'
 	. $caption . '</figcaption></figure>';
 }
+*/
+
+
+
+
+/**
+ * Filter to replace the [caption] shortcode text with HTML5 compliant code
+ *
+ * @return text HTML content describing embedded figure
+ **/
+function my_img_caption_shortcode_filter($val, $attr, $content = null)
+{
+	extract(shortcode_atts(array(
+		'id'	=> '',
+		'align'	=> '',
+		'width'	=> '',
+		'caption' => ''
+	), $attr));
+	
+	if ( 1 > (int) $width || empty($caption) )
+		return $val;
+
+	$capid = '';
+	if ( $id ) {
+		$id = esc_attr($id);
+		$capid = 'id="figcaption_'. $id . '" ';
+		$id = 'id="' . $id . '" aria-labelledby="figcaption_' . $id . '" ';
+	}
+
+	return '<figure ' . $id . 'class="wp-caption ' . esc_attr($align) . '">' . do_shortcode( $content ) . '<figcaption ' . $capid 
+	. 'class="wp-caption-text">' . $caption . '</figcaption></figure>';
+}
+add_filter('img_caption_shortcode', 'my_img_caption_shortcode_filter',10,3);
 
 
 /**** add "lightbox" to all image links ****/
 function my_addlightboxrel($content) {
   global $post;
   $pattern ="/<a(.*?)href=('|\")(.*?).(bmp|gif|jpeg|jpg|png)('|\")(.*?)>/i";
-  $replacement = '<a$1href=$2$3.$4$5 class="lightbox image" title="'. $caption.'"$6>';
+  $replacement = '<a$1href=$2$3.$4$5 class="lightbox" title="'. $caption.'"$6>';
   $content = preg_replace($pattern, $replacement, $content);
   return $content;
 }
 add_filter('the_content', 'my_addlightboxrel');
-
-/*
-add_shortcode('wp_caption', 'twentyten_img_caption_shortcode');
-add_shortcode('caption', 'twentyten_img_caption_shortcode');
-function twentyten_img_caption_shortcode($attr, $content = null) {
-extract(shortcode_atts(array(
-'id'    => '',
-'align'    => 'alignnone',
-'width'    => '',
-'caption' => ''
-), $attr));
-if ( 1 > (int) $width || empty($caption) )
-return $content;
-if ( $id ) $idtag = 'id="' . esc_attr($id) . '" ';
-  return '<figure ' . $idtag . 'aria-describedby="figcaption_' . $id . '">' . do_shortcode( $content ) . '<figcaption id="figcaption_' . $id . '">' . $caption . '</figcaption></figure>';
-}
-*/
-
-
-/*
-add_filter('the_content', 'add_figure', 12);
-function add_figure ($content) {
-  $pattern = "/<a(.*?)href=('|\")([^>]*)('|\")(.*?)><img(.*?)src=('|\")([^>]*).(bmp|gif|jpeg|jpg|png)('|\")(.*?)class=('|\")([^>]*)('|\")(.*?)\/><\/a>/i";
-  $replacement = "<$1><span class=\"some-class\">$2</span></$3>"
-  $content = preg_replace($pattern, $replacement, $content);
-  }
-  return $content;
-}
-*/
-
-/*
-
-{   global $post;
-    
-    $replacement = '<a$1href=$2$3$4$5><img$6src=$7$8.$9$10$11class=$12$13 imagelink$14$15$16/><\/a>';
-    $content = preg_replace($pattern, $replacement, $content);
-    return $content;
-}
-
-			if ($matches[2][$m] == 'blank') {
-				$temp = str_replace($matches[1][$m], 'rel="external"', $matches[0][$m]);
-				$content = str_replace($matches[0][$m], $temp, $content);
-			} else if ($matches[2][$m] == 'self') {
-				$temp = str_replace(' ' . $matches[1][$m], '', $matches[0][$m]);
-				$content = str_replace($matches[0][$m], $temp, $content);
-			}
-*/
-
-
-
 
 
 /**** Archive date function ****/
@@ -292,7 +284,7 @@ if (function_exists('automatic_feed_links')) {automatic_feed_links();
 } else {return;}
 
 
-// Don't add the wp-includes/js/comment-reply.js?ver=20090102 script to single post pages unless threaded comments are enabled
+// Don't add the wp-includes/js/comment-reply.js script to single post pages unless threaded comments are enabled
 // adapted from http://bigredtin.com/behind-the-websites/including-wordpress-comment-reply-js/
 function theme_queue_js(){
   if (!is_admin()){
@@ -300,7 +292,8 @@ function theme_queue_js(){
       wp_enqueue_script('comment-reply');
   }
 }
-add_action('wp_print_scripts', 'theme_queue_js');
+/* add_action('wp_print_scripts', 'theme_queue_js'); */
+/* doesn't work in wp 3.3.? */
 
 
 /**** Comments ****/
@@ -309,11 +302,11 @@ $GLOBALS['comment'] = $comment; ?>
 
 <li <?php comment_class(); ?> id="comment-<?php comment_ID(); ?>">
 <div class="comment-wrap">
+<div class="gravatarHolder"><?php echo get_avatar(get_comment_author_email(), $size = '55'); ?></div>
 
 <ul class="comment-meta">
-<li><?php printf(__('%s'), get_comment_author_link()); ?></li>
-<li><a class="comment-permalink" href="<?php echo htmlspecialchars(get_comment_link($comment->comment_ID)); ?>"><?php comment_date('j/n, Y'); ?> @ <?php comment_time('H.i'); ?></a></li>
-<li><?php edit_comment_link('Redigera &raquo;', '', ''); ?></li>
+<li class="comment-meta-author"><?php printf(__('%s'), get_comment_author_link()); ?> <a class="comment-permalink" href="<?php echo htmlspecialchars(get_comment_link($comment->comment_ID)); ?>"></li>
+<li class="comment-meta-date"><?php comment_date('j F Y'); ?> @ <?php comment_time('H.i'); ?></a> <?php edit_comment_link('Redigera &raquo;', '', ''); ?></li>
 </ul>
 <?php if ($comment->comment_approved == '0') : ?>
 <p class="comment-moderation"><?php _e('Your comment is awaiting moderation.'); ?></p>
@@ -321,9 +314,9 @@ $GLOBALS['comment'] = $comment; ?>
 
 <div class="comment-text"><?php comment_text(); ?></div>
 <div class="clear"></div>
-<div class="reply" id="comment-reply-<?php comment_ID(); ?>">
-<?php comment_reply_link(array_merge($args, array('reply_text'=>'Svara', 'login_text'=>'Logga in för att svara', 'add_below'=>'comment-reply', 'depth'=>$depth, 'max_depth'=>$args['max_depth']))); ?> 
-</div>
+<p class="reply" id="comment-reply-<?php comment_ID(); ?>">
+<?php comment_reply_link(array_merge($args, array('reply_text'=>'Svara', 'login_text'=>'Logga in för att svara', 'add_below'=>'comment-reply', 'depth'=>$depth, 'max_depth'=>$args['max_depth']))); ?>
+</p>
 <div class="clear"></div>
 </div>
 
@@ -406,7 +399,7 @@ function remove_dashboard_widgets() {
 	unset($wp_meta_boxes['dashboard']['side']['core']['dashboard_secondary']);
 }
 /* if (!current_user_can('manage_options')) { */
-add_action('wp_dashboard_setup', 'remove_dashboard_widgets' );
+/* add_action('wp_dashboard_setup', 'remove_dashboard_widgets' ); */
 	
 
 /**** Allow contributors to upload media ****/

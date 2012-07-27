@@ -3,9 +3,12 @@
 <section id="Content" class="clearfix">
 
 <hgroup>
-<h1><?php if (is_category())  { single_cat_title();} ?></h1> 
-
-<h3 class="byline"><a class="kfsk" href="http://kfsk.se">Kommunförbundet Skåne</a> <span class="amp">&amp;</span> <a class="regionskane" href="http://www.skane.se/">Region Skåne</a></h3>
+<h1>
+<?php 
+if (is_category())  { single_cat_title();}
+?>
+</h1> 
+<h3 class="byline"><a class="kfsk" href="http://www.kfsk.se">Kommunförbundet Skåne</a> <span class="amp">&amp;</span> <a class="regionskane" href="http://www.skane.se/">Region Skåne</a></h3>
 </hgroup>
 
 <section id="Main" role="main">
@@ -32,6 +35,10 @@
 <?php comments_template(); ?>
 
 <?php endwhile; endif ?>
+
+<?php if(function_exists('wp_paginate')) {
+    wp_paginate();
+} ?>
 
 </section><!-- end section main -->
 

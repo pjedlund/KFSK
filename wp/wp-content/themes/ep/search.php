@@ -4,7 +4,7 @@
 
 <hgroup>
 <h1><?php echo 'Sökresultat för &ldquo;' . $s . '&rdquo;'; ?></h1>
-<h3 class="byline"><a class="kfsk" href="http://kfsk.se">Kommunförbundet Skåne</a> <span class="amp">&amp;</span> <a class="regionskane" href="http://www.skane.se/">Region Skåne</a></h3>
+<h3 class="byline"><a class="kfsk" href="http://www.kfsk.se">Kommunförbundet Skåne</a> <span class="amp">&amp;</span> <a class="regionskane" href="http://www.skane.se/">Region Skåne</a></h3>
 </hgroup>
 
 <section id="Main" role="main">

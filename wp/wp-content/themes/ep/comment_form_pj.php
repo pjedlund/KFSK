@@ -3,6 +3,7 @@
 <form action="<?php echo get_option('siteurl'); ?>/wp-comments-post.php" method="post" id="commentform">
 <fieldset>
 <legend>Lämna en kommentar</legend>
+<!-- <div class="hr"></div><hr /> -->
 
 <div class="cancel-comment-reply">
 <?php cancel_comment_reply_link(); ?>
@@ -31,6 +32,7 @@
 <p><button class="button" name="submit" type="submit" value="Skicka kommentar">Skicka</button></p>
 <?php comment_id_fields(); ?>
 <?php do_action('comment_form', $post->ID); ?>
+
 <!-- <p class="clear tecken">Du kan använda följande <abbr title="HyperText Markup Language">HTML</abbr> element: <code><?php echo allowed_tags(); ?></code></p> -->
 </div>
 
