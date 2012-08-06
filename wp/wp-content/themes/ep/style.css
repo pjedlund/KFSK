@@ -1,7 +1,7 @@
 /*
 Theme Name:         Evidensbaserad praktik
 Description:        Theme built with http://scalecss.com
-Version:            201206016
+Version:            20120806
 Author:             Johan Edlund
 Author URI:         http://edlunddesign.com
 */
@@ -515,8 +515,6 @@ h3.byline {
 }
 h3.byline a:link {
   padding: .153846154em 0;
-  /* 2px */
-
   color: #de4952;
   font-style: normal;
   font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
@@ -1024,8 +1022,6 @@ small {
 
   color: #666;
   line-height: 1.714285714em;
-  /* 24px */
-
   margin-bottom: 1.714285714em;
   /* 24px */
 
@@ -1082,8 +1078,6 @@ footer[role=contentinfo] img {
   .single p.excerpt,
   .error404 p.excerpt {
     font-size: 1.25em;
-    /* 20px; */
-  
     line-height: 1.8em;
     /* 36px; */
   
