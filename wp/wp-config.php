@@ -1,4 +1,4 @@
-<?php define('WP_CACHE', true);
+<?php
 /**
  * Baskonfiguration för WordPress.
  *
@@ -16,16 +16,16 @@
 
 // ** MySQL-inställningar - MySQL-uppgifter får du från ditt webbhotell ** //
 /** Namnet på databasen du vill använda för WordPress */
-define('DB_NAME', 'kfsk');
+define('DB_NAME', 'u5165890_3');
 
 /** MySQL-databasens användarnamn */
-define('DB_USER', 'root');
+define('DB_USER', 'u5165890');
 
 /** MySQL-databasens lösenord */
-define('DB_PASSWORD', 'bennybenny');
+define('DB_PASSWORD', 'vonnegut#');
 
 /** MySQL-server */
-define('DB_HOST', 'localhost');
+define('DB_HOST', 'mysql.u5165890.fsdata.se');
 
 /** Teckenkodning för tabellerna i databasen. */
 define('DB_CHARSET', 'utf8');
@@ -46,14 +46,14 @@ define('WP_POST_REVISIONS', 5 );
  *
  * @since 2.6.0
  */
-define('AUTH_KEY',         'ange en unik fras');
-define('SECURE_AUTH_KEY',  'ange en unik fras');
-define('LOGGED_IN_KEY',    'ange en unik fras');
-define('NONCE_KEY',        'ange en unik fras');
-define('AUTH_SALT',        'ange en unik fras');
-define('SECURE_AUTH_SALT', 'ange en unik fras');
-define('LOGGED_IN_SALT',   'ange en unik fras');
-define('NONCE_SALT',       'ange en unik fras');
+define('AUTH_KEY',         '^*t!2u&G!Le}|m!FpOO.{kdMqZ/m56_j2GE[F?ZeT?=&`=hvy!6Hj}]5N5Z7z(0@');
+define('SECURE_AUTH_KEY',  'D$?bR~M<Z>+v|xo)*w|b#JmRp<_/P#-]vAhtmF4X|tO!*,GHOd 7AfRw|H+/|uVI');
+define('LOGGED_IN_KEY',    ';obm-@?~I mMz,nv5l1om--vs-1fpyIp6o&R|%DkM|wHv+|-%Ax>ukK[}IL-H>^%');
+define('NONCE_KEY',        '+0<<2e|msz@m*Y3`<$W+WwHfkBf:S/c)/w&;b-@#*|s:EurR$4B0oTdjx!f~Q~dk');
+define('AUTH_SALT',        'CZ-PQQieG(k0,hE^QyJ-[-fO2n?c9Gr4+7%7RwjF#a%Fa88U-D&M}f-.|gpu%ak?');
+define('SECURE_AUTH_SALT', 'q(r,uM@t#nhz{!!z?d@q|b0h+dUKy68&y#:!;X=p%j6;Mm,A]#oe|#KIb _6HI9k');
+define('LOGGED_IN_SALT',   ')ao%)b<-dONUfFONcu@Bzfwn/YI2/OQ}><MlVTu 2~m~Q=j13?J-jCd3!SmZ!:|[');
+define('NONCE_SALT',       'I9Q>}ccoagCU a)A78>)~,!f80)oKHW1W$Fo#JZ^~i8(r(Zy^x/tidE@-ysFx[n!');
 
 /**#@-*/
 

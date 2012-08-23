@@ -1,7 +1,7 @@
 /*
 Theme Name:         Evidensbaserad praktik
 Description:        Theme built with http://scalecss.com
-Version:            20120806
+Version:            20120820
 Author:             Johan Edlund
 Author URI:         http://edlunddesign.com
 */
@@ -215,6 +215,9 @@ html {
 .clear {
   clear: both;
 }
+.uppercase {
+  text-transform: uppercase;
+}
 .visuallyhidden {
   position: absolute;
   margin: -1px;
@@ -265,6 +268,9 @@ hr {
   margin-bottom: 1em;
   height: 5px;
   background: url(img/hr.gif) repeat-x;
+}
+.hidefordesktop {
+  margin: 2em 0;
 }
 .aligncenter,
 .alignnone {
@@ -423,9 +429,8 @@ blockquote:before {
   left: -0.6018em;
   top: 0;
 }
-.twitter-tweet-rendered:before {
+.twt-border blockquote:before {
   content: "";
-  left: 0;
 }
 ul,
 ol {
@@ -575,7 +580,9 @@ img,
 embed,
 object,
 video,
-iframe {
+iframe,
+figure,
+blockquote {
   max-width: 100%;
   height: inherit;
   _width: 100%;
@@ -588,7 +595,11 @@ iframe {
 
   height: 0;
   overflow: hidden;
+  background: #f5f6f6;
   margin-bottom: 2em;
+}
+.home .embed-container {
+  margin-bottom: 0;
 }
 .embed-container iframe,
 .embed-container object,
@@ -619,10 +630,16 @@ img.alignnone {
   margin-left: 0;
   margin-right: 0;
 }
-a.alignright,
+a.alignright {
+  float: none;
+  border: none;
+  margin: 0 .7em 0 0;
+}
+a.alignright img {
+  margin: 0;
+}
 a.alignright:hover {
   border: none;
-  margin-left: .7em;
 }
 img.alignleft,
 img.alignright,
@@ -647,7 +664,8 @@ figure a img {
 figure br {
   display: none;
 }
-figcaption {
+figcaption,
+.bildtext {
   /* padding-left:1.4em; */
 
   padding: .3em 0;
@@ -658,19 +676,13 @@ figcaption {
   color: #7a7f82;
   background: #ffffff;
 }
-figcaption:before {
+figcaption:before,
+.bildtext:before {
   margin-right: .4em;
   font-style: normal;
   content: "\00bb";
   color: #f1b13a;
 }
-/*
-figcaption a:link, figcaption a:visited {
-  font-weight: normal;
-  border:none;
-  background:transparent;
-}
-*/
 /*
   LINKS
 --------------------------------------------- */
@@ -725,9 +737,9 @@ p span.relevanssi-query-term {
   list-style: none;
 }
 .wp-paginate a {
-  color: #eee;
-  background: #ce2630;
-  border: 1px solid #8c9193;
+  color: #444;
+  background: #eee;
+  border: 1px solid #ccc;
   margin-right: .1em;
   padding: .2em .3em;
   text-align: center;
@@ -736,8 +748,8 @@ p span.relevanssi-query-term {
 }
 .wp-paginate a:hover,
 .wp-paginate a:active {
-  background: #8d1a21;
-  color: #fff;
+  background: #ce2630;
+  color: #efefef;
 }
 .wp-paginate .title {
   color: #555;
@@ -749,9 +761,9 @@ p span.relevanssi-query-term {
 }
 .wp-paginate .current {
   font-weight: normal;
-  color: #444;
-  background: #eee;
-  border: 1px solid #ccc;
+  color: #666;
+  background: #ccc;
+  border: 1px solid #bbb;
   margin-right: .2em;
   padding: .2em .3em;
 }
@@ -800,9 +812,9 @@ ul.wrapper li ul li a {
 
   /* with 5% logored */
 
-  color: #837F83;
-  /*   display: block; */
+  /* color: #837F83; */
 
+  color: #7C7275;
 }
 ul.wrapper li ul li a:hover,
 ul.wrapper li ul li.current-menu-item a,
@@ -1130,7 +1142,6 @@ footer[role=contentinfo] img {
     float: right;
     margin-left: 1.5em;
   }
-  /* .single .post_content {margin-bottom: 1.714285714em; background: url(img/hr.gif) repeat-x bottom left;} */
   /* Sidebar */
   ul.wrapper li ul {
     margin-left: 1em;
@@ -1188,6 +1199,11 @@ footer[role=contentinfo] img {
   #Content {
     margin: 0;
   }
+  a.alignright {
+    float: right;
+    border: none;
+    margin: 0 0 0 .7em;
+  }
   /* byline */
   h3.byline {
     text-align: center;
@@ -1226,8 +1242,29 @@ footer[role=contentinfo] img {
   header .container {
     max-width: 53.75em;
   }
-  #Enkolumnsnavigering {
+  #Enkolumnsnavigering ul li {
     display: none;
+  }
+  #Enkolumnsnavigering ul li#menu-item-555 {
+    display: block;
+    text-align: center;
+  }
+  #Enkolumnsnavigering ul li#menu-item-555 a {
+    width: 30px;
+    height: 30px;
+    display: block;
+    border: none;
+    background: url(img/graphics.png) 0 -200px no-repeat;
+    text-indent: -9999px;
+    /* .transition(.2s, ease-out); */
+  
+    margin: 0 auto;
+  }
+  #Enkolumnsnavigering ul li#menu-item-555 a:hover {
+    background-position: 0 -300px;
+  }
+  .svg #Enkolumnsnavigering ul li#menu-item-555 a {
+    background-image: url(img/graphics.svg);
   }
   #Content {
     max-width: 53.75em;
@@ -1238,6 +1275,10 @@ footer[role=contentinfo] img {
   
     float: left;
     clear: both;
+  }
+  /* hr divider for one-column */
+  .hidefordesktop {
+    display: none;
   }
   #Sidebar {
     max-width: 15.9375em;

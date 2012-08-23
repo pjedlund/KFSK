@@ -24,8 +24,10 @@ function add_nofollow_cat( $text ) {
 }
 add_filter( 'the_category', 'add_nofollow_cat' );
 
+/*
 remove_action(‘wp_head’, ‘adjacent_posts_rel_link_wp_head’, 10, 0);
 remove_action(‘wp_head’, ‘start_post_rel_link’, 10, 0 );
+*/
 
 /**** Remove css for wp-paginate ****/
 function my_deregister_styles(){wp_deregister_style('wp-paginate');}
@@ -80,12 +82,15 @@ function wptuts_theme_setup() {
 add_editor_style();
 
 
-/**** Enqueue jquery.. ****/ 
-if( !is_admin()){
-	wp_deregister_script('jquery');
-	wp_register_script('jquery', ("https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"), false, '1.7.2', true);
-	wp_enqueue_script('jquery');
+/**** Enqueue jquery ****/
+function enqueue_jquery() {
+    if( !is_admin() ){
+    	wp_deregister_script('jquery');
+    	wp_register_script('jquery', ("https://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"), false, '1.8.0', true);
+    	wp_enqueue_script('jquery');
+    }
 }
+add_action('wp_enqueue_scripts', 'enqueue_jquery');
 
 /**** Add post classes  ****/
 function additional_post_classes( $classes ) {
@@ -231,8 +236,13 @@ add_filter('img_caption_shortcode', 'my_img_caption_shortcode_filter',10,3);
 /**** add "lightbox" to all image links ****/
 function my_addlightboxrel($content) {
   global $post;
+  if (isset($caption)){
+    $cap = $caption;
+  } else {
+    $cap = "";
+  }
   $pattern ="/<a(.*?)href=('|\")(.*?).(bmp|gif|jpeg|jpg|png)('|\")(.*?)>/i";
-  $replacement = '<a$1href=$2$3.$4$5 class="lightbox" title="'. $caption.'"$6>';
+  $replacement = '<a$1href=$2$3.$4$5 class="lightbox" title="'. $cap.'"$6>';
   $content = preg_replace($pattern, $replacement, $content);
   return $content;
 }
@@ -247,6 +257,10 @@ function theme_get_archive_date() {
 	return $this_archive;
 }
 
+/**** Enable automatic feeds (new in 3.0+) ****/
+if(function_exists('add_theme_support')) {
+    add_theme_support('automatic-feed-links');
+}
 
 /**** Remove header stuff ****/
 //remove_action( 'wp_head', 'feed_links_extra', 3 ); // Removes the links to the extra feeds such as category feeds
@@ -279,10 +293,6 @@ function insertThumbnailRSS($content) {
 add_filter('the_excerpt_rss', 'insertThumbnailRSS');
 add_filter('the_content_feed', 'insertThumbnailRSS');
 
-/****  add feed links to header ****/
-if (function_exists('automatic_feed_links')) {automatic_feed_links();
-} else {return;}
-
 
 // Don't add the wp-includes/js/comment-reply.js script to single post pages unless threaded comments are enabled
 // adapted from http://bigredtin.com/behind-the-websites/including-wordpress-comment-reply-js/
@@ -305,8 +315,8 @@ $GLOBALS['comment'] = $comment; ?>
 <div class="gravatarHolder"><?php echo get_avatar(get_comment_author_email(), $size = '55'); ?></div>
 
 <ul class="comment-meta">
-<li class="comment-meta-author"><?php printf(__('%s'), get_comment_author_link()); ?> <a class="comment-permalink" href="<?php echo htmlspecialchars(get_comment_link($comment->comment_ID)); ?>"></li>
-<li class="comment-meta-date"><?php comment_date('j F Y'); ?> @ <?php comment_time('H.i'); ?></a> <?php edit_comment_link('Redigera &raquo;', '', ''); ?></li>
+<li class="comment-meta-author"><?php printf(__('%s'), get_comment_author_link()); ?></li>
+<li class="comment-meta-date"><a class="comment-permalink" href="<?php echo htmlspecialchars(get_comment_link($comment->comment_ID)); ?>"><?php comment_date('j F Y'); ?> @ <?php comment_time('H.i'); ?></a> <?php edit_comment_link('Redigera &raquo;', '', ''); ?></li>
 </ul>
 <?php if ($comment->comment_approved == '0') : ?>
 <p class="comment-moderation"><?php _e('Your comment is awaiting moderation.'); ?></p>

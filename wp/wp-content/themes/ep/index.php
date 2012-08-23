@@ -35,8 +35,11 @@ $omurl = get_permalink($om_id);
 ?>
 <article class="clearfix">
 <h2 class="dropcap">I en <em>evidensbaserad praktik</em> används <strong>tre</strong> kunskapskällor för att skapa en så effektiv vård som möjligt: <strong>vetenskaplig kunskap</strong> om insatsers effekt, <strong>brukarens erfarenheter</strong> och förväntningar och den <strong>professionelles expertis.</strong></h2>
-<p class="textright"><a class="more button" href="<?php echo $omurl ?>">Läs mer <span class="hidden"> av <?php echo $title ?></span></a></p>
+<div class="embed-container"><iframe src="http://player.vimeo.com/video/47650126?title=0&amp;byline=0&amp;portrait=0&amp;color=ffffff"></iframe></div>
+<p class="bildtext">I Sjöbo har man kommit långt när det gäller att samarbeta runt demenssjuka för att införa en evidensbaserad praktik.</p>
+<p><a class="more button" href="<?php echo $omurl ?>">Läs mer om evidensbaserad praktik</span></a></p>
 </article>
+<div class="hr"></div><hr />
 <?php } ?>
 
 <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
@@ -70,6 +73,8 @@ if (has_post_thumbnail()) {
 <?php if(function_exists('wp_paginate')) {
     wp_paginate();
 } ?>
+
+<div class="hr hidefordesktop"></div><hr />
 
 </section><!-- end section main -->
 

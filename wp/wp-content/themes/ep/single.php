@@ -35,6 +35,8 @@ Publicerat <time datetime="<?php the_time('c'); ?>"><a title="Arkiv för <?php t
 
 <?php endwhile; endif ?>
 
+<div class="hr hidefordesktop"></div><hr />
+
 </div><!-- end section main -->
 
 <?php get_sidebar(); ?>

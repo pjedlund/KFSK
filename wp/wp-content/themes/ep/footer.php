@@ -6,7 +6,7 @@
 
 <div class="hr"></div><hr />
 
-<p>Publiceringsverktyg: <a href="http://wordpress.org/">WordPress</a></p>
+<p>Publiceras stolt med <a href="http://wordpress.org/">WordPress</a>.</p>
 
 </footer>
 
@@ -18,7 +18,7 @@
 <script src="<?php echo get_template_directory_uri(); ?>/js/script.js"></script>
 
 <!--[if (lt IE 9) & (!IEMobile)]>
-<script src="<?php echo get_template_directory_uri(); ?>js/libs/imgsizer.js"></script>
+<script src="<?php echo get_template_directory_uri(); ?>/js/libs/imgsizer.js"></script>
 <![endif]-->  
 
 <script>

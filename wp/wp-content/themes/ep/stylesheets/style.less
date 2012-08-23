@@ -1,7 +1,7 @@
 /*
 Theme Name:         Evidensbaserad praktik
 Description:        Theme built with http://scalecss.com
-Version:            20120806
+Version:            20120820
 Author:             Johan Edlund
 Author URI:         http://edlunddesign.com
 */
@@ -146,6 +146,8 @@ html {
 .clearfix { *zoom: 1; }
 .clear {clear:both;}
 
+.uppercase {text-transform: uppercase;}
+
 .visuallyhidden {position: absolute;margin: -1px;padding: 0;height: 1px;width: 1px;overflow: hidden;border: 0;clip: rect(0);}
 .visuallyhidden.focusable:active, .visuallyhidden.focusable:focus {position: static;margin: 0;height: auto;width: auto;overflow: visible;clip: auto;}
 acronym, abbr {font-style:normal;text-decoration:none;cursor: help;}
@@ -155,6 +157,7 @@ span.amp {font:normal 1em Baskerville, Palatino, Constantia, "Book Antiqua", "UR
 
 hr {position: absolute;margin: -1px;padding: 0;height: 1px;width: 1px;overflow: hidden;border: 0;clip: rect(0);}
 .hr {clear: both;margin-bottom: 1em;height:5px;background: url(img/hr.gif) repeat-x;}
+.hidefordesktop {margin: 2em 0;}
 
 // Non-semantic helper classes + required WP classes
 .aligncenter,.alignnone {float:left;}
@@ -280,11 +283,8 @@ blockquote:before {
   top: 0;
   }
   
-.twitter-tweet-rendered{
-}
-.twitter-tweet-rendered:before {
+.twt-border blockquote:before {
   content: "";
-  left:0;
 }
 
 ul, ol {
@@ -429,7 +429,7 @@ img {
   border: 0;
   }
 
-img, embed, object, video, iframe { 
+img, embed, object, video, iframe, figure, blockquote { 
   max-width: 100%;
   height: inherit;
   _width: 100%;
@@ -441,8 +441,14 @@ img, embed, object, video, iframe {
   padding-bottom: 56.25%; /* 16/9 ratio */
   height: 0;
   overflow: hidden;
+  background: lighten(@logogrey, 40%);
   margin-bottom: 2em;
 }
+
+.home .embed-container {
+  margin-bottom: 0;
+}
+
 .embed-container iframe,
 .embed-container object,
 .embed-container embed {
@@ -477,10 +483,16 @@ img.alignnone{
     margin-right: 0;
 }
 
-
-a.alignright, a.alignright:hover {
+a.alignright {
+  float: none;
   border: none;
-  margin-left:.7em;
+  margin:0 .7em 0 0;
+}
+a.alignright img {
+  margin:0;
+}
+a.alignright:hover {
+  border: none;
 }
 
 
@@ -505,7 +517,7 @@ figure a img {
 /* obs! wp adds a br to all captions -- this is a hack to hide it */
 figure br {display: none;}
 
-figcaption {
+figcaption, .bildtext {
   /* padding-left:1.4em; */
   padding:.3em 0;
   font-size: .8125em; /* 13px - 1024 */
@@ -514,20 +526,12 @@ figcaption {
   background: @white;
 }
 
-figcaption:before {
+figcaption:before, .bildtext:before {
   margin-right:.4em;
   font-style: normal;
   content:"\00bb";
   color:@basecol;
 }
-
-/*
-figcaption a:link, figcaption a:visited {
-  font-weight: normal;
-  border:none;
-  background:transparent;
-}
-*/
 
 
 /*
@@ -580,11 +584,11 @@ p span.relevanssi-query-term {background:#FDF20D;}
 ---------------------------------------------------------------*/
 .wp-paginate {text-align:center;margin:1.5em 0;}
 .wp-paginate li {display:inline; list-style:none;}
-.wp-paginate a {color:#eee; background:@logored; border:1px solid @logogrey; margin-right:.1em; padding:.2em .3em; text-align:center; text-decoration:none;font-weight: 400;}
-.wp-paginate a:hover, .wp-paginate a:active {background : darken(@linkcol,15%); color:#fff;}
+.wp-paginate a {color:#444; background:#eee; border:1px solid #ccc; margin-right:.1em; padding:.2em .3em; text-align:center; text-decoration:none;font-weight: 400;}
+.wp-paginate a:hover, .wp-paginate a:active {background:@logored; color:#efefef;}
 .wp-paginate .title {color:#555; margin-right:.2em;}
 .wp-paginate .gap {color:#999; margin-right:.2em;}
-.wp-paginate .current {font-weight: normal; color:#444; background:#eee; border:1px solid #ccc; margin-right:.2em; padding:.2em .3em;}
+.wp-paginate .current {font-weight: normal; color:#666; background:#ccc; border:1px solid #bbb; margin-right:.2em; padding:.2em .3em;}
 .wp-paginate .page {}
 .wp-paginate .prev, .wp-paginate .next {color:#666;background: transparent; border:1px solid transparent;}
 .wp-paginate .prev:hover, .wp-paginate .next:hover {color:#222; background: #f9f9f9; border:1px solid #ccc; }
@@ -618,8 +622,8 @@ ul.wrapper li ul li a {
   padding-left: 0;
   /* color:darken(@logogrey, 5%); */
   /* with 5% logored */
-  color: #837F83;
-/*   display: block; */
+  /* color: #837F83; */
+  color:#7C7275;
 }
 
 
@@ -914,9 +918,6 @@ footer[role=contentinfo] img{
       margin-left: 1.5em;
   }
   
-  /* .single .post_content {margin-bottom: 1.714285714em; background: url(img/hr.gif) repeat-x bottom left;} */
-  
-  
   /* Sidebar */
   ul.wrapper li ul {margin-left:1em; margin-bottom: 1.714285714em; /* 24px */}
    /* search  */
@@ -962,6 +963,12 @@ body {
   #Content {
     margin:0;
   }
+  
+  a.alignright {
+    float: right;
+    border: none;
+    margin:0 0 0 .7em;
+  }
 
   /* byline */
   h3.byline{
@@ -1006,8 +1013,29 @@ body {
         max-width: 53.75em;
     }
     
-    #Enkolumnsnavigering {display:none;}
-    
+    #Enkolumnsnavigering ul li {
+      display:none;
+      }
+      
+    #Enkolumnsnavigering ul li#menu-item-555 {
+      display:block;
+      text-align: center;
+      }
+    #Enkolumnsnavigering ul li#menu-item-555 a {
+        width:30px;
+        height:30px;
+        display:block;
+        border:none;
+        background: url(img/graphics.png) 0 -200px no-repeat;
+        text-indent: -9999px;
+        /* .transition(.2s, ease-out); */
+        margin:0 auto;
+    } 
+    #Enkolumnsnavigering ul li#menu-item-555 a:hover {
+      background-position: 0 -300px;
+    }
+    .svg #Enkolumnsnavigering ul li#menu-item-555 a {background-image: url(img/graphics.svg);}
+
     #Content {
         max-width: 53.75em;
     }
@@ -1017,6 +1045,9 @@ body {
         float:left;
         clear:both;
     }
+    
+    /* hr divider for one-column */
+    .hidefordesktop {display: none;}
     
     #Sidebar{
         max-width: 15.9375em; /* 255px */

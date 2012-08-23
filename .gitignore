@@ -14,3 +14,7 @@ xcuserdata
 .eps
 
 build/
+_backup/
+_dev/
+_docs/
+_originals/

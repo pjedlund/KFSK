@@ -35,7 +35,7 @@
 <?php else : ?>
 
 <div>
-<h3>Tyvärr, inga träffar för &ldquo;<em><?php echo wp_specialchars($s, 1); ?></em>&rdquo;. <?php if (function_exists('relevanssi_didyoumean')) {
+<h3>Tyvärr, inga träffar för &ldquo;<em><?php echo esc_html($s, 1); ?></em>&rdquo;. <?php if (function_exists('relevanssi_didyoumean')) {
     relevanssi_didyoumean(get_search_query(), "Du kanske menade ", "?", 5);
 }?></h3>
 </div>
@@ -45,6 +45,8 @@
 <?php if(function_exists('wp_paginate')) {
     wp_paginate();
 } ?>
+
+<div class="hr hidefordesktop"></div><hr />
 
 </section><!-- end section main -->
 

@@ -17,6 +17,8 @@
 
 </section><!-- end post_content section -->
 
+<div class="hr hidefordesktop"></div><hr />
+
 </div><!-- end section main -->
 
 <?php get_sidebar(); ?>

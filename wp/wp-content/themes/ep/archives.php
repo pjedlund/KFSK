@@ -40,6 +40,8 @@ if (is_category())  { single_cat_title();}
     wp_paginate();
 } ?>
 
+<div class="hr hidefordesktop"></div><hr />
+
 </section><!-- end section main -->
 
 <?php get_sidebar(); ?>
